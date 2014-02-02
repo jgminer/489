@@ -44,6 +44,7 @@
 #define PM_VERS      0x1
 #define PM_WELCOME   0x1       // Welcome peer
 #define PM_RDIRECT   0x2       // Redirect per
+using namespace std;
 
 typedef struct {            // peer address structure
   struct in_addr peer_addr; // IPv4 address
@@ -67,9 +68,9 @@ typedef struct {            // peer table entry
   bool pending;             // true if waiting for ack from peer
 } pte_t;                    // ptbl entry
 
-std::vector<pte_t> pVector;     //main peer table for this host
-std::vector<pte_t> tryVector;   //vector of received pte's to try
-std::vector<pte_t> peerDecline; //peers recvd redirect
+vector<pte_t> pVector;     //main peer table for this host
+vector<pte_t> tryVector;   //vector of received pte's to try
+vector<pte_t> peerDecline; //peers recvd redirect
 int MAXPEERS = 6;           //default = 6
 int MAXSEND = 6;            //always 6
 int maxsd = 0;                  //global for faster calculation
@@ -180,7 +181,7 @@ peer_setup(u_short port)
 
   /* bind address to socket */
   if (bind(sd, (struct sockaddr*) &self, sizeof(self)) < 0){
-    // std::cout << "always" << std::endl;
+    // cout << "always" << endl;
     perror("bind");
     abort();
   }
@@ -223,31 +224,6 @@ peer_accept(int sd, pte_t *pte)
     abort();
   }
 
-  struct hostent *host = gethostbyname(pte->pte_pname);
-  unsigned int server_addr = *(unsigned long *) host->h_addr_list[0];
-
-  struct sockaddr_in self;
-  memset((char *) &self, 0, sizeof(struct sockaddr_in));
-  self.sin_family = AF_INET;
-  self.sin_addr.s_addr = server_addr;
-  self.sin_port = pte->pte_peer.peer_port; // in network byte order
-
-  /* reuse local address so that bind doesn't complain
-     of address already in use. */
-  int yes = 1;
-  int test = setsockopt(td, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(yes));
-
-  if (test < 0){
-    perror("setting reuse failed");
-    abort();
-  }
-
-  /* bind address to socket */
-  if (bind(td, (struct sockaddr*) &self, sizeof(self)) < 0){
-    // std::cout << "always" << std::endl;
-    perror("bind");
-    abort();
-  }
 
   /* store peer's address+port# in pte */
   memcpy((char *) &pte->pte_peer.peer_addr, (char *) &peer.sin_addr, 
@@ -322,7 +298,7 @@ int peer_ack(int td, char type, pte_t *sendTo)
  * On success, returns 0.
  * On error, terminates process.
  */
-int peer_connect(pte_t *pte){
+int peer_connect(pte_t *pte, sockaddr_in *self){
   int sd = 0;
   if ((sd = socket(AF_INET, SOCK_STREAM, 0)) < 0){
     perror("opening TCP socket");
@@ -342,26 +318,32 @@ int peer_connect(pte_t *pte){
     perror("setting reuse failed");
     return -1;
   }
+  // struct sockaddr_in bin;
+  // memset(&bin, 0, sizeof(sockaddr_in));
+  // bin.sin_family = AF_INET;
+  // bin.sin_addr.s_addr = INADDR_ANY;
+  // bin.sin_port = self->sin_port;     //use the port that we are listening on for bind
+
+  // /* bind my LISTENING address:port to socket */
+  // if (bind(sd, (struct sockaddr*) &bin, sizeof(bin)) < 0){
+  //   perror("bind");
+  //   abort();
+  // }
+
   /* initialize socket address with destination peer's IPv4 address and port number . */
-  struct sockaddr_in sin;
+  struct sockaddr_in cin;
   //MAY NEED THESE:
   struct hostent *host = gethostbyname(pte->pte_pname);
   unsigned int server_addr = *(unsigned long *) host->h_addr_list[0];
 
-  memset(&sin, 0, sizeof(sockaddr_in));
-  sin.sin_family = AF_INET;
-  sin.sin_addr.s_addr = server_addr;
-  sin.sin_port = pte->pte_peer.peer_port;
+  memset(&cin, 0, sizeof(sockaddr_in));
+  cin.sin_family = AF_INET;
+  cin.sin_addr.s_addr = server_addr;
+  cin.sin_port = pte->pte_peer.peer_port;     //use the port that we are listening on for bind
 
-  /* bind address to socket */
-  if (bind(sd, (struct sockaddr*) &sin, sizeof(sin)) < 0){
-    perror("bind");
-    abort();
-  }
-
-  std::cout << "connecting to (addr, port): " << sin.sin_addr.s_addr << ":" << sin.sin_port << std::endl;
+ //cout << "connecting to (addr, port): " << inet_ntoa(cin.sin_addr) << ":" << ntohs(cin.sin_port) << endl;
   /* connect to destination peer. */
-  if (connect(sd, (struct sockaddr *) &sin, sizeof(sin)) != 0){
+  if (connect(sd, (struct sockaddr *) &cin, sizeof(cin)) != 0){
       perror("failed to connect to server");
       //peerDecline.push_back(*pte);
       abort();
@@ -398,7 +380,8 @@ int peer_recv(pte_t *target)
   }
 
   fprintf(stderr, "Received ack from %s:%d\n", target->pte_pname, ntohs(target->pte_peer.peer_port));
-
+  // cout << target->pte_pname << endl;
+  // cout << ntohs(target->pte_peer.peer_port) << endl;
   if (msg.pm_vers != PM_VERS) {
       fprintf(stderr, "unknown message version.\n");
       return -1;
@@ -568,15 +551,17 @@ bool connect_handler(pte_t *connect_pte, sockaddr_in *self){
     connect_pte->pte_peer.peer_addr.s_addr = (unsigned int) phost->h_addr_list[0];
   }
 
+  sockaddr_in *sk_addr_tmp; //don't overwrite self
   /* connect to peer in pte[0] */
-  peer_connect(connect_pte);  // Task 2: fill in the peer_connect() function above
-  //obtain ephemeral port assigned
-  socklen_t selflen = sizeof(*self);
-  getsockname(connect_pte->pte_sd, (struct sockaddr*) self, &selflen);
+  peer_connect(connect_pte, self);  // Task 2: fill in the peer_connect() function above
+  socklen_t selflen = sizeof(*sk_addr_tmp);
+  getsockname(connect_pte->pte_sd, (struct sockaddr*) sk_addr_tmp, &selflen);
 
   /* inform user of connection to peer */
   fprintf(stderr, "Connected to peer %s:%d\n", connect_pte->pte_pname,
           ntohs(connect_pte->pte_peer.peer_port));
+  // cout << connect_pte->pte_pname << endl;
+  // cout << ntohs(connect_pte->pte_peer.peer_port) << endl;
   return true;
 }
 
@@ -614,24 +599,6 @@ int main(int argc, char *argv[])
   else assert(argc == 1 || tryVector[0].pte_peer.peer_port );
   // // init (the rest!) of the data
   memset((char *) &self, 0, sizeof(struct sockaddr_in));
-  // if (pVector.size() > 0) {
-  //   for (i=1; i < MAXPEERS; i++) {
-  //     // pname[i] = &pnamebuf[i*(PR_MAXFQDN+1)];
-  //     pVector[i].pte_sd = PR_UNINIT_SD;
-  //     pVector[i].pte_pname = NULL;
-  //   }
-
-  // }
-
-  /* connect to peer if in args*/
-  if (argc > 1){
-    if (tryVector.size() > 0) {
-      connect_handler(&tryVector[0], &self);
-    }
-  }
-
-  //clear tryVector again since we don't want the arg in it
-  tryVector.clear();
 
   /* setup and listen on connection */
   sd = peer_setup(self.sin_port);  // Task 1: fill in the peer_setup() function above
@@ -653,6 +620,17 @@ int main(int argc, char *argv[])
   /* inform user which port this peer is listening on */
   fprintf(stderr, "This peer address is %s:%d\n",
           tmpFQDN, ntohs(self.sin_port));
+
+  /* connect to peer if in args*/
+  if (argc > 1){
+    if (tryVector.size() > 0) {
+      connect_handler(&tryVector[0], &self);
+    }
+  }
+
+  //clear tryVector again since we don't want the arg in it
+  tryVector.clear();
+
 
   while(1) {
     /* set all the descriptors to select() on */

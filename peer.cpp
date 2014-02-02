@@ -223,6 +223,32 @@ peer_accept(int sd, pte_t *pte)
     abort();
   }
 
+  struct hostent *host = gethostbyname(pte->pte_pname);
+  unsigned int server_addr = *(unsigned long *) host->h_addr_list[0];
+
+  struct sockaddr_in self;
+  memset((char *) &self, 0, sizeof(struct sockaddr_in));
+  self.sin_family = AF_INET;
+  self.sin_addr.s_addr = server_addr;
+  self.sin_port = pte->pte_peer.peer_port; // in network byte order
+
+  /* reuse local address so that bind doesn't complain
+     of address already in use. */
+  int yes = 1;
+  int test = setsockopt(td, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(yes));
+
+  if (test < 0){
+    perror("setting reuse failed");
+    abort();
+  }
+
+  /* bind address to socket */
+  if (bind(td, (struct sockaddr*) &self, sizeof(self)) < 0){
+    // std::cout << "always" << std::endl;
+    perror("bind");
+    abort();
+  }
+
   /* store peer's address+port# in pte */
   memcpy((char *) &pte->pte_peer.peer_addr, (char *) &peer.sin_addr, 
          sizeof(struct in_addr));

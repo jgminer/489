@@ -31,6 +31,7 @@
 #include <sys/types.h>     // u_short
 #include <sys/socket.h>    // socket API, setsockopt(), getsockname()
 #include <sys/select.h>    // select(), FD_*
+#include <iostream>
 
 #define net_assert(err, errmsg) { if ((err)) { perror(errmsg); assert(!(err)); } }
 
@@ -54,7 +55,7 @@ typedef struct {            // peer address structure
 typedef struct {            // +------+------+-------------+
   char pm_vers, pm_type;    // | vers | type |   #peers    |
   u_short pm_npeers;        // +------+------+-------------+
-  peer_t pm_peer;           // |     peer ipv4 address     |
+  peer_t pm_peer;          // |     peer ipv4 address     |
 } pmsg_t;                   // +---------------------------+
                             // |  peer port# |   reserved  |
                             // +---------------------------+
@@ -179,6 +180,7 @@ peer_setup(u_short port)
 
   /* bind address to socket */
   if (bind(sd, (struct sockaddr*) &self, sizeof(self)) < 0){
+    // std::cout << "always" << std::endl;
     perror("bind");
     abort();
   }
@@ -233,8 +235,7 @@ peer_accept(int sd, pte_t *pte)
  * If there's any error in sending, closes the socket td.
  * In all cases, returns the error message returned by send().
 */
-//Don't use peer anymore - just take from the pVector...
-int peer_ack(int td, char type, pte_t *sendTo) //peer_t *peer)
+int peer_ack(int td, char type, pte_t *sendTo)
 {
   int err;
   int copiedBytes = 0;
@@ -242,70 +243,52 @@ int peer_ack(int td, char type, pte_t *sendTo) //peer_t *peer)
   int VectorSize = pVector.size();
 
   unsigned char byte_arr[sizeof(pmsg_t) +(VectorSize-1)*sizeof(peer_t)];
-  memset(byte_arr, 0, sizeof(byte_arr));
+  memset(byte_arr, 0, sizeof(pmsg_t)); //make sure at least the initial part is empty
 
-  pmsg_t This;
-  pmsg_t *sendThis = &This;
+  pmsg_t *sendThis = new pmsg_t;
   sendThis->pm_vers = PM_VERS;
   sendThis->pm_type = type;
   //if peer is null, set num peers to 0
-  sendThis->pm_npeers = (u_short) VectorSize < (u_short) MAXPEERS ? VectorSize : MAXPEERS;
+  //sendThis->pm_npeers = (u_short) VectorSize < (u_short) MAXPEERS ? VectorSize : MAXPEERS;
   sendThis->pm_peer.peer_addr.s_addr = 0;
   sendThis->pm_peer.peer_rsvd = 0;
   sendThis->pm_peer.peer_port = 0;
-  //collect data for pmsg_t - first peer_t
-  //if no peers, skip this step, only send pmsg_t
-  //if (VectorSize == 0){
-   
-  //}
-  // else {
-  //   if(strcmp(pVector[0].pte_pname, sendTo->pte_pname)   //if we are already peered, don't returnb
-  //     && (pVector[0].pte_peer.peer_port != sendTo->pte_peer.peer_port)){
-  //     sendThis->pm_peer = pVector[0].pte_peer;
-  //     memcpy(byte_arr, sendThis, sizeof(pmsg_t));
-  //     copiedBytes += sizeof(pmsg_t);
-  //   }
-  // }
+
   int actual_sent = 0;
   //only send up to 6!!!!
   for (uint i = 0; i < pVector.size(); i++){
     if (actual_sent >= 6) break;
     if (copiedBytes < (int)sizeof(pmsg_t)){
-      if(strcmp(pVector[0].pte_pname, sendTo->pte_pname)   //if we are already peered, don't returnb
-      || (pVector[0].pte_peer.peer_port != sendTo->pte_peer.peer_port)){
+      if(strcmp(pVector[i].pte_pname, sendTo->pte_pname)   //if we are already peered, don't returnb
+      || (pVector[i].pte_peer.peer_port != sendTo->pte_peer.peer_port)){
         sendThis->pm_peer = pVector[i].pte_peer;
-        memcpy(&byte_arr[0], sendThis, sizeof(pmsg_t));
+        memcpy(byte_arr, sendThis, sizeof(pmsg_t));
         copiedBytes += sizeof(pmsg_t);
         actual_sent++;
       }
     }
     else {
 
-      if(strcmp(pVector[0].pte_pname, sendTo->pte_pname)   //if we are already peered, don't returnb
-      || (pVector[0].pte_peer.peer_port != sendTo->pte_peer.peer_port)){
-        memcpy(&byte_arr[0]+copiedBytes, &pVector[i].pte_peer, sizeof(peer_t));
+      if(strcmp(pVector[i].pte_pname, sendTo->pte_pname)   //if we are already peered, don't returnb
+      || (pVector[i].pte_peer.peer_port != sendTo->pte_peer.peer_port)){
+        memcpy(&byte_arr[copiedBytes], &pVector[i].pte_peer, sizeof(peer_t));
         copiedBytes += sizeof(peer_t);
         actual_sent++;
       }
     }
   }
-  // if (actual_sent == 0){
-
-  // }
-  //check if the number of peers we are sending is what we actually specified...
-
+  int partial = 4; //parial is only 32 bits
   sendThis->pm_npeers = actual_sent;
-  if (actual_sent == 0) copiedBytes += sizeof(pmsg_t); //keeps it below
+  if (actual_sent == 0) copiedBytes = partial; //keeps it below
   memcpy(&byte_arr[0], sendThis, sizeof(pmsg_t));
-  assert((uint)copiedBytes == sizeof(byte_arr));
-  err = send(td, &byte_arr, sizeof(byte_arr), 0);
+  //assert((uint)copiedBytes == sizeof(byte_arr)); bad assert - dynamically sized
+  err = send(td, &byte_arr, copiedBytes, 0);
 
-  //memcpy(&byte_arr[0], sendThis, sizeof(pmsg_t));
   if (err < 0){
     perror("error acking to peer");
     abort();
   }
- // byte_arr = '\0'; //null byte array for future iterations
+  delete sendThis;
   return(err);
 }
 
@@ -314,7 +297,7 @@ int peer_ack(int td, char type, pte_t *sendTo) //peer_t *peer)
  * On error, terminates process.
  */
 int peer_connect(pte_t *pte){
-  int sd;
+  int sd = 0;
   if ((sd = socket(AF_INET, SOCK_STREAM, 0)) < 0){
     perror("opening TCP socket");
     abort();
@@ -331,7 +314,7 @@ int peer_connect(pte_t *pte){
   int test = setsockopt(sd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int));
   if (test < 0){
     perror("setting reuse failed");
-    abort();
+    return -1;
   }
   /* initialize socket address with destination peer's IPv4 address and port number . */
   struct sockaddr_in sin;
@@ -339,18 +322,27 @@ int peer_connect(pte_t *pte){
   struct hostent *host = gethostbyname(pte->pte_pname);
   unsigned int server_addr = *(unsigned long *) host->h_addr_list[0];
 
-  memset(&sin, 0, sizeof(sin));
+  memset(&sin, 0, sizeof(sockaddr_in));
   sin.sin_family = AF_INET;
   sin.sin_addr.s_addr = server_addr;
   sin.sin_port = pte->pte_peer.peer_port;
 
+  /* bind address to socket */
+  if (bind(sd, (struct sockaddr*) &sin, sizeof(sin)) < 0){
+    perror("bind");
+    abort();
+  }
+
+  std::cout << "connecting to (addr, port): " << sin.sin_addr.s_addr << ":" << sin.sin_port << std::endl;
   /* connect to destination peer. */
   if (connect(sd, (struct sockaddr *) &sin, sizeof(sin)) != 0){
       perror("failed to connect to server");
+      //peerDecline.push_back(*pte);
       abort();
   }
-  pVector.push_back(*pte);    //push onto the peer table!
+
   pte->pending = true;  //change pending
+  pVector.push_back(*pte);    //push onto the peer table!
 
   return(0);
 }
@@ -369,21 +361,21 @@ void print_peer(pte_t *p){
 int peer_recv(pte_t *target)
 {
   pmsg_t msg;
-  size_t partial = 2+sizeof(u_short);  //minimum to recv is 32 bits - pmsg_t w/o peer_t
+  size_t partial = 4;  //minimum to recv is 32 bits - pmsg_t w/o peer_t
   int bytes_recv = recv(target->pte_sd, &msg, partial, 0);
   if (bytes_recv <= 0){
     close(target->pte_sd);
     return(bytes_recv);
   }
   while((uint)bytes_recv < partial){
-    bytes_recv += recv(target->pte_sd, &msg, partial-bytes_recv, 0);
+    bytes_recv += recv(target->pte_sd, &(msg)+bytes_recv, partial-bytes_recv, 0);
   }
 
   fprintf(stderr, "Received ack from %s:%d\n", target->pte_pname, ntohs(target->pte_peer.peer_port));
 
   if (msg.pm_vers != PM_VERS) {
       fprintf(stderr, "unknown message version.\n");
-      return false;
+      return -1;
   }
 
   if (msg.pm_type == PM_RDIRECT) {
@@ -396,15 +388,14 @@ int peer_recv(pte_t *target)
   //attempt to parse out the pm_npeers
   u_short peers = msg.pm_npeers;
 
-  if (!peers){
-    //throw out rest of pmsg_t
-    pte_t gtmp;
-    int garbage_bytes = 0;
-    garbage_bytes = recv(target->pte_sd, &gtmp.pte_peer, sizeof(pmsg_t), 0); //recv into tmp
-    while((uint)garbage_bytes < sizeof(pmsg_t)){
-      bytes_recv += recv(target->pte_sd, &(gtmp.pte_peer)+garbage_bytes, sizeof(pmsg_t)-garbage_bytes, 0); //recv into tmp
-    }
-  }
+  // if (!peers){
+  //   //throw out rest of pmsg_t
+  //   pte_t gtmp;
+  //   bytes_recv = recv(target->pte_sd, &gtmp.pte_peer, sizeof(pmsg_t), 0); //recv into tmp
+  //   while((uint)bytes_recv < sizeof(pmsg_t)){
+  //     bytes_recv += recv(target->pte_sd, &(gtmp.pte_peer)+bytes_recv, sizeof(pmsg_t)-bytes_recv, 0); //recv into tmp
+  //   }
+  // }
 
 
   for (int i = 0; i < peers; i++){
@@ -419,7 +410,6 @@ int peer_recv(pte_t *target)
     tryVector.push_back(tmp); //push onto back of try vector
     print_peer(&tmp); //prints out the peer
   }
-  
 
   return (1);
 }
@@ -428,7 +418,7 @@ int peer_recv(pte_t *target)
 
 //returns true on receipt of WELCOME or RDIRECT
 bool recv_handler(pte_t *target){
-  //int i;
+  //int i;get length of byte array
   int err;
 
   err = peer_recv(target); // Task 2: fill in the functions peer_recv() above
@@ -455,7 +445,7 @@ bool send_RDIRECT(int sd, pte_t *redirected, bool acceptedPrior){
   }
 
   err = peer_ack(redirected->pte_sd, PM_RDIRECT, redirected);
-                 //(npeers > 0 ? &pVector[0].pte_peer : 0));
+
   err = (err != sizeof(pmsg_t));
   net_assert(err, "peer: peer_ack redirect");
 
@@ -476,12 +466,9 @@ bool send_RDIRECT(int sd, pte_t *redirected, bool acceptedPrior){
 }
 
 bool accept_handler(int sd, uint npeers){
-  int err;
+  //int err;
   struct hostent *phost;
-    /* Peer table is not full.  Accept the peer, send a welcome
-   * message.  if we are connected to another peer, also sends
-   * back the peer's address+port#
-   */
+
   peer_accept(sd, &pVector[npeers]);
 
   //may have off-by-one error shouldn't though -- npeers is size-1
@@ -512,10 +499,10 @@ bool accept_handler(int sd, uint npeers){
     return false;
   }
 
-  err = peer_ack(pVector[npeers].pte_sd, PM_WELCOME, &pVector[npeers]);
+  /*err =*/ peer_ack(pVector[npeers].pte_sd, PM_WELCOME, &pVector[npeers]);
 
-  err = (err != sizeof(pmsg_t));
-  net_assert(err, "peer: peer_ack welcome");
+  /*err = (err != sizeof(pmsg_t));
+  net_assert(err, "peer: peer_ack welcome");*/
 
   /* inform user of new peer */
   fprintf(stderr, "Connected from peer %s:%d\n",
@@ -550,12 +537,13 @@ bool connect_handler(pte_t *connect_pte, sockaddr_in *self){
   if (in_Table(connect_pte, true, &dummy, false)) { //if already in declined table
     return false;
   }
-  struct hostent *peerhostent = gethostbyname(connect_pte->pte_pname);
-  connect_pte->pte_peer.peer_addr.s_addr = (unsigned int) peerhostent->h_addr_list[0];
+  //struct hostent *peerhostent = gethostbyname(connect_pte->pte_pname);
+  if (!connect_pte->pte_peer.peer_addr.s_addr){
+    connect_pte->pte_peer.peer_addr.s_addr = (unsigned int) phost->h_addr_list[0];
+  }
 
   /* connect to peer in pte[0] */
   peer_connect(connect_pte);  // Task 2: fill in the peer_connect() function above
-
   //obtain ephemeral port assigned
   socklen_t selflen = sizeof(*self);
   getsockname(connect_pte->pte_sd, (struct sockaddr*) self, &selflen);
@@ -595,7 +583,9 @@ int main(int argc, char *argv[])
     }
   }
 
-
+  // if the arguments weren't actually used for peering right away
+  if (tryVector[0].pte_peer.peer_port == -1) tryVector.clear();
+  else assert(argc == 1 || tryVector[0].pte_peer.peer_port );
   // // init (the rest!) of the data
   memset((char *) &self, 0, sizeof(struct sockaddr_in));
   // if (pVector.size() > 0) {
@@ -609,11 +599,13 @@ int main(int argc, char *argv[])
 
   /* connect to peer if in args*/
   if (argc > 1){
-    if (tryVector[0].pte_pname) {
+    if (tryVector.size() > 0) {
       connect_handler(&tryVector[0], &self);
     }
   }
 
+  //clear tryVector again since we don't want the arg in it
+  tryVector.clear();
 
   /* setup and listen on connection */
   sd = peer_setup(self.sin_port);  // Task 1: fill in the peer_setup() function above
@@ -649,11 +641,10 @@ int main(int argc, char *argv[])
 
     struct timeval timeout;
     timeout.tv_usec = 100000; timeout.tv_sec = 0;
-    select(maxsd+10, &rset, NULL, NULL, &timeout);
+    select(maxsd+1, &rset, NULL, NULL, &timeout);
 
-    // peer wants to join with me
+    // if peer wants to join with me on sd - permanent listen socket
     if (FD_ISSET(sd, &rset)) {
-      // a connection is made to this host at the listened to socket
       if (pVector.size() < (uint) MAXPEERS) {
         pVector.resize(pVector.size()+1); //resize to one larger
         //init pending to false
@@ -677,7 +668,11 @@ int main(int argc, char *argv[])
     for (uint p = 0; p < pVector.size(); p++) {
       if (pVector[p].pte_sd > 0 && FD_ISSET(pVector[p].pte_sd, &rset)) {
         // a message arrived from a connected peer, receive it
-        recv_handler(&pVector[p]); // don't know how to use result
+        bool falseisclosed = recv_handler(&pVector[p]); // don't know how to use result
+        if (!falseisclosed){
+          //remove from pVector if the connection is closed
+          pVector.erase(pVector.begin()+p);
+        }
         // must fill up table
         for (int i = 0; i < (int)tryVector.size(); i++){
           //if the table is full
@@ -685,13 +680,15 @@ int main(int argc, char *argv[])
             break;
           }
           //otherwise, try to connect to it
+          char allo[PR_MAXFQDN+1]; //includes space for null
+          memset(&allo, 0, PR_MAXFQDN+1); //zeros out
+          tryVector[i].pte_pname = allo;
           connect_handler(&tryVector[i], &self);
         }
         //erase tryVector for next time
-        tryVector.clear();
+        tryVector.clear(); //TODO - right place to clear?
       }
     }
-
   }
 
   exit(0);

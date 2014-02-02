@@ -31,7 +31,14 @@
 #include <sys/types.h>     // u_short
 #include <sys/socket.h>    // socket API, setsockopt(), getsockname()
 #include <sys/select.h>    // select(), FD_*
+ 
 #include <iostream>
+
+#include <GL/gl.h>
+
+#include "ltga.h"
+#include "netimg.h"
+
 
 #define net_assert(err, errmsg) { if ((err)) { perror(errmsg); assert(!(err)); } }
 
@@ -44,6 +51,9 @@
 #define PM_VERS      0x1
 #define PM_WELCOME   0x1       // Welcome peer
 #define PM_RDIRECT   0x2       // Redirect per
+
+#define NETIS_MAXFNAME  255
+
 using namespace std;
 
 typedef struct {            // peer address structure
@@ -68,12 +78,19 @@ typedef struct {            // peer table entry
   bool pending;             // true if waiting for ack from peer
 } pte_t;                    // ptbl entry
 
-vector<pte_t> pVector;     //main peer table for this host
-vector<pte_t> tryVector;   //vector of received pte's to try
-vector<pte_t> peerDecline; //peers recvd redirect
+vector<pte_t> pVector;      //main peer table for this host
+vector<pte_t> tryVector;    //vector of received pte's to try
+vector<pte_t> peerDecline;  //peers recvd redirect
+pte_t pteQuery;             //pte_t listening for query response
 int MAXPEERS = 6;           //default = 6
 int MAXSEND = 6;            //always 6
 int maxsd = 0;                  //global for faster calculation
+
+LTGA image;
+imsg_t imsg;
+long img_size;
+char fname[NETIS_MAXFNAME] = { 0 };
+char searchName[NETIS_MAXFNAME] = { 0 };
 
 
 void
@@ -114,7 +131,7 @@ peer_args(int argc, char *argv[], char *pname, u_short *port)
   // net_assert(!pname, "peer_args: pname not allocated");  shouldn't matter
   // net_assert(!port, "peer_args: port not allocated");
 
-  while ((c = getopt(argc, argv, "p:n:")) != EOF) {
+  while ((c = getopt(argc, argv, "p:n:f:q:")) != EOF) {
     switch (c) {
     case 'p':
       for (p = optarg+strlen(optarg)-1;     // point to last character of addr:port arg
@@ -129,6 +146,14 @@ peer_args(int argc, char *argv[], char *pname, u_short *port)
       break;
     case 'n':
       MAXPEERS = atoi(optarg); //change from 6 if no value given
+      break;
+    case 'f':
+      net_assert((strlen(optarg) >= NETIS_MAXFNAME), "netis_args: image file name too long");
+      strcpy(fname, optarg);
+      break;
+    case 'q':
+      net_assert((strlen(optarg) >= NETIS_MAXFNAME), "netis_args: image file name too long");
+      strcpy(searchName, optarg);
       break;
     default:
       return(1);
@@ -145,10 +170,6 @@ peer_args(int argc, char *argv[], char *pname, u_short *port)
 int
 peer_setup(u_short port)
 {
-
-  /* Task 1: YOUR CODE HERE
-   * Fill out the rest of this function.
-   */
   /* create a TCP socket, store the socket descriptor in "sd" */
   //compiled using  install g++-multilib
   int sd;
@@ -158,8 +179,6 @@ peer_setup(u_short port)
     abort();
   }
 
-  //SHOULD THIS GO HERE?
-  //TODO:
   if (sd >= maxsd) maxsd = sd; //if this is the largest sd, change it!
   /* initialize socket address */
   struct sockaddr_in self;
@@ -342,7 +361,6 @@ int peer_connect(pte_t *pte, sockaddr_in *self){
   cin.sin_addr.s_addr = server_addr;
   cin.sin_port = pte->pte_peer.peer_port;     //use the port that we are listening on for bind
 
- //cout << "connecting to (addr, port): " << inet_ntoa(cin.sin_addr) << ":" << ntohs(cin.sin_port) << endl;
   /* connect to destination peer. */
   if (connect(sd, (struct sockaddr *) &cin, sizeof(cin)) != 0){
       perror("failed to connect to server");
@@ -361,17 +379,14 @@ void print_peer(pte_t *p){
     //determines the host name, print out port as well
   phost = gethostbyaddr((char *) &p->pte_peer.peer_addr,
                         sizeof(struct in_addr), AF_INET);
-  // fprintf(stderr, "  which is peered with: %s:%d\n", 
-  //         ((phost && phost->h_name) ? phost->h_name :
-  //          inet_ntoa(p->pte_peer.peer_addr)),
-  //         ntohs(p->pte_peer.peer_port));
+
   char *print = (phost && phost->h_name) ? phost->h_name :
            inet_ntoa(p->pte_peer.peer_addr);
   cout << "  which is peered with: " << print << ":" <<
   ntohs(p->pte_peer.peer_port) << "\n";
 }
 
-int peer_recv(pte_t *target)
+int peer_recv(pte_t *target, uint npeers)
 {
   pmsg_t msg;
   size_t partial = 4;  //minimum to recv is 32 bits - pmsg_t w/o peer_t
@@ -399,20 +414,12 @@ int peer_recv(pte_t *target)
     cout << "Join redirected, try to connect to the peer above.\n";
     // add to DECLINED peers
     peerDecline.push_back(*target);
+    // remove from PEER TABLE pVector
+    pVector.erase(pVector.begin()+npeers);
   }
 
   //attempt to parse out the pm_npeers
   u_short peers = msg.pm_npeers;
-
-  // if (!peers){
-  //   //throw out rest of pmsg_t
-  //   pte_t gtmp;
-  //   bytes_recv = recv(target->pte_sd, &gtmp.pte_peer, sizeof(pmsg_t), 0); //recv into tmp
-  //   while((uint)bytes_recv < sizeof(pmsg_t)){
-  //     bytes_recv += recv(target->pte_sd, &(gtmp.pte_peer)+bytes_recv, sizeof(pmsg_t)-bytes_recv, 0); //recv into tmp
-  //   }
-  // }
-
 
   for (int i = 0; i < peers; i++){
     //reset bytes recvd
@@ -433,11 +440,11 @@ int peer_recv(pte_t *target)
 
 
 //returns true on receipt of WELCOME or RDIRECT
-bool recv_handler(pte_t *target){
+bool recv_handler(pte_t *target, uint npeers){
   //int i;get length of byte array
   int err;
 
-  err = peer_recv(target); // Task 2: fill in the functions peer_recv() above
+  err = peer_recv(target, npeers); // Task 2: fill in the functions peer_recv() above
   net_assert((err < 0), "peer: peer_recv");
   if (err == 0) {
     // if connection closed/error by peer, remove peer table entry
@@ -453,9 +460,7 @@ bool recv_handler(pte_t *target){
 bool send_RDIRECT(int sd, pte_t *redirected, bool acceptedPrior){
   int err;
   struct hostent *phost;
-    // Peer table full.  Accept peer, send a redirect message.
-  // Task 1: the functions peer_accept() and peer_ack() you wrote
-  //         must work without error in this case also.
+
   if (!acceptedPrior){
     peer_accept(sd, redirected);
   }
@@ -470,11 +475,6 @@ bool send_RDIRECT(int sd, pte_t *redirected, bool acceptedPrior){
   phost = gethostbyaddr((char *) &redirected->pte_peer.peer_addr,
                       sizeof(struct in_addr), AF_INET);
 
-  /* inform user of peer redirected */
-  // fprintf(stderr, "Peer table full: %s:%d redirected\n",
-  //        ((phost && phost->h_name) ? phost->h_name:
-  //         inet_ntoa(redirected->pte_peer.peer_addr)),
-  //         ntohs(redirected->pte_peer.peer_port));
   char *print = (phost && phost->h_name) ? phost->h_name:
           inet_ntoa(redirected->pte_peer.peer_addr);
   cout << "Peer table full: " << print << ":" << 
@@ -490,9 +490,6 @@ bool accept_handler(int sd, uint npeers){
   struct hostent *phost;
 
   peer_accept(sd, &pVector[npeers]);
-
-  //may have off-by-one error shouldn't though -- npeers is size-1
-  //remove from peer table if there is a duplicate found in peer_accept
 
   /* log connection */
   /* get the host entry info on the connected host. */
@@ -521,16 +518,10 @@ bool accept_handler(int sd, uint npeers){
 
   /*err =*/ peer_ack(pVector[npeers].pte_sd, PM_WELCOME, &pVector[npeers]);
 
-  /*err = (err != sizeof(pmsg_t));
-  net_assert(err, "peer: peer_ack welcome");*/
-
-  /* inform user of new peer */
-  // fprintf(stderr, "Connected from peer %s:%d\n",
-  //         pVector[npeers].pte_pname, ntohs(pVector[npeers].pte_peer.peer_port));
   cout << "Connected from peer " << pVector[npeers].pte_pname << ":" 
   << ntohs(pVector[npeers].pte_peer.peer_port)<< "\n";
 
-  pVector[npeers].pending = false; //insure that pending is still false.
+  pVector[npeers].pending = false; //ensure that pending is still false.
 
   return true;
 }
@@ -548,9 +539,6 @@ bool connect_handler(pte_t *connect_pte, sockaddr_in *self){
 
   if (phost && phost->h_name) strcpy(connect_pte->pte_pname, phost->h_name);
   else strcpy(connect_pte->pte_pname, inet_ntoa(connect_pte->pte_peer.peer_addr));
-  // strcpy(connect_pte->pte_pname,
-  //        ((phost && phost->h_name) ? phost->h_name:
-  //         inet_ntoa(connect_pte->pte_peer.peer_addr)));
 
   if (in_Table(connect_pte, false, &dummy, false)) { //if already in peer table
     return false;
@@ -559,24 +547,18 @@ bool connect_handler(pte_t *connect_pte, sockaddr_in *self){
   if (in_Table(connect_pte, true, &dummy, false)) { //if already in declined table
     return false;
   }
-  //struct hostent *peerhostent = gethostbyname(connect_pte->pte_pname);
-  // if (!connect_pte->pte_peer.peer_addr.s_addr){
-  //   connect_pte->pte_peer.peer_addr.s_addr = (unsigned int) phost->h_addr_list[0];
-  // }
 
-  sockaddr_in *sk_addr_tmp; //don't overwrite self
+  sockaddr_in addr_tmp;
+  sockaddr_in *sk_addr_tmp = &addr_tmp; //don't overwrite self
   /* connect to peer in pte[0] */
   peer_connect(connect_pte, self);  // Task 2: fill in the peer_connect() function above
   socklen_t selflen = sizeof(*sk_addr_tmp);
   getsockname(connect_pte->pte_sd, (struct sockaddr*) sk_addr_tmp, &selflen);
 
-  /* inform user of connection to peer */
-  // fprintf(stderr, "Connected to peer %s:%d\n", connect_pte->pte_pname,
-  //         ntohs(connect_pte->pte_peer.peer_port));
+
   cout << "Connected to peer " << connect_pte->pte_pname << ":" 
   << ntohs(connect_pte->pte_peer.peer_port)<< "\n";
-  // cout << connect_pte->pte_pname << endl;
-  // cout << ntohs(connect_pte->pte_peer.peer_port) << endl;
+
   return true;
 }
 
@@ -586,24 +568,21 @@ int main(int argc, char *argv[])
 {
   fd_set rset;
   int i, sd;
-  //int err;
-  //struct hostent *phost;                              // the FQDN of this host
   struct sockaddr_in self;                            // the address of this host
 
-  //pte_t redirected;                 // a 2-entry peer table
 
   //store the host's FQDN:
   char FQDN[PR_MAXFQDN];
   char *tmpFQDN = FQDN;
 
+  tryVector.resize(1);
+  char tmp[PR_MAXFQDN+1]; //includes space for null
+  memset(&tmp, 0, PR_MAXFQDN+1); //zeros out
+  tryVector[0].pte_pname = tmp;
+
+  tryVector[0].pte_peer.peer_port = 0;
   // parse args, see the comments for peer_args()
   if (argc > 1){
-    tryVector.resize(1);
-    char tmp[PR_MAXFQDN+1]; //includes space for null
-    memset(&tmp, 0, PR_MAXFQDN+1); //zeros out
-    tryVector[0].pte_pname = tmp;
-
-    tryVector[0].pte_peer.peer_port = 0;
     if (peer_args(argc, argv, tryVector[0].pte_pname, &tryVector[0].pte_peer.peer_port)) {
       peer_usage(argv[0]);
     }
@@ -632,9 +611,6 @@ int main(int argc, char *argv[])
     abort();
   }
 
-  /* inform user which port this peer is listening on */
-  // fprintf(stderr, "This peer address is %s:%d\n",
-  //         tmpFQDN, ntohs(self.sin_port));
   cout << "This peer address is " << tmpFQDN << ":" <<
   ntohs(self.sin_port) << "\n";
 
@@ -689,7 +665,7 @@ int main(int argc, char *argv[])
     for (uint p = 0; p < pVector.size(); p++) {
       if (pVector[p].pte_sd > 0 && FD_ISSET(pVector[p].pte_sd, &rset)) {
         // a message arrived from a connected peer, receive it
-        bool falseisclosed = recv_handler(&pVector[p]); // don't know how to use result
+        bool falseisclosed = recv_handler(&pVector[p], p); // don't know how to use result
         if (!falseisclosed){
           //remove from pVector if the connection is closed
           pVector.erase(pVector.begin()+p);

@@ -172,7 +172,7 @@ peer_setup(u_short port)
   /* reuse local address so that bind doesn't complain
      of address already in use. */
   int yes = 1;
-  int test = setsockopt(sd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(yes));
+  int test = setsockopt(sd, SOL_SOCKET, SO_REUSEPORT, &yes, sizeof(yes));
 
   if (test < 0){
     perror("setting reuse failed");
@@ -313,22 +313,22 @@ int peer_connect(pte_t *pte, sockaddr_in *self){
      bind to the same ephemeral address, doesn't complain of address
      already in use. */
   int yes = 1;
-  int test = setsockopt(sd, SOL_SOCKET, SO_REUSEADDR, &yes, sizeof(int));
+  int test = setsockopt(sd, SOL_SOCKET, SO_REUSEPORT, &yes, sizeof(int));
   if (test < 0){
     perror("setting reuse failed");
     return -1;
   }
-  // struct sockaddr_in bin;
-  // memset(&bin, 0, sizeof(sockaddr_in));
-  // bin.sin_family = AF_INET;
-  // bin.sin_addr.s_addr = INADDR_ANY;
-  // bin.sin_port = self->sin_port;     //use the port that we are listening on for bind
+  struct sockaddr_in bin;
+  memset(&bin, 0, sizeof(sockaddr_in));
+  bin.sin_family = AF_INET;
+  bin.sin_addr.s_addr = INADDR_ANY;
+  bin.sin_port = self->sin_port;     //use the port that we are listening on for bind
 
-  // /* bind my LISTENING address:port to socket */
-  // if (bind(sd, (struct sockaddr*) &bin, sizeof(bin)) < 0){
-  //   perror("bind");
-  //   abort();
-  // }
+  /* bind my LISTENING address:port to socket */
+  if (bind(sd, (struct sockaddr*) &bin, sizeof(bin)) < 0){
+    perror("bind");
+    abort();
+  }
 
   /* initialize socket address with destination peer's IPv4 address and port number . */
   struct sockaddr_in cin;
@@ -360,10 +360,14 @@ void print_peer(pte_t *p){
     //determines the host name, print out port as well
   phost = gethostbyaddr((char *) &p->pte_peer.peer_addr,
                         sizeof(struct in_addr), AF_INET);
-  fprintf(stderr, "  which is peered with: %s:%d\n", 
-          ((phost && phost->h_name) ? phost->h_name :
-           inet_ntoa(p->pte_peer.peer_addr)),
-          ntohs(p->pte_peer.peer_port));
+  // fprintf(stderr, "  which is peered with: %s:%d\n", 
+  //         ((phost && phost->h_name) ? phost->h_name :
+  //          inet_ntoa(p->pte_peer.peer_addr)),
+  //         ntohs(p->pte_peer.peer_port));
+  char *print = (phost && phost->h_name) ? phost->h_name :
+           inet_ntoa(p->pte_peer.peer_addr);
+  cout << "  which is peered with: " << print << ":" <<
+  ntohs(p->pte_peer.peer_port) << "\n";
 }
 
 int peer_recv(pte_t *target)
@@ -379,17 +383,19 @@ int peer_recv(pte_t *target)
     bytes_recv += recv(target->pte_sd, &(msg)+bytes_recv, partial-bytes_recv, 0);
   }
 
-  fprintf(stderr, "Received ack from %s:%d\n", target->pte_pname, ntohs(target->pte_peer.peer_port));
-  // cout << target->pte_pname << endl;
-  // cout << ntohs(target->pte_peer.peer_port) << endl;
+  //fprintf(stderr, "Received ack from %s:%d\n", target->pte_pname, ntohs(target->pte_peer.peer_port));
+  cout << "Received ack from " << target->pte_pname << ":" 
+  << ntohs(target->pte_peer.peer_port) << endl;
   if (msg.pm_vers != PM_VERS) {
-      fprintf(stderr, "unknown message version.\n");
+      //fprintf(stderr, "unknown message version.\n");
+      cout << "unknown message version.\n";
       return -1;
   }
 
   if (msg.pm_type == PM_RDIRECT) {
     // inform user if message is a redirection
-    fprintf(stderr, "Join redirected, try to connect to the peer above.\n");
+    //fprintf(stderr, "Join redirected, try to connect to the peer above.\n");
+    cout << "Join redirected, try to connect to the peer above.\n";
     // add to DECLINED peers
     peerDecline.push_back(*target);
   }
@@ -464,10 +470,14 @@ bool send_RDIRECT(int sd, pte_t *redirected, bool acceptedPrior){
                       sizeof(struct in_addr), AF_INET);
 
   /* inform user of peer redirected */
-  fprintf(stderr, "Peer table full: %s:%d redirected\n",
-         ((phost && phost->h_name) ? phost->h_name:
-          inet_ntoa(redirected->pte_peer.peer_addr)),
-          ntohs(redirected->pte_peer.peer_port));
+  // fprintf(stderr, "Peer table full: %s:%d redirected\n",
+  //        ((phost && phost->h_name) ? phost->h_name:
+  //         inet_ntoa(redirected->pte_peer.peer_addr)),
+  //         ntohs(redirected->pte_peer.peer_port));
+  char *print = (phost && phost->h_name) ? phost->h_name:
+          inet_ntoa(redirected->pte_peer.peer_addr);
+  cout << "Peer table full: " << print << ":" << 
+          ntohs(redirected->pte_peer.peer_port) << "redirected\n";
 
   /* closes connection */
   close(redirected->pte_sd);
@@ -514,8 +524,10 @@ bool accept_handler(int sd, uint npeers){
   net_assert(err, "peer: peer_ack welcome");*/
 
   /* inform user of new peer */
-  fprintf(stderr, "Connected from peer %s:%d\n",
-          pVector[npeers].pte_pname, ntohs(pVector[npeers].pte_peer.peer_port));
+  // fprintf(stderr, "Connected from peer %s:%d\n",
+  //         pVector[npeers].pte_pname, ntohs(pVector[npeers].pte_peer.peer_port));
+  cout << "Connected from peer " << pVector[npeers].pte_pname << ":" 
+  << ntohs(pVector[npeers].pte_peer.peer_port)<< "\n";
 
   pVector[npeers].pending = false; //insure that pending is still false.
 
@@ -558,8 +570,10 @@ bool connect_handler(pte_t *connect_pte, sockaddr_in *self){
   getsockname(connect_pte->pte_sd, (struct sockaddr*) sk_addr_tmp, &selflen);
 
   /* inform user of connection to peer */
-  fprintf(stderr, "Connected to peer %s:%d\n", connect_pte->pte_pname,
-          ntohs(connect_pte->pte_peer.peer_port));
+  // fprintf(stderr, "Connected to peer %s:%d\n", connect_pte->pte_pname,
+  //         ntohs(connect_pte->pte_peer.peer_port));
+  cout << "Connected to peer " << connect_pte->pte_pname << ":" 
+  << ntohs(connect_pte->pte_peer.peer_port)<< "\n";
   // cout << connect_pte->pte_pname << endl;
   // cout << ntohs(connect_pte->pte_peer.peer_port) << endl;
   return true;
@@ -618,8 +632,10 @@ int main(int argc, char *argv[])
   }
 
   /* inform user which port this peer is listening on */
-  fprintf(stderr, "This peer address is %s:%d\n",
-          tmpFQDN, ntohs(self.sin_port));
+  // fprintf(stderr, "This peer address is %s:%d\n",
+  //         tmpFQDN, ntohs(self.sin_port));
+  cout << "This peer address is " << tmpFQDN << ":" <<
+  ntohs(self.sin_port) << "\n";
 
   /* connect to peer if in args*/
   if (argc > 1){

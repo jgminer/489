@@ -101,7 +101,6 @@ bool in_Table(pte_t *pte, bool useDecline, int *location, bool ifAccept){
       *location = i;
       return true;
     }
-    else return false;
   }
   return false;
 }
@@ -115,7 +114,7 @@ peer_args(int argc, char *argv[], char *pname, u_short *port)
   // net_assert(!pname, "peer_args: pname not allocated");  shouldn't matter
   // net_assert(!port, "peer_args: port not allocated");
 
-  while ((c = getopt(argc, argv, "p:n::")) != EOF) {
+  while ((c = getopt(argc, argv, "p:n:")) != EOF) {
     switch (c) {
     case 'p':
       for (p = optarg+strlen(optarg)-1;     // point to last character of addr:port arg
@@ -129,7 +128,7 @@ peer_args(int argc, char *argv[], char *pname, u_short *port)
       strcpy(pname, optarg);
       break;
     case 'n':
-      MAXPEERS = (int)optarg; //change from 6 if no value given
+      MAXPEERS = atoi(optarg); //change from 6 if no value given
       break;
     default:
       return(1);
@@ -335,6 +334,8 @@ int peer_connect(pte_t *pte, sockaddr_in *self){
   //MAY NEED THESE:
   struct hostent *host = gethostbyname(pte->pte_pname);
   unsigned int server_addr = *(unsigned long *) host->h_addr_list[0];
+  //SET THE IP ADDRESS!!!!
+  pte->pte_peer.peer_addr.s_addr = *(unsigned long *) host->h_addr_list[0];
 
   memset(&cin, 0, sizeof(sockaddr_in));
   cin.sin_family = AF_INET;
@@ -559,9 +560,9 @@ bool connect_handler(pte_t *connect_pte, sockaddr_in *self){
     return false;
   }
   //struct hostent *peerhostent = gethostbyname(connect_pte->pte_pname);
-  if (!connect_pte->pte_peer.peer_addr.s_addr){
-    connect_pte->pte_peer.peer_addr.s_addr = (unsigned int) phost->h_addr_list[0];
-  }
+  // if (!connect_pte->pte_peer.peer_addr.s_addr){
+  //   connect_pte->pte_peer.peer_addr.s_addr = (unsigned int) phost->h_addr_list[0];
+  // }
 
   sockaddr_in *sk_addr_tmp; //don't overwrite self
   /* connect to peer in pte[0] */
@@ -602,14 +603,14 @@ int main(int argc, char *argv[])
     memset(&tmp, 0, PR_MAXFQDN+1); //zeros out
     tryVector[0].pte_pname = tmp;
 
-    tryVector[0].pte_peer.peer_port = -1;
+    tryVector[0].pte_peer.peer_port = 0;
     if (peer_args(argc, argv, tryVector[0].pte_pname, &tryVector[0].pte_peer.peer_port)) {
       peer_usage(argv[0]);
     }
   }
 
   // if the arguments weren't actually used for peering right away
-  if (tryVector[0].pte_peer.peer_port == -1) tryVector.clear();
+  if (tryVector[0].pte_peer.peer_port == 0) tryVector.clear();
   else assert(argc == 1 || tryVector[0].pte_peer.peer_port );
   // // init (the rest!) of the data
   memset((char *) &self, 0, sizeof(struct sockaddr_in));

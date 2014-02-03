@@ -93,7 +93,7 @@ typedef struct{
   u_short peer_port;
   struct in_addr peer_addr;
   char img_nm_len;
-  char *img_nm;
+  char img_nm[NETIS_MAXFNAME];
 } query_t;
 
 vector<pte_t> pVector;      //main peer table for this host
@@ -416,6 +416,7 @@ void print_peer(pte_t *p){
 int peer_recv(pte_t *target, uint npeers)
 {
   pmsg_t msg;
+  memset(&msg, 0, sizeof(pmsg_t));
   size_t partial = 4;  //minimum to recv is 32 bits - pmsg_t w/o peer_t
   int bytes_recv = recv(target->pte_sd, &msg, partial, 0);
   if (bytes_recv <= 0){
@@ -428,18 +429,31 @@ int peer_recv(pte_t *target, uint npeers)
 
   if (msg.pm_type == PM_SEARCH){
     //copy what we have received so far into the new data structure
-    memcpy(&currCheck, &msg, partial);
+    memset(&currCheck, 0, sizeof(query_t));
+    memcpy(&currCheck, &msg, bytes_recv);
     bytes_recv = partial;
-    size_t min = 5; //next minimum is 40bits
+
+    unsigned char test[1000];
+    memset(test, 0, 1000);
+    //size_t min = 5; //next minimum is 40bits
     // bytes_recv = recv(target->pte_sd, &currCheck[0]+bytes_recv, min, 0); //recv into tmp
-    while((uint)bytes_recv < min+partial){
-      bytes_recv += recv(target->pte_sd, &(currCheck)+bytes_recv, (min+partial)-bytes_recv, 0); //recv into tmp
+    while((uint)bytes_recv < sizeof(query_t)){
+      bytes_recv += recv(target->pte_sd, (char *)(&(currCheck))+bytes_recv, sizeof(query_t)-bytes_recv, 0); //recv into tmp
+      //bytes_recv += recv(target->pte_sd, test, sizeof(query_t)-bytes_recv, 0); //recv into tmp
     }
-    //should be able to get the length now
-    uint name_len = (uint) atoi(&currCheck.img_nm_len);
-    while((uint)bytes_recv < name_len){
-      bytes_recv += recv(target->pte_sd, &(currCheck)+bytes_recv, name_len-bytes_recv, 0); //recv into tmp
+    // //should be able to get the length now
+    // uint name_len = (uint) atoi(&currCheck.img_nm_len);
+    // while((uint)bytes_recv < name_len){
+    //   bytes_recv += recv(target->pte_sd, &(currCheck)+bytes_recv, name_len-bytes_recv, 0); //recv into tmp
+    // }
+    int sum = 0;
+    long total = 0;
+    for(int i = 0; i < sizeof(query_t)/sizeof(int); i++){      //copy 4 bytes at a time, 
+      memcpy(&sum+(i*sizeof(int)), &currCheck+(i*sizeof(int)), sizeof(int));
+      total += sum;
+      sum = 0;
     }
+
     cout << "Received unique search query" << endl; //still have to write this part memcpy 32 bits in loop
     
     return(2); //specific return value
@@ -613,8 +627,16 @@ bool connect_handler(pte_t *connect_pte, sockaddr_in *self){
 
   return true;
 }
-bool ack_query(int td, query_t *ackThis, pte_t sendTo){
-
+bool ack_query(int td, query_t *ackThis){
+  int err = send(td, ackThis, sizeof(query_t), 0);
+  // int err2 = send(td, &ackThis->pm_type, sizeof(char), 0);
+  // int err3 = send(td, &ackThis->peer_port, sizeof(u_short), 0);
+  // int err4 = send(td, &ackThis->peer_addr, sizeof(struct in_addr), 0);
+  if (err < 0 ){// || err2 < 0 || err3 < 0 || err < 0){ 
+    cout << "Issue sending query \n";
+    return false;
+  }
+  return true;
 }
 ///////%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%///////////
 ////////%%%%%%%%%%%%%%IMAGE STUFF%%%%%%%%%%%%%%%%%////////////
@@ -668,9 +690,9 @@ int main(int argc, char *argv[])
 
 
   //store the host's FQDN:
-  char FQDN[PR_MAXFQDN+1];
-  memset(&FQDN, 0, PR_MAXFQDN+1); //zeros out
-  char *tmpFQDN = FQDN;
+  char tmpFQDN[PR_MAXFQDN+1];
+  memset(tmpFQDN, 0, PR_MAXFQDN+1); //zeros out
+  // char *tmpFQDN = FQDN;
 
   tryVector.resize(1);
   char tmp[PR_MAXFQDN+1]; //includes space for null
@@ -712,7 +734,7 @@ int main(int argc, char *argv[])
   if (getIP && getIP->h_addr_list[0]){
     self.sin_addr.s_addr = *(unsigned long*) getIP->h_addr_list[0];
   }
-
+  //cout << "my IP: " << inet_ntoa(self.sin_addr);
   cout << "This peer address is " << tmpFQDN << ":" <<
   ntohs(self.sin_port) << "\n";
 
@@ -740,7 +762,16 @@ int main(int argc, char *argv[])
     char tmp3[PR_MAXFQDN+1]; //includes space for null
     memset(&tmp3, 0, PR_MAXFQDN+1); //zeros out
     string getLen = searchName;
-    sendQuery = {PM_VERS, PM_SEARCH, self.sin_port, self.sin_addr, getLen.length()+1, searchName};
+    sendQuery.pm_vers = PM_VERS;
+    sendQuery.pm_type = PM_SEARCH;
+    sendQuery.peer_port = self.sin_port;
+    sendQuery.peer_addr = self.sin_addr;
+    sendQuery.img_nm_len = getLen.length()+1;
+
+    // char setChar[NETIS_MAXFNAME+1] = {0};
+    // sendQuery.img_nm = setChar;
+    memset(sendQuery.img_nm, 0, NETIS_MAXFNAME);
+    strcpy(sendQuery.img_nm, searchName);
   }
 
   while(1) {
@@ -792,9 +823,14 @@ int main(int argc, char *argv[])
         }
         if (recv_type == 2){ //recvd query, check if i have image. 
                              //if not, send out to all except recvd on
-          
-
+          cout << "received!" << endl;
+          for (int i = 0; i < (int)pVector.size(); i++){
+            cout << "about to forward query \n";
+            if (p == (uint)i) continue; //if the same as one recvd on, skip
+            ack_query(pVector[i].pte_sd, &currCheck);
+          }
         }
+        
         // must try to fill up table with peers
         for (int i = 0; i < (int)tryVector.size(); i++){
           //if the table is full
@@ -811,8 +847,20 @@ int main(int argc, char *argv[])
         tryVector.clear(); //TODO - right place to clear?
       }
     }
-    //if looking for an image, send out the query packet to peers already in pVector
 
+    //if it is in the args
+    //if looking for an image, send out the query packet to peers already in pVector
+    if (strcmp(searchName, "")){
+      if (pVector.size() > 0){   ///FIX THIS- temporary fix to wait until one peer is there!!!!
+        for (int i = 0; i < (int)pVector.size(); i++){
+          cout << "about to try sending query \n";
+          ack_query(pVector[i].pte_sd, &sendQuery);
+        }
+        //prevents this from being called again
+        memset(searchName, 0, NETIS_MAXFNAME+1);
+      }
+
+    }
 
 
     //if the query listener was triggered

@@ -18,7 +18,7 @@ OBJS = $(SRCS:.cpp=.o) $(SRCS_SLN:.cpp=.o)
 
 netimg: $(BINS)
 
-peer: $(OBJS)
+peer: netimg.h ltga.o $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $(OBJS) $(LIBS)
 
 wipe: $(OBJS:.o=.cpp)

@@ -33,8 +33,9 @@
 #include <sys/select.h>    // select(), FD_*
 
 #include <iostream>
+#include <math.h>
 
-#include <GL/gl.h>
+#include <GL/glut.h>
 
 #include "ltga.h"
 #include "netimg.h"
@@ -42,7 +43,6 @@
 #include <limits.h>        // LONG_MAX
 #include <deque>
 #include <string>
-
 
 
 #define net_assert(err, errmsg) { if ((err)) { perror(errmsg); assert(!(err)); } }
@@ -63,6 +63,10 @@
 #define NETIS_NUMSEG     50
 #define NETIS_MSS      1440
 #define NETIS_USLEEP 500000    // 500 ms
+
+#define NETIC_WIDTH    1280
+#define NETIC_HEIGHT    800
+
 
 using namespace std;
 
@@ -100,20 +104,31 @@ vector<pte_t> pVector;      //main peer table for this host
 vector<pte_t> tryVector;    //vector of received pte's to try
 vector<pte_t> peerDecline;  //peers recvd redirect
 pte_t pteQuery;             //pte_t listening for query response
-deque<int> circBuff;        //buffer of calculated IDs for each new query
+deque<long> circBuff;        //buffer of calculated IDs for each new query
 query_t currCheck;          //current received query to check
 query_t sendQuery;          //send this query out when possible - set in args
 int MAXPEERS = 6;           //default = 6
 int MAXSEND = 6;            //always 6
+int BUFSIZE = 20;
 int maxsd = 0;                  //global for faster calculation
 
 LTGA image;
 imsg_t imsg;
 long img_size;
+long img_offset;
+char *image_char;
+
 char fname[NETIS_MAXFNAME] = { 0 };
 char searchName[NETIS_MAXFNAME] = { 0 };
 
 char NETIS_IMVERS;
+
+int wd;                   /* GLUT window handle */
+GLdouble width, height;   /* window width and height */
+
+int recv_image_td = 0;
+
+
 
 
 void
@@ -372,6 +387,11 @@ int peer_connect(pte_t *pte, sockaddr_in *self, bool connect_){
     abort();
   }
 
+    socklen_t selflen = sizeof(struct sockaddr_in);
+  if (getsockname(sd, (struct sockaddr*) self, &selflen) < 0){
+    perror("getsockname");
+    abort();
+  }
   if (!connect_){ //if not connecting as in the query bind case, return   
     return(0);
   }
@@ -386,7 +406,7 @@ int peer_connect(pte_t *pte, sockaddr_in *self, bool connect_){
   memset(&cin, 0, sizeof(sockaddr_in));
   cin.sin_family = AF_INET;
   cin.sin_addr.s_addr = server_addr;
-  cin.sin_port = pte->pte_peer.peer_port;     //use the port that we are listening on for bind
+  cin.sin_port = pte->pte_peer.peer_port; 
 
   /* connect to destination peer. */
   if (connect(sd, (struct sockaddr *) &cin, sizeof(cin)) != 0){
@@ -435,24 +455,42 @@ int peer_recv(pte_t *target, uint npeers)
 
     unsigned char test[1000];
     memset(test, 0, 1000);
-    //size_t min = 5; //next minimum is 40bits
+    size_t min = 5; //next minimum is 40bits
     // bytes_recv = recv(target->pte_sd, &currCheck[0]+bytes_recv, min, 0); //recv into tmp
-    while((uint)bytes_recv < sizeof(query_t)){
-      bytes_recv += recv(target->pte_sd, (char *)(&(currCheck))+bytes_recv, sizeof(query_t)-bytes_recv, 0); //recv into tmp
-      //bytes_recv += recv(target->pte_sd, test, sizeof(query_t)-bytes_recv, 0); //recv into tmp
+    while((uint)bytes_recv < min+partial){
+      //bytes_recv += recv(target->pte_sd, (char *)(&(currCheck))+bytes_recv, sizeof(query_t)-bytes_recv, 0); //recv into tmp
+      bytes_recv += recv(target->pte_sd, (char *)(&(currCheck))+bytes_recv, min+partial-bytes_recv, 0); //recv into tmp
     }
-    // //should be able to get the length now
-    // uint name_len = (uint) atoi(&currCheck.img_nm_len);
-    // while((uint)bytes_recv < name_len){
-    //   bytes_recv += recv(target->pte_sd, &(currCheck)+bytes_recv, name_len-bytes_recv, 0); //recv into tmp
-    // }
+    //should be able to get the length now
+    int name_len = currCheck.img_nm_len;//atoi(&(currCheck.img_nm_len));
+    while(bytes_recv < name_len+min+partial){
+      bytes_recv += recv(target->pte_sd, (char *)(&(currCheck))+bytes_recv, name_len+min+partial-bytes_recv, 0); //recv into tmp
+    }
     int sum = 0;
     long total = 0;
-    for(int i = 0; i < sizeof(query_t)/sizeof(int); i++){      //copy 4 bytes at a time, 
-      memcpy(&sum+(i*sizeof(int)), &currCheck+(i*sizeof(int)), sizeof(int));
+    int bytesLeft = sizeof(query_t);
+    // for(int i = 0; i < sizeof(query_t)/sizeof(int); i++){      //copy 4 bytes at a time, 
+    for(int i = 0; i < ceil(sizeof(query_t)/sizeof(int)); i++){ 
+      int copyAmt = bytesLeft < sizeof(int) ? bytesLeft : sizeof(int);
+      memcpy(&sum, (char*)(&(currCheck))+(i*sizeof(int)), copyAmt);
+      bytesLeft -= copyAmt;
       total += sum;
       sum = 0;
     }
+    bool found = false;
+    for (int i = 0; i < circBuff.size(); i++){
+      if (circBuff[i] == total){
+        found = true;
+        break;
+      }
+    }
+
+    if (found){
+      cout << "Duplicate search query, dropping" << endl;
+      return (3);
+    }
+    circBuff.push_back(total);
+    if (circBuff.size() > BUFSIZE) circBuff.pop_front(); //makes buffer circular by popping when at cap.
 
     cout << "Received unique search query" << endl; //still have to write this part memcpy 32 bits in loop
     
@@ -517,10 +555,11 @@ int recv_handler(pte_t *target, uint npeers){
     return 1;
   }
 
-  else {
+  else if (err == 2) {
     //was a query packet
     return 2;
   }
+  else return 3;
 }
 
 bool send_RDIRECT(int sd, pte_t *redirected, bool acceptedPrior){
@@ -628,7 +667,10 @@ bool connect_handler(pte_t *connect_pte, sockaddr_in *self){
   return true;
 }
 bool ack_query(int td, query_t *ackThis){
-  int err = send(td, ackThis, sizeof(query_t), 0);
+  //num bytes to send is 9 + length of the string (including null char)
+  int name_len = ackThis->img_nm_len;
+  int send_bytes = 9 + name_len;
+  int err = send(td, ackThis, send_bytes, 0);
   // int err2 = send(td, &ackThis->pm_type, sizeof(char), 0);
   // int err3 = send(td, &ackThis->peer_port, sizeof(u_short), 0);
   // int err4 = send(td, &ackThis->peer_addr, sizeof(struct in_addr), 0);
@@ -678,6 +720,150 @@ netis_imginit(char *fname, LTGA *image, imsg_t *imsg, long *img_size)
 
   return;
 }
+
+void
+netic_recvimsg(int sd)
+{
+  int bytes_recvd;
+  char imsg_buf[sizeof(imsg)];
+  bytes_recvd = recv(sd, imsg_buf, sizeof(imsg), 0);
+ 
+  if(imsg_buf[0] != IM_VERS){
+    perror("version incorrect");
+    abort();
+  }
+
+  while (bytes_recvd > 0){
+    //write(1, imsg_buf, bytes_recvd);
+    bytes_recvd = recv(sd, imsg_buf, sizeof(imsg)-bytes_recvd, 0);
+  }
+
+  
+  char tmp[1];
+  for (int i=2; i < 7; i+=2){
+      memcpy(&tmp, &imsg_buf[i], 2);
+      //unsigned short tmp1 = *(unsigned short*) tmp;
+      unsigned short tmp1 = ntohs(*(unsigned short*) tmp);
+      memcpy(&imsg_buf[i], &tmp1, 2);
+  }
+  memcpy(&imsg, imsg_buf, sizeof(imsg));
+  return;
+}
+void
+netic_imginit()
+{
+  int tod;
+  double img_dsize;
+
+  img_dsize = (double) (imsg.im_height*imsg.im_width*(u_short)imsg.im_depth);
+  net_assert((img_dsize > (double) LONG_MAX), "netic: image too big");
+  img_size = (long) img_dsize;                 // global
+  image_char = (char *)malloc(img_size*sizeof(char));
+
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+
+  glGenTextures(1, (GLuint*) &tod);
+  glBindTexture(GL_TEXTURE_2D, tod);
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR); 
+  glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR); 
+  glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE); 
+  glEnable(GL_TEXTURE_2D);
+}
+
+void
+netic_recvimage(void) //CHANGE!!!
+{
+   
+  // img_offset is a global variable that keeps track of how many bytes
+  // have been received and stored in the buffer.  Initialy it is 0.
+  //
+  // img_size is another global variable that stores the size of the image.
+  // If all goes well, we should receive img_size bytes of data from the server.
+  if (img_offset <  img_size) { 
+
+     int recvd = recv(recv_image_td, &(image_char[img_offset]), img_size-img_offset, 0);
+     img_offset += recvd;
+    
+    /* give the updated image to OpenGL for texturing */
+    glTexImage2D(GL_TEXTURE_2D, 0, (GLint) imsg.im_format,
+                 (GLsizei) imsg.im_width, (GLsizei) imsg.im_height, 0,
+                 (GLenum) imsg.im_format, GL_UNSIGNED_BYTE, image_char);
+    /* redisplay */
+    glutPostRedisplay();
+  }
+
+  return;
+}
+void 
+netic_display(void)
+{
+  glPolygonMode(GL_FRONT, GL_POINT);
+  
+  /* If your image is displayed upside down, you'd need to play with the
+     texture coordinate to flip the image around. */
+  glBegin(GL_QUADS); 
+  glTexCoord2f(0.0,1.0); glVertex3f(0.0, 0.0, 0.0);
+  glTexCoord2f(0.0,0.0); glVertex3f(0.0, height, 0.0);
+  glTexCoord2f(1.0,0.0); glVertex3f(width, height, 0.0);
+  glTexCoord2f(1.0,1.0); glVertex3f(width, 0.0, 0.0);
+  glEnd();
+
+  glFlush();
+}
+void
+netic_reshape(int w, int h)
+{
+  /* save new screen dimensions */
+  width = (GLdouble) w;
+  height = (GLdouble) h;
+
+  /* tell OpenGL to use the whole window for drawing */
+  glViewport(0, 0, (GLsizei) w, (GLsizei) h);
+
+  /* do an orthographic parallel projection with the coordinate
+     system set to first quadrant, limited by screen/window size */
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  gluOrtho2D(0.0, width, 0.0, height);
+}
+void
+netic_kbd(unsigned char key, int x, int y)
+{
+  switch((char)key) {
+  case 'q':
+  case 27:
+    glutDestroyWindow(wd);
+#ifdef _WIN32
+    WSACleanup();
+#endif
+    exit(0);
+    break;
+  default:
+    break;
+  }
+
+  return;
+}
+
+void
+netic_glutinit(int *argc, char *argv[])
+{
+
+  width  = NETIC_WIDTH;    /* initial window width and height, */
+  height = NETIC_HEIGHT;         /* within which we draw. */
+
+  glutInit(argc, argv);
+  glutInitDisplayMode(GLUT_SINGLE | GLUT_RGBA);
+  glutInitWindowSize((int) NETIC_WIDTH, (int) NETIC_HEIGHT);
+  wd = glutCreateWindow("Netimg Display" /* title */ );   // wd global
+  glutDisplayFunc(netic_display);
+  glutReshapeFunc(netic_reshape);
+  glutKeyboardFunc(netic_kbd);
+  glutIdleFunc(netic_recvimage); // Task 1
+
+  return;
+} 
 ///////%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%///////////
 ///////%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%///////////
 
@@ -757,14 +943,22 @@ int main(int argc, char *argv[])
   memset(&tmp2, 0, PR_MAXFQDN+1); //zeros out
   pteQuery.pte_pname = tmp2;
   if (strcmp(searchName, "")){
-    peer_connect(&pteQuery, &self, false);
+    struct sockaddr_in selfForPic;                            // the address of this host
+    memset((char *) &selfForPic, 0, sizeof(struct sockaddr_in));
+    int xd = peer_setup(0);
+    pteQuery.pte_sd = xd;
 
+    socklen_t selflenPic = sizeof(selfForPic);
+    if (getsockname(xd, (struct sockaddr*) &selfForPic, &selflenPic) < 0){
+      perror("getsockname");
+      abort();
+    }
     char tmp3[PR_MAXFQDN+1]; //includes space for null
     memset(&tmp3, 0, PR_MAXFQDN+1); //zeros out
     string getLen = searchName;
     sendQuery.pm_vers = PM_VERS;
     sendQuery.pm_type = PM_SEARCH;
-    sendQuery.peer_port = self.sin_port;
+    sendQuery.peer_port = selfForPic.sin_port;
     sendQuery.peer_addr = self.sin_addr;
     sendQuery.img_nm_len = getLen.length()+1;
 
@@ -824,12 +1018,23 @@ int main(int argc, char *argv[])
         if (recv_type == 2){ //recvd query, check if i have image. 
                              //if not, send out to all except recvd on
           cout << "received!" << endl;
+          if (!strcmp(currCheck.img_nm, fname)){
+            cout << "found image here!\n";
+            pte_t dum;
+            dum.pte_peer.peer_port = currCheck.peer_port;
+            dum.pte_peer.peer_addr = currCheck.peer_addr;
+            char allo[PR_MAXFQDN+1]; //includes space for null
+            memset(&allo, 0, PR_MAXFQDN+1); //zeros out
+            dum.pte_pname = allo;
+            connect_handler(&dum, &self);
+          }
           for (int i = 0; i < (int)pVector.size(); i++){
             cout << "about to forward query \n";
             if (p == (uint)i) continue; //if the same as one recvd on, skip
             ack_query(pVector[i].pte_sd, &currCheck);
           }
         }
+        if (recv_type == 3) break; // duplicate search packet
         
         // must try to fill up table with peers
         for (int i = 0; i < (int)tryVector.size(); i++){
@@ -866,6 +1071,17 @@ int main(int argc, char *argv[])
     //if the query listener was triggered
     if (pteQuery.pte_sd > 0 && FD_ISSET(pteQuery.pte_sd, &rset)){
       //recv the image
+      netic_glutinit(&argc, argv);
+      pte_t accept_temp;
+      recv_image_td = peer_accept(pteQuery.pte_sd, &accept_temp);
+      netic_recvimsg(pteQuery.pte_sd);  // Task 1
+      close(pteQuery.pte_sd); //close to shut out others from responding
+
+      netic_imginit();
+      
+      /* start the GLUT main loop */
+      glutMainLoop();
+          cout << "YES\n";
     }
   }
 

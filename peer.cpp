@@ -16,6 +16,8 @@
  *
  * Author: Sugih Jamin (jamin@eecs.umich.edu)
 */
+// Edited extensively by Jack Miner
+
 #include <stdio.h>         // fprintf(), perror(), fflush()
 #include <stdlib.h>        // atoi()
 #include <assert.h>        // assert()
@@ -687,10 +689,8 @@ bool ack_query(int td, query_t *ackThis){
   int name_len = ackThis->img_nm_len;
   int send_bytes = 9 + name_len;
   int err = send(td, ackThis, send_bytes, 0);
-  // int err2 = send(td, &ackThis->pm_type, sizeof(char), 0);
-  // int err3 = send(td, &ackThis->peer_port, sizeof(u_short), 0);
-  // int err4 = send(td, &ackThis->peer_addr, sizeof(struct in_addr), 0);
-  if (err < 0 ){// || err2 < 0 || err3 < 0 || err < 0){ 
+
+  if (err < 0 ){
     cout << "Issue sending query \n";
     return false;
   }
@@ -841,24 +841,7 @@ void
 netic_recvimage(void)
 {
    
-  // img_offset is a global variable that keeps track of how many bytes
-  // have been received and stored in the buffer.  Initialy it is 0.
-  //
-  // img_size is another global variable that stores the size of the image.
-  // If all goes well, we should receive img_size bytes of data from the server.
   if (img_offset <  img_size) { 
-    /* Task 1: YOUR CODE HERE
-     * Receive as much of the remaining image as available from the network
-     * put the data in the buffer pointed to by the global variable 
-     * "image" starting at "img_offset".
-     *
-     * For example, the first time this function is called, img_offset is 0
-     * so the received data is stored at the start (offset 0) of the "image" 
-     * buffer.  The global variable "image" should not be modified.
-     *
-     * Update img_offset by the amount of data received, in preparation for the
-     * next iteration, the next time this function is called.
-     */
 
     int recvd = recv(recv_image_td, &(image_char[img_offset]), img_size-img_offset, 0);
     img_offset += recvd;
@@ -1004,7 +987,6 @@ int main(int argc, char *argv[])
   if (getIP && getIP->h_addr_list[0]){
     self.sin_addr.s_addr = *(unsigned long*) getIP->h_addr_list[0];
   }
-  //cout << "my IP: " << inet_ntoa(self.sin_addr);
   cout << "This peer address is " << tmpFQDN << ":" <<
   ntohs(self.sin_port) << "\n";
 
@@ -1101,9 +1083,9 @@ int main(int argc, char *argv[])
         }
         if (recv_type == 2){ //recvd query, check if i have image. 
                              //if not, send out to all except recvd on
-          cout << "received!" << endl;
+          // cout << "received!" << endl;
           if (!strcmp(currCheck.img_nm, fname)){
-            cout << "found image here!\n";
+            // cout << "found image here!\n";
             pte_t dum;
             dum.pte_peer.peer_port = currCheck.peer_port;
             dum.pte_peer.peer_addr = currCheck.peer_addr;
@@ -1116,7 +1098,7 @@ int main(int argc, char *argv[])
 
           }
           for (int i = 0; i < (int)pVector.size(); i++){
-            cout << "about to forward query \n";
+            // cout << "about to forward query \n";
             if (p == (uint)i) continue; //if the same as one recvd on, skip
             ack_query(pVector[i].pte_sd, &currCheck);
           }
@@ -1143,14 +1125,14 @@ int main(int argc, char *argv[])
     //if it is in the args
     //if looking for an image, send out the query packet to peers already in pVector
     if (strcmp(searchName, "")){
-      if (pVector.size() > 0){   ///FIX THIS- temporary fix to wait until one peer is there!!!!
+      //if (pVector.size() > 0){   ///FIX THIS- temporary fix to wait until one peer is there!!!!
         for (int i = 0; i < (int)pVector.size(); i++){
-          cout << "about to try sending query \n";
+          // cout << "about to try sending query \n";
           ack_query(pVector[i].pte_sd, &sendQuery);
         }
         //prevents this from being called again
         memset(searchName, 0, NETIS_MAXFNAME+1);
-      }
+      //}
 
     }
 
@@ -1162,19 +1144,13 @@ int main(int argc, char *argv[])
       pte_t accept_temp;
       recv_imsg_sd = pteQuery.pte_sd;
       recv_image_td = peer_accept(pteQuery.pte_sd, &accept_temp);
-      cout << pteQuery.pte_sd << endl;
       netic_recvimsg();  // Task 1
-            cout << pteQuery.pte_sd << endl;
 
       close(pteQuery.pte_sd); //close to shut out others from respondinggg
-            cout << pteQuery.pte_sd << endl;
-
 
       netic_imginit();
-      
       /* start the GLUT main loop */
       glutMainLoop();
-          cout << "YES\n";
     }
   }
 

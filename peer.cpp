@@ -64,8 +64,8 @@
 #define NETIS_MSS      1440
 #define NETIS_USLEEP 500000    // 500 ms
 
-#define NETIC_WIDTH    1280
-#define NETIC_HEIGHT    800
+#define NETIC_WIDTH    800
+#define NETIC_HEIGHT   600
 
 
 using namespace std;
@@ -121,12 +121,13 @@ char *image_char;
 char fname[NETIS_MAXFNAME] = { 0 };
 char searchName[NETIS_MAXFNAME] = { 0 };
 
-char NETIS_IMVERS;
+char NETIS_IMVERS = 1;    //always 1
 
 int wd;                   /* GLUT window handle */
 GLdouble width, height;   /* window width and height */
 
 int recv_image_td = 0;
+int recv_imsg_sd = 0;
 
 
 
@@ -720,13 +721,63 @@ netis_imginit(char *fname, LTGA *image, imsg_t *imsg, long *img_size)
 
   return;
 }
+  
+void
+netis_imgsend(int td, imsg_t *imsg, LTGA *image, long img_size)
+{
+  int segsize;
+  char *ip;
+  int bytes;
+  long left;
+
+  /* Task 2: YOUR CODE HERE
+   * Send the imsg packet to client connected to socket td.
+   */
+
+  int sent_bytes = send(td, imsg, sizeof(imsg), 0);
+  
+  //cout << sent_bytes;
+  if (sent_bytes < 0){
+    perror("send imsg failed");
+    abort();
+   }
+
+  segsize = img_size/NETIS_NUMSEG;                     /* compute segment size */
+  segsize = segsize < NETIS_MSS ? NETIS_MSS : segsize; /* but don't let segment be too small*/
+
+  ip = (char *) image->GetPixels();    /* ip points to the start of byte buffer holding image */
+
+  for (left = img_size; left; left -= bytes) {  // "bytes" contains how many bytes was sent
+                                                // at the last iteration.
+
+    /* Task 2: YOUR CODE HERE
+     * Send one segment of data of size segsize at each iteration.
+     * The last segment may be smaller than segsize
+    */
+    if (left < segsize){
+      segsize = left;
+    }
+    //cout << bytes << endl;
+    bytes = send(td, &ip[img_size-left], segsize, 0);
+
+    if (bytes < 0){
+      perror("send image data failed");
+      abort();
+    }
+
+    fprintf(stderr, "netis_send: size %d, sent %d\n", (int) left, bytes);
+    usleep(NETIS_USLEEP);
+  }
+
+  return;
+}
 
 void
-netic_recvimsg(int sd)
+netic_recvimsg()
 {
   int bytes_recvd;
   char imsg_buf[sizeof(imsg)];
-  bytes_recvd = recv(sd, imsg_buf, sizeof(imsg), 0);
+  bytes_recvd = recv(recv_image_td, imsg_buf, sizeof(imsg), 0);
  
   if(imsg_buf[0] != IM_VERS){
     perror("version incorrect");
@@ -734,21 +785,22 @@ netic_recvimsg(int sd)
   }
 
   while (bytes_recvd > 0){
-    //write(1, imsg_buf, bytes_recvd);
-    bytes_recvd = recv(sd, imsg_buf, sizeof(imsg)-bytes_recvd, 0);
+    bytes_recvd = recv(recv_image_td, imsg_buf, sizeof(imsg)-bytes_recvd, 0);
   }
 
-  
+  //fix endianess of imsg params
   char tmp[1];
   for (int i=2; i < 7; i+=2){
       memcpy(&tmp, &imsg_buf[i], 2);
-      //unsigned short tmp1 = *(unsigned short*) tmp;
       unsigned short tmp1 = ntohs(*(unsigned short*) tmp);
       memcpy(&imsg_buf[i], &tmp1, 2);
   }
+  
   memcpy(&imsg, imsg_buf, sizeof(imsg));
+
   return;
 }
+
 void
 netic_imginit()
 {
@@ -770,9 +822,8 @@ netic_imginit()
   glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_REPLACE); 
   glEnable(GL_TEXTURE_2D);
 }
-
 void
-netic_recvimage(void) //CHANGE!!!
+netic_recvimage(void)
 {
    
   // img_offset is a global variable that keeps track of how many bytes
@@ -781,9 +832,21 @@ netic_recvimage(void) //CHANGE!!!
   // img_size is another global variable that stores the size of the image.
   // If all goes well, we should receive img_size bytes of data from the server.
   if (img_offset <  img_size) { 
+    /* Task 1: YOUR CODE HERE
+     * Receive as much of the remaining image as available from the network
+     * put the data in the buffer pointed to by the global variable 
+     * "image" starting at "img_offset".
+     *
+     * For example, the first time this function is called, img_offset is 0
+     * so the received data is stored at the start (offset 0) of the "image" 
+     * buffer.  The global variable "image" should not be modified.
+     *
+     * Update img_offset by the amount of data received, in preparation for the
+     * next iteration, the next time this function is called.
+     */
 
-     int recvd = recv(recv_image_td, &(image_char[img_offset]), img_size-img_offset, 0);
-     img_offset += recvd;
+    int recvd = recv(recv_image_td, &(image_char[img_offset]), img_size-img_offset, 0);
+    img_offset += recvd;
     
     /* give the updated image to OpenGL for texturing */
     glTexImage2D(GL_TEXTURE_2D, 0, (GLint) imsg.im_format,
@@ -795,6 +858,8 @@ netic_recvimage(void) //CHANGE!!!
 
   return;
 }
+
+
 void 
 netic_display(void)
 {
@@ -811,6 +876,7 @@ netic_display(void)
 
   glFlush();
 }
+
 void
 netic_reshape(int w, int h)
 {
@@ -827,6 +893,8 @@ netic_reshape(int w, int h)
   glLoadIdentity();
   gluOrtho2D(0.0, width, 0.0, height);
 }
+
+
 void
 netic_kbd(unsigned char key, int x, int y)
 {
@@ -864,6 +932,7 @@ netic_glutinit(int *argc, char *argv[])
 
   return;
 } 
+
 ///////%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%///////////
 ///////%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%///////////
 
@@ -1027,6 +1096,9 @@ int main(int argc, char *argv[])
             memset(&allo, 0, PR_MAXFQDN+1); //zeros out
             dum.pte_pname = allo;
             connect_handler(&dum, &self);
+            netis_imgsend(dum.pte_sd, &imsg, &image, img_size); // Task 2
+            close(dum.pte_sd);
+
           }
           for (int i = 0; i < (int)pVector.size(); i++){
             cout << "about to forward query \n";
@@ -1073,9 +1145,15 @@ int main(int argc, char *argv[])
       //recv the image
       netic_glutinit(&argc, argv);
       pte_t accept_temp;
+      recv_imsg_sd = pteQuery.pte_sd;
       recv_image_td = peer_accept(pteQuery.pte_sd, &accept_temp);
-      netic_recvimsg(pteQuery.pte_sd);  // Task 1
-      close(pteQuery.pte_sd); //close to shut out others from responding
+      cout << pteQuery.pte_sd << endl;
+      netic_recvimsg();  // Task 1
+            cout << pteQuery.pte_sd << endl;
+
+      close(pteQuery.pte_sd); //close to shut out others from respondinggg
+            cout << pteQuery.pte_sd << endl;
+
 
       netic_imginit();
       

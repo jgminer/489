@@ -3,14 +3,14 @@ MKDEP=/usr/X11R6/bin/makedepend -Y
 OS := $(shell uname)
 ifeq ($(OS), Darwin)
   LIBS = -framework OpenGL -framework GLUT -lc
-  CFLAGS = -g -Wall -Wno-deprecated -m32 -Werror
+  CFLAGS = -g -Wall -Wno-deprecated -m32 -Werror 
 else
   LIBS = -lGL -lGLU -lglut
   CFLAGS = -g -Wall -Wno-deprecated
 endif
 
 BINS = peer
-HDRS = netimg.h ltga.h
+HDRS = netimg.h ltga.h /usr/include/Xm.h
 SRCS = ltga.cpp
 HDRS_SLN = 
 SRCS_SLN = peer.cpp

@@ -608,18 +608,24 @@ bool accept_handler(int sd, uint npeers){
   int location;
   if (in_Table(&pVector[npeers], false, &location, true)) { //if already in peer table
     if (pVector[location].pending){
-      char c0[LONG_MAX];
-      char c1[LONG_MAX];
-      char c2[LONG_MAX];
-      char c3[LONG_MAX];
-      memcpy(&c0, &pVector[location].pte_peer.peer_addr.s_addr, sizeof(struct in_addr));
-      char in_place2 = pVector[location].pte_peer.peer_port;
-      string attempting1 = pVector[npeers].pte_peer.peer_addr.s_addr;
-      string attempting2 = pVector[npeers].pte_peer.peer_port;
-      in_place1 += in_place2;
-      attempting1 += attempting2;   //concactenate
+      char c0[1000];
+      char c1[1000];
+      char c2[1000];
+      char c3[1000];
+      memset(&c0, 0, 1000);
+      memset(&c1, 0, 1000);
+      memset(&c2, 0, 1000);
+      memset(&c3, 0, 1000);
 
-      if (in_place1.compare(attempting) <= 0){
+      memcpy(&c0, &pVector[location].pte_peer.peer_addr.s_addr, sizeof(struct in_addr));
+      memcpy(&c1, &pVector[location].pte_peer.peer_port, sizeof(u_short));
+      memcpy(&c2, &pVector[npeers].pte_peer.peer_addr.s_addr, sizeof(struct in_addr));
+      memcpy(&c3, &pVector[npeers].pte_peer.peer_port, sizeof(u_short));
+
+      strcat(&c0, &c1);
+      strcat(&c2, &c3);
+
+      if (strcmp(&c0, &c2) <= 0){
         send_RDIRECT(sd, &pVector[npeers], true);
       }
       else peer_ack(pVector[npeers].pte_sd, PM_WELCOME, &pVector[npeers]);

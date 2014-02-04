@@ -608,8 +608,8 @@ bool accept_handler(int sd, uint npeers){
   int location;
   if (in_Table(&pVector[npeers], false, &location, true)) { //if already in peer table
     if (pVector[location].pending){
-      string in_place1 = pVector[location].pte_peer.peer_addr.s_addr;
-      string in_place2 = pVector[location].pte_peer.peer_port;
+      string in_place1 = (string) pVector[location].pte_peer.peer_addr.s_addr;
+      string in_place2 = (string) pVector[location].pte_peer.peer_port;
       string attempting1 = pVector[npeers].pte_peer.peer_addr.s_addr
       string attempting2 = pVector[npeers].pte_peer.peer_port;
       in_place1 += in_place2;

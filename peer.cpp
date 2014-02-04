@@ -622,10 +622,10 @@ bool accept_handler(int sd, uint npeers){
       memcpy(&c2, &pVector[npeers].pte_peer.peer_addr.s_addr, sizeof(struct in_addr));
       memcpy(&c3, &pVector[npeers].pte_peer.peer_port, sizeof(u_short));
 
-      strcat(&c0, &c1);
-      strcat(&c2, &c3);
+      strcat(c0, c1);
+      strcat(c2, c3);
 
-      if (strcmp(&c0, &c2) <= 0){
+      if (strcmp(c0, c2) <= 0){
         send_RDIRECT(sd, &pVector[npeers], true);
       }
       else peer_ack(pVector[npeers].pte_sd, PM_WELCOME, &pVector[npeers]);

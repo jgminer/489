@@ -573,8 +573,8 @@ bool send_RDIRECT(int sd, pte_t *redirected, bool acceptedPrior){
 
   err = peer_ack(redirected->pte_sd, PM_RDIRECT, redirected);
 
-  err = (err != sizeof(pmsg_t));
-  net_assert(err, "peer: peer_ack redirect");
+  // err = (err != sizeof(pmsg_t));
+  // net_assert(err, "peer: peer_ack redirect");
 
   /* log connection */
   /* get the host entry info on the connected host. */

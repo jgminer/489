@@ -215,7 +215,7 @@ peer_setup(u_short port)
   if ((sd=socket(AF_INET,SOCK_STREAM,IPPROTO_TCP)) < 0) {
     perror("socket");
     printf("Failed to create socket\n");
-    abort();
+    // abort();
   }
 
   if (sd >= maxsd) maxsd = sd; //if this is the largest sd, change it!
@@ -233,20 +233,20 @@ peer_setup(u_short port)
 
   if (test < 0){
     perror("setting reuse failed");
-    abort();
+    // abort();
   }
 
   /* bind address to socket */
   if (bind(sd, (struct sockaddr*) &self, sizeof(self)) < 0){
     // cout << "always" << endl;
     perror("bind");
-    abort();
+    // abort();
   }
 
   /* listen on socket */
   if (listen(sd, PR_QLEN) < 0) {
     perror("error listening");
-    abort();
+    // abort();
   }
 
   /* return socket id. */
@@ -263,7 +263,7 @@ peer_accept(int sd, pte_t *pte)
   td = accept(sd, (struct sockaddr *) &peer, &sockaddr_in_size) ;
   if (td < 0) {
       perror("error accepting connection");
-      abort();
+      // abort();
   }
 
   pte->pte_sd = td;
@@ -278,7 +278,7 @@ peer_accept(int sd, pte_t *pte)
   lingtmp.l_linger = PR_LINGER;
   if (setsockopt(td, SOL_SOCKET, SO_LINGER, &lingtmp, linlen) < 0){
     perror("setting socket linger time failed");
-    abort();
+    // abort();
   }
 
 
@@ -345,7 +345,7 @@ int peer_ack(int td, char type, pte_t *sendTo)
 
   if (err < 0){
     perror("error acking to peer");
-    abort();
+    // abort();
   }
   delete sendThis;
   return(err);
@@ -360,7 +360,7 @@ int peer_connect(pte_t *pte, sockaddr_in *self, bool connect_){
   int sd = 0;
   if ((sd = socket(AF_INET, SOCK_STREAM, 0)) < 0){
     perror("opening TCP socket");
-    abort();
+    // abort();
   }
 
   pte->pte_sd = sd;
@@ -385,13 +385,13 @@ int peer_connect(pte_t *pte, sockaddr_in *self, bool connect_){
   /* bind my LISTENING address:port to socket */
   if (bind(sd, (struct sockaddr*) &bin, sizeof(bin)) < 0){
     perror("bind");
-    abort();
+    // abort();
   }
 
     socklen_t selflen = sizeof(struct sockaddr_in);
   if (getsockname(sd, (struct sockaddr*) self, &selflen) < 0){
     perror("getsockname");
-    abort();
+    // abort();
   }
   if (!connect_){ //if not connecting as in the query bind case, return   
     return(0);
@@ -413,7 +413,7 @@ int peer_connect(pte_t *pte, sockaddr_in *self, bool connect_){
   if (connect(sd, (struct sockaddr *) &cin, sizeof(cin)) != 0){
       perror("failed to connect to server");
       //peerDecline.push_back(*pte);
-      abort();
+      // abort();
   }
 
   pte->pending = true;  //change pending
@@ -608,9 +608,14 @@ bool accept_handler(int sd, uint npeers){
   int location;
   if (in_Table(&pVector[npeers], false, &location, true)) { //if already in peer table
     if (pVector[location].pending){
-      int in_place = pVector[location].pte_peer.peer_addr.s_addr+pVector[location].pte_peer.peer_port;
-      int attempting = pVector[npeers].pte_peer.peer_addr.s_addr+pVector[npeers].pte_peer.peer_port;
-      if (in_place < attempting){
+      string in_place1 = pVector[location].pte_peer.peer_addr.s_addr;
+      string in_place2 = pVector[location].pte_peer.peer_port;
+      string attempting1 = pVector[npeers].pte_peer.peer_addr.s_addr
+      string attempting2 = pVector[npeers].pte_peer.peer_port;
+      in_place1 += in_place2;
+      attempting1 += attempting2;   //concactenate
+
+      if (in_place1.compare(attempting) <= 0){
         send_RDIRECT(sd, &pVector[npeers], true);
       }
       else peer_ack(pVector[npeers].pte_sd, PM_WELCOME, &pVector[npeers]);
@@ -739,7 +744,7 @@ netis_imgsend(int td, imsg_t *imsg, LTGA *image, long img_size)
   //cout << sent_bytes;
   if (sent_bytes < 0){
     perror("send imsg failed");
-    abort();
+    // abort();
    }
 
   segsize = img_size/NETIS_NUMSEG;                     /* compute segment size */
@@ -762,7 +767,7 @@ netis_imgsend(int td, imsg_t *imsg, LTGA *image, long img_size)
 
     if (bytes < 0){
       perror("send image data failed");
-      abort();
+      // abort();
     }
 
     fprintf(stderr, "netis_send: size %d, sent %d\n", (int) left, bytes);
@@ -781,7 +786,7 @@ netic_recvimsg()
  
   if(imsg_buf[0] != IM_VERS){
     perror("version incorrect");
-    abort();
+    // abort();
   }
 
   while (bytes_recvd > 0){
@@ -975,14 +980,14 @@ int main(int argc, char *argv[])
     socklen_t selflen = sizeof(self);
     if (getsockname(sd, (struct sockaddr*) &self, &selflen) < 0){
       perror("getsockname");
-      abort();
+      // abort();
     }
   }
 
   int err_get = gethostname(tmpFQDN, PR_MAXFQDN+1);
   if (err_get < 0){
     perror("trouble getting host name");
-    abort();
+    // abort();
   }
 
   struct hostent *getIP = gethostbyname(tmpFQDN);
@@ -1020,7 +1025,7 @@ int main(int argc, char *argv[])
     socklen_t selflenPic = sizeof(selfForPic);
     if (getsockname(xd, (struct sockaddr*) &selfForPic, &selflenPic) < 0){
       perror("getsockname");
-      abort();
+      // abort();
     }
     char tmp3[PR_MAXFQDN+1]; //includes space for null
     memset(&tmp3, 0, PR_MAXFQDN+1); //zeros out

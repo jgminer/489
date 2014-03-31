@@ -172,6 +172,11 @@ imgdb_sockinit()
 
   /* create a UDP socket */
   /* Lab 5: YOUR CODE HERE */
+  if ((sd = socket(AF_INET, SOCK_DGRAM, 0)) < 0){
+    perror("opening UDP socket");
+    abort();
+  }
+  
   
   memset((char *) &self, 0, sizeof(struct sockaddr_in));
   self.sin_family = AF_INET;
@@ -226,14 +231,28 @@ imgdb_recvquery(int sd, struct sockaddr_in *client, unsigned short *mss,
    * received.  When an iqry_t packet is received, save the mss, rwnd,
    * and fwnd and return to caller.
   */
-  
-  do {
-    /* Task 2.1: if the arriving message is a valid query message,
-       return to caller, otherwise, loop again until a valid query
-       message is received. */
-    /* Lab 6: YOUR CODE HERE */
-  } while (1);
 
+  /* Task 2.1: if the arriving message is a valid query message,
+  return to caller, otherwise, loop again until a valid query
+  message is received. */
+  /* Lab 6: YOUR CODE HERE */ 
+  while(1){
+    iqry_t tmpqry = {0,0,0,0};
+    socklen_t clientsize = sizeof(sockaddr_in);
+    int recv_bytes = -1;
+    recv_bytes = recvfrom(sd, &tmpqry, sizeof(iqry_t), 0, (sockaddr *) client, &clientsize);
+    if (recv_bytes <= 0 || tmpqry.iq_vers != NETIMG_VERS || tmpqry.iq_type != NETIMG_SYN){
+      perror("nothing received or error or incorrect type");
+      abort();
+    }
+    *mss = ntohs(tmpqry.iq_mss);
+    *rwnd = tmpqry.iq_rwnd;
+    strcpy(fname, tmpqry.iq_name);
+    if ((tmpqry.iq_vers == NETIMG_VERS) || (tmpqry.iq_type == NETIMG_SYN)){
+      cout << "received proper-form query" << endl;
+      break;
+    }
+  }
   return;
 }
   
@@ -262,6 +281,35 @@ imgdb_sendpkt(int sd, struct sockaddr_in *client, char *pkt, int size, ihdr_t *a
    * packet and make sure that it is an ACK pkt as expected.
    */
   /* YOUR CODE HERE */
+  int err = 0;
+  struct timeval tv = {0,0};
+  fd_set rset;
+
+  tv.tv_sec = NETIMG_SLEEP;
+  tv.tv_usec = NETIMG_USLEEP;
+
+  FD_ZERO(&rset);
+  FD_SET(sd, &rset);
+
+  err = sendto(sd, pkt, size, 0, (sockaddr *) client, sizeof(sockaddr_in)); //TODO: double check size of pkt
+  if (err <= 0){
+    cout << "error in sending imsg" << endl;
+    abort();
+  }
+
+  //TODO: fix for this specification - still need to check ACK
+  for (int i = 0; i < NETIMG_MAXTRIES; i++){
+    select(sd+1, &rset, 0, 0, &tv);
+    if (FD_ISSET(sd+1, &rset)){
+      err = recv(sd, (char *) &ack, sizeof(ihdr_t), 0);   // imsg global
+      if (err <= 0) {
+        //close(sd);
+        return(-1);
+      }
+      //convert seqn back to host order for assert following
+      ack->ih_seqn = ntohl(ack->ih_seqn);
+    }
+  }
 
   return(1);
 }
@@ -294,6 +342,10 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
 
   /* make sure that the send buffer is of size at least mss. */
   /* Lab 5: YOUR CODE HERE */
+  int i_mss = mss;
+  cout << "mss is: " << i_mss << endl;
+  int err = setsockopt(sd, SOL_SOCKET, SO_SNDBUF, &i_mss, sizeof(i_mss));
+  net_assert(err==-1, "setting buffer size");
 
   /* 
    * Populate a struct msghdr with information of the destination client,
@@ -303,6 +355,21 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
    * to be sent.
   */
   /* Lab 5: YOUR CODE HERE */
+
+  struct msghdr msg_hdr;
+  memset(&msg_hdr, 0, sizeof(msghdr));
+  ihdr_t ihdr= {NETIMG_VERS,NETIMG_DAT,0,0}; //init data ihdr
+  iovec vec[NETIMG_NUMIOVEC];
+  msg_hdr.msg_iov = vec;
+  //vector<iovec> *iovecptr;
+
+  msg_hdr.msg_name = client; //TODO: not self, right?
+  msg_hdr.msg_namelen = sizeof(sockaddr_in);
+  msg_hdr.msg_iovlen = NETIMG_NUMIOVEC;
+
+  // (*(vector<iovec> *)(msg_hdr.msg_iov))[0].iov_base = &ihdr; //TODO: just compiles
+  msg_hdr.msg_iov[0].iov_base = &ihdr;
+  msg_hdr.msg_iov[0].iov_len = sizeof(ihdr_t);
 
   /* Task 2.2 and Task 4.1: initialize any necessary variables
    * for your sender side sliding window and FEC window.

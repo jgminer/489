@@ -47,6 +47,11 @@
 #include "netimg.h"
 #include "fec.h"           // Lab 6
 
+#include <iostream>
+#include <vector>
+#include <math.h>
+using namespace std;
+
 int sd;                    // socket descriptor
 imsg_t imsg;
 unsigned char *image;
@@ -56,6 +61,9 @@ unsigned short mss;        // receiver's maximum segment size, in bytes
 unsigned char rwnd;        // receiver's window, in packets, of size <= mss
 unsigned char fwnd;        // Lab 6: receiver's FEC window < rwnd, in packets
 unsigned int next_seqn;    // Lab 6
+
+int datasize = 0;           //my lab6 
+
 
 void
 netimg_usage(char *progname)
@@ -163,6 +171,10 @@ netimg_sockinit(char *sname, u_short port)
    * create a new UDP socket, store the socket in the global variable sd
   */
   /* Lab 5: YOUR CODE HERE */
+  if ((sd = socket(AF_INET, SOCK_DGRAM, 0)) < 0){
+    perror("opening TCP socket");
+    abort();
+  }
 
   /* obtain the server's IPv4 address from sname and initialize the
      socket address with server's address and port number . */
@@ -175,6 +187,14 @@ netimg_sockinit(char *sname, u_short port)
 
   /* set socket receive buffer size */
   /* Lab 5: YOUR CODE HERE */
+  bufsize = rwnd*mss;
+  err = setsockopt(sd, SOL_SOCKET, SO_RCVBUF, &bufsize, sizeof(bufsize));
+  if (err == -1){
+    cout << "error setting buffer size" << endl;
+    abort();
+  }
+  socklen_t tmpbufsize = sizeof(bufsize);
+  err = getsockopt(sd, SOL_SOCKET, SO_SNDBUF, &bufsize, &tmpbufsize);  
 
   fprintf(stderr, "netimg_sockinit: socket receive buffer set to %d bytes\n", bufsize);
   
@@ -285,6 +305,13 @@ netimg_recvimsg()
      * Initialize any variable necessary to keep track of ACKs.
      */
     /* YOUR CODE HERE */
+    ihdr_t ack = {NETIMG_VERS,NETIMG_ACK,0,0};
+    ack.ih_seqn = htonl(NETIMG_DIMSEQ); //may actually be ntohs???
+    bytes = send(sd, &ack, sizeof(ihdr_t), 0);
+    if (bytes<=0){
+      cout << "error in sending ack" << endl;
+      abort();    
+    }
 
     return (1);
   }
@@ -302,9 +329,7 @@ netimg_recvimsg()
  */
 void
 netimg_recvimage(void)
-{
-  ihdr_t hdr;
-  
+{  
   /* The image data packet from the server consists of an ihdr_t header
    * followed by a chunk of data.  We want to put the data directly into
    * the buffer pointed to by the global variable "image" without any
@@ -328,6 +353,18 @@ netimg_recvimage(void)
    * header to host byte order.
    */
   /* Lab 5: YOUR CODE HERE */
+  ihdr_t hdr = {0,0,0,0};
+  int err = recv(sd, &hdr, sizeof(ihdr_t), MSG_PEEK);
+  if (err == -1){
+    cout << "no packet ready" << endl;
+    return;
+  }
+
+  hdr.ih_size = ntohs(hdr.ih_size);
+  hdr.ih_seqn = ntohl(hdr.ih_seqn);
+
+  fprintf(stderr, "netimg_recimage: received offset %d, %d bytes\n",
+            hdr.ih_seqn, hdr.ih_size);
 
   /* Populate a struct msghdr with a pointer to a struct iovec
    * array.  The iovec array should be of size NETIMG_NUMIOVEC.  The
@@ -340,6 +377,22 @@ netimg_recvimage(void)
    * out of the two code branches.
    */
   /* Lab 5: YOUR CODE HERE */
+  msghdr recvhdr;
+  memset(&recvhdr, 0, sizeof(msghdr));
+  //TODO: anything like this?   msg_hdr.msg_name = client; //TODO: not self, right?
+  recvhdr.msg_iovlen = NETIMG_NUMIOVEC;
+  iovec vec[NETIMG_NUMIOVEC];
+  recvhdr.msg_iov = vec;
+
+  recvhdr.msg_iov[0].iov_base = &hdr;
+  recvhdr.msg_iov[0].iov_len = sizeof(ihdr_t);
+
+  datasize = mss - sizeof(ihdr_t) - NETIMG_UDPIPSIZE;
+
+  static unsigned int next_wnd_base = fwnd*datasize; //must initialize
+  static unsigned int fec_base = 0;
+  static unsigned char *fecdata = new unsigned char[datasize];
+
 
   /* Task 2.3: initialize your ACK packet */
   
@@ -358,6 +411,16 @@ netimg_recvimage(void)
      */
     /* Lab 5: YOUR CODE HERE */
     
+    //TODO: not sure if correct:
+    recvhdr.msg_iov[1].iov_base = image+hdr.ih_seqn;
+    recvhdr.msg_iov[1].iov_len = hdr.ih_size;
+    recvmsg(sd, &recvhdr, 0);
+
+    //fix again 
+    hdr.ih_size = ntohs(hdr.ih_size);
+    hdr.ih_seqn = ntohl(hdr.ih_seqn);
+
+
     /* Task 2.3: If the incoming data packet carries the expected
      * sequence number, update our expected sequence number and
      * prepare to send back an ACK packet.  Otherwise, if the packet
@@ -435,6 +498,14 @@ netimg_recvimage(void)
      * This is an adaptation of your Lab 5 code.
      */
     /* Lab 6: YOUR CODE HERE */
+    recvhdr.msg_iov[1].iov_base = fecdata;//image+hdr.ih_seqn;
+    recvhdr.msg_iov[1].iov_len = hdr.ih_size;
+    recvmsg(sd, &recvhdr, 0);
+
+    //fix again 
+    hdr.ih_size = ntohs(hdr.ih_size);
+    hdr.ih_seqn = ntohl(hdr.ih_seqn);
+
 
     /* 
      * Task 4.2: If you're not in Go-Back-N mode:

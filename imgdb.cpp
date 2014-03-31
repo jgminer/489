@@ -367,7 +367,6 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
   msg_hdr.msg_namelen = sizeof(sockaddr_in);
   msg_hdr.msg_iovlen = NETIMG_NUMIOVEC;
 
-  // (*(vector<iovec> *)(msg_hdr.msg_iov))[0].iov_base = &ihdr; //TODO: just compiles
   msg_hdr.msg_iov[0].iov_base = &ihdr;
   msg_hdr.msg_iov[0].iov_len = sizeof(ihdr_t);
 
@@ -375,6 +374,13 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
    * for your sender side sliding window and FEC window.
    */
   /* YOUR CODE HERE */
+  // int sent_bytes = 0;
+  // int acked_bytes = 0;
+  int snd_una = 0;
+  int snd_next = 0;
+  int wnd_size = rwnd;
+  int usable = 0;
+
 
   do {
     /* Task 2.2: estimate the receiver's receive buffer based on packets
@@ -382,6 +388,15 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
      * receiver can buffer.
      */
     /* YOUR CODE HERE */
+    //TODO:
+    //use datasize here since we aren't accounting for the ihdr_t and udp headers
+    usable = wnd_size*datasize - (snd_next - snd_una);
+
+    /* size of this segment */
+    //snd_next may be equal to snd_una
+    left = img_size - snd_next;
+    segsize = datasize > left ? left : datasize;
+
     
 
     /* Task 2.2: Send one usable window-full of data to client using
@@ -403,8 +418,48 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
      */
     /* YOUR CODE HERE */
 
+    while(snd_next < usable){
+      if (((float) random())/INT_MAX < pdrop) {
+      fprintf(stderr, "imgdb_sendimage: DROPPED offset 0x%x, %d bytes\n",
+              snd_next, segsize);
+      snd_next += datasize;
+      continue;
+      } 
+
+
+      msg_hdr.msg_iov[1].iov_base = ip+snd_next;
+      msg_hdr.msg_iov[1].iov_len = segsize;
+
+      //update header
+      ihdr.ih_size = htons(segsize);
+      ihdr.ih_seqn = htonl(snd_next);
+
+      err = sendmsg(sd, &msg_hdr, 0);
+      if (err <= 0){
+        net_assert(err<=0, "error in sendmsg - IMGDATA");
+        abort();
+      }
+
+      fprintf(stderr, "imgdb_sendimage: sent offset %d, %d bytes\n",
+              snd_next, segsize);
+
+    }
+
+
     /* Task 2.2: Next wait for ACKs for up to NETIMG_SLEEP secs and NETIMG_USLEEp usec. */
     /* YOUR CODE HERE */
+    struct timeval tv = {0,0};
+    fd_set rset;
+
+    tv.tv_sec = NETIMG_SLEEP;
+    tv.tv_usec = NETIMG_USLEEP;
+
+    FD_ZERO(&rset);
+    FD_SET(sd, &rset);
+
+    err = select(sd+1, &rset, 0, 0, &tv);
+
+
     
     /* Task 2.2: If an ACK arrived, grab it off the network and slide
      * our window forward when possible. Continue to do so for all the
@@ -419,15 +474,41 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
      * calling the receive function.
      */
     /* YOUR CODE HERE */
+    if (err > 0){
+
+      while(1){
+        int recv_bytes = -1;
+        ihdr_t this_ack = {0,0,0,0};
+        recv_bytes = recv(sd, &this_ack, sizeof(ihdr_t), MSG_DONTWAIT);
+
+        if (recv_bytes == 0){
+          cout << "no more acks" << endl;
+          break;
+        }
+        else if (recv_bytes < 0){
+          cout << "error on recv ack" << endl;
+          abort();
+        }
+        //set snd_una to this ack
+        else {
+          snd_una = ntohl(this_ack.ih_seqn);
+        }
+      }
+
+    }
 
     /* Task 2.2: If no ACK returned up to the timeout time, trigger Go-Back-N
      * and re-send all segments starting from the last unACKed segment.
      *
      * Task 4.1: If you experience RTO, reset your FEC window to start
      * at the segment to be retransmitted.
-     */
+    */
     /* YOUR CODE HERE */
-  } while (1); // Task 2.2: replace the '1' with your condition for detecting 
+    if (err <= 0){
+      snd_next = snd_una; //TODO: this simple??
+    }
+    //TODO: image???
+  } while (snd_una <= image); // Task 2.2: replace the '1' with your condition for detecting 
                // that all segments sent have been acknowledged
 
   

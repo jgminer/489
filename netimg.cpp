@@ -363,7 +363,7 @@ netimg_recvimage(void)
   hdr.ih_size = ntohs(hdr.ih_size);
   hdr.ih_seqn = ntohl(hdr.ih_seqn);
 
-  fprintf(stderr, "netimg_recimage: received offset %d, %d bytes\n",
+  fprintf(stderr, "netimg_recvimage: received offset %d, %d bytes\n",
             hdr.ih_seqn, hdr.ih_size);
 
   /* Populate a struct msghdr with a pointer to a struct iovec
@@ -396,10 +396,9 @@ netimg_recvimage(void)
 
   /* Task 2.3: initialize your ACK packet */
   ihdr_t ack = {NETIMG_VERS, NETIMG_ACK, 1, 0};
-  static unsigned int expected_seqn = 0;
-  
+
   if (hdr.ih_type == NETIMG_DAT) {
-    fprintf(stderr, "netimg_recvimage: received offset 0x%x, %d bytes, waiting for 0x%x\n",
+    fprintf(stderr, "netimg_recvimage: received offset %d, %d bytes, waiting for %d\n",
             hdr.ih_seqn, hdr.ih_size, next_seqn);
     
     /* 
@@ -434,13 +433,13 @@ netimg_recvimage(void)
      * expectation is.
      */
     /* YOUR CODE HERE */
-    if (hdr.ih_seqn == expected_seqn){
-      expected_seqn+=datasize;
-      ack.ih_seqn = htonl(expected_seqn);
+    if (hdr.ih_seqn == next_seqn){
+      next_seqn+=datasize;
+      ack.ih_seqn = htonl(next_seqn);
       ack.ih_size = 0;
     }
-    else if (hdr.ih_seqn < expected_seqn){
-      ack.ih_seqn = htonl(expected_seqn);
+    else if (hdr.ih_seqn < next_seqn){
+      ack.ih_seqn = htonl(next_seqn);
       ack.ih_size = 0;
     }
     /* You should handle the case when the FEC data packet itself may be
@@ -574,10 +573,11 @@ netimg_recvimage(void)
   /* YOUR CODE HERE */
   if (ack.ih_size != 1){
     if (((float) random())/INT_MAX < pdrop) {
-    fprintf(stderr, "netimg_recvimage: DROPPED ACK 0x%x\n",
+    fprintf(stderr, "netimg_recvimage: DROPPED ACK %d\n",
             ntohl(ack.ih_seqn));
     }
     else {
+      cout << "sending ack with seqno: " << ntohl(ack.ih_seqn) << endl;
       err = send(sd, &ack, sizeof(ihdr_t), 0);
       if (err <= 0){
         cout << "error sending ack" << endl;

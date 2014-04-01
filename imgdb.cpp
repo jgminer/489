@@ -386,7 +386,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
   // int acked_bytes = 0;
   int snd_una = 0;
   int snd_next = 0;
-  int wnd_size = rwnd;
+  int wnd_size = 10;
   int usable = 0;
 
 
@@ -428,7 +428,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
 
     while(snd_next < usable){
       if (((float) random())/INT_MAX < pdrop) {
-      fprintf(stderr, "imgdb_sendimage: DROPPED offset 0x%x, %d bytes\n",
+      fprintf(stderr, "imgdb_sendimage: DROPPED offset %d, %d bytes\n",
               snd_next, segsize);
       snd_next += datasize;
       continue;
@@ -450,6 +450,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
 
       fprintf(stderr, "imgdb_sendimage: sent offset %d, %d bytes\n",
               snd_next, segsize);
+      snd_next += datasize;
 
     }
 
@@ -487,6 +488,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
       }
       //set snd_una to this ack
       else {
+        cout << "received ACK for: " << ntohl(this_ack.ih_seqn) << endl;
         snd_una = ntohl(this_ack.ih_seqn);
       }
     }

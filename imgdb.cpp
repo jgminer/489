@@ -388,6 +388,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
   int snd_next = 0;
   int wnd_size = 10;
   int usable = 0;
+  int window_sent = 0;
 
 
   do {
@@ -426,11 +427,12 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
      */
     /* YOUR CODE HERE */
 
-    while(snd_next < usable){
+    while(window_sent < usable){
       if (((float) random())/INT_MAX < pdrop) {
       fprintf(stderr, "imgdb_sendimage: DROPPED offset %d, %d bytes\n",
               snd_next, segsize);
       snd_next += datasize;
+      window_sent += datasize;
       continue;
       } 
 
@@ -451,6 +453,9 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
       fprintf(stderr, "imgdb_sendimage: sent offset %d, %d bytes\n",
               snd_next, segsize);
       snd_next += datasize;
+      window_sent += datasize;
+
+      cout << "snd_next: " << snd_next << "usable: " << usable << endl;
 
     }
 
@@ -483,8 +488,9 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
         break;
       }
       else if (recv_bytes < 0){
-        cout << "error on recv ack" << endl;
-        abort();
+        cout << "no ack?" << endl;
+        break;
+        //abort();
       }
       //set snd_una to this ack
       else {
@@ -502,6 +508,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
     /* YOUR CODE HERE */
     if (this_ack.ih_vers == 0){
       snd_next = snd_una; //TODO: this simple??
+      window_sent = 0;
     }
     //TODO: less than????
   } while (snd_next < img_size); // Task 2.2: replace the '1' with your condition for detecting 

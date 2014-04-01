@@ -387,7 +387,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
   int snd_una = 0;
   int snd_next = 0;
   cout << "receiver's window is: " << (int)rwnd << endl;
-  int wnd_size = 11;
+  int wnd_size = rwnd;
   int usable = 0;
   int window_sent = 0;
 
@@ -455,7 +455,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
       snd_next += datasize;
       window_sent += datasize;
 
-      cout << "snd_next: " << snd_next << "usable: " << usable << endl;
+      // cout << "snd_next: " << snd_next << "usable: " << usable << endl;
 
     }
 
@@ -508,6 +508,12 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
       snd_next = snd_una; //TODO: this simple??
       window_sent = 0;
     }
+    else if ((snd_una < img_size) && (snd_next > img_size)){
+      cout << "here once, at end if necessary" << endl;
+      snd_next = snd_una;
+    }
+          
+    cout << "snd_next: " << snd_next << endl;
     //TODO: less than????
   } while (snd_next <= img_size); // Task 2.2: replace the '1' with your condition for detecting 
                // that all segments sent have been acknowledged

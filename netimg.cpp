@@ -389,12 +389,14 @@ netimg_recvimage(void)
 
   datasize = mss - sizeof(ihdr_t) - NETIMG_UDPIPSIZE;
 
-  static unsigned int next_wnd_base = fwnd*datasize; //must initialize
-  static unsigned int fec_base = 0;
+  // static unsigned int next_wnd_base = fwnd*datasize; //must initialize
+  // static unsigned int fec_base = 0;
   static unsigned char *fecdata = new unsigned char[datasize];
 
 
   /* Task 2.3: initialize your ACK packet */
+  ihdr_t ack = {NETIMG_VERS, NETIMG_ACK, 1, 0};
+  static unsigned int expected_seqn = 0;
   
   if (hdr.ih_type == NETIMG_DAT) {
     fprintf(stderr, "netimg_recvimage: received offset 0x%x, %d bytes, waiting for 0x%x\n",
@@ -432,7 +434,15 @@ netimg_recvimage(void)
      * expectation is.
      */
     /* YOUR CODE HERE */
-      
+    if (hdr.ih_seqn == expected_seqn){
+      expected_seqn+=datasize;
+      ack.ih_seqn = htonl(expected_seqn);
+      ack.ih_size = 0;
+    }
+    else if (hdr.ih_seqn < expected_seqn){
+      ack.ih_seqn = htonl(expected_seqn);
+      ack.ih_size = 0;
+    }
     /* You should handle the case when the FEC data packet itself may be
      * lost, and when multiple packets within an FEC window are lost, and
      * when the first few packets from the subsequent FEC window following a
@@ -551,7 +561,10 @@ netimg_recvimage(void)
 
     /* Task 2.3: else it's a NETIMG_FIN packet, prepare to send back an
        ACK with NETIMG_FINSEQ as the sequence number */
-    /* YOUR CODE HERE */ 
+    /* YOUR CODE HERE */
+    ack.ih_seqn = NETIMG_FINSEQ;
+    ack.ih_size = 0;
+
   }
 
   /* Task 2.3:
@@ -559,6 +572,21 @@ netimg_recvimage(void)
    * Probabilistically drop the ACK instead of sending it back.
    */ 
   /* YOUR CODE HERE */
+  if (ack.ih_size != 1){
+    if (((float) random())/INT_MAX < pdrop) {
+    fprintf(stderr, "netimg_recvimage: DROPPED ACK 0x%x\n",
+            ntohl(ack.ih_seqn));
+    }
+    else {
+      err = send(sd, &ack, sizeof(ihdr_t), 0);
+      if (err <= 0){
+        cout << "error sending ack" << endl;
+        abort();
+      }
+    }
+
+  }
+
   
   /* give the updated image to OpenGL for texturing */
   glTexImage2D(GL_TEXTURE_2D, 0, (GLint) imsg.im_format,

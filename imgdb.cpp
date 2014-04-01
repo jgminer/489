@@ -241,9 +241,10 @@ imgdb_recvquery(int sd, struct sockaddr_in *client, unsigned short *mss,
     socklen_t clientsize = sizeof(sockaddr_in);
     int recv_bytes = -1;
     recv_bytes = recvfrom(sd, &tmpqry, sizeof(iqry_t), 0, (sockaddr *) client, &clientsize);
-    if (recv_bytes <= 0 || tmpqry.iq_vers != NETIMG_VERS || tmpqry.iq_type != NETIMG_SYN){
-      perror("nothing received or error or incorrect type");
-      abort();
+    //  cout << "type: " << tmpqry.iq_type << endl;
+    if ((recv_bytes <= 0) || (tmpqry.iq_vers != NETIMG_VERS) || (tmpqry.iq_type != NETIMG_SYN)){
+      cout << "waiting: nothing received or error or incorrect type" << endl;
+      continue;
     }
     *mss = ntohs(tmpqry.iq_mss);
     *rwnd = tmpqry.iq_rwnd;
@@ -254,7 +255,7 @@ imgdb_recvquery(int sd, struct sockaddr_in *client, unsigned short *mss,
     }
   }
   return;
-}
+} 
   
 /* 
  * imgdb_sendpkt: sends the provided "pkt" of size "size"
@@ -297,18 +298,23 @@ imgdb_sendpkt(int sd, struct sockaddr_in *client, char *pkt, int size, ihdr_t *a
     abort();
   }
 
-  //TODO: fix for this specification - still need to check ACK
+  err = setsockopt(sd, SOL_SOCKET, SO_RCVTIMEO, (char*) &tv, sizeof(timeval));
+  if (err < 0){
+    cout << "err on setting listen time" << endl;
+    abort();
+  }
   for (int i = 0; i < NETIMG_MAXTRIES; i++){
-    select(sd+1, &rset, 0, 0, &tv);
-    if (FD_ISSET(sd+1, &rset)){
-      err = recv(sd, (char *) &ack, sizeof(ihdr_t), 0);   // imsg global
+    // select(sd+1, &rset, 0, 0, &tv);
+    // if (FD_ISSET(sd+1, &rset)){
+      err = recv(sd, (char *) ack, sizeof(ihdr_t), 0);   // imsg global
       if (err <= 0) {
         //close(sd);
-        return(-1);
+        continue;
       }
       //convert seqn back to host order for assert following
       ack->ih_seqn = ntohl(ack->ih_seqn);
-    }
+      return(0);
+    // }
   }
 
   return(1);
@@ -335,7 +341,9 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
 {
   unsigned char *ip;
 
-  int datasize;
+  int datasize = 0;
+  int left = 0;
+  unsigned short segsize = 0;
 
   ip = image->GetPixels();    /* ip points to the start of byte buffer holding image */
   datasize = mss - sizeof(ihdr_t) - NETIMG_UDPIPSIZE;
@@ -448,19 +456,9 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
 
     /* Task 2.2: Next wait for ACKs for up to NETIMG_SLEEP secs and NETIMG_USLEEp usec. */
     /* YOUR CODE HERE */
-    struct timeval tv = {0,0};
-    fd_set rset;
 
-    tv.tv_sec = NETIMG_SLEEP;
-    tv.tv_usec = NETIMG_USLEEP;
+    //DONE BELOW????
 
-    FD_ZERO(&rset);
-    FD_SET(sd, &rset);
-
-    err = select(sd+1, &rset, 0, 0, &tv);
-
-
-    
     /* Task 2.2: If an ACK arrived, grab it off the network and slide
      * our window forward when possible. Continue to do so for all the
      * ACKs that have arrived.  Remember that we're using cumulative ACK.
@@ -474,27 +472,23 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
      * calling the receive function.
      */
     /* YOUR CODE HERE */
-    if (err > 0){
+    ihdr_t this_ack = {0,0,0,0}; //TODO: OK outside?
+    while(1){
+      int recv_bytes = -1;
+      recv_bytes = recv(sd, &this_ack, sizeof(ihdr_t), MSG_DONTWAIT);
 
-      while(1){
-        int recv_bytes = -1;
-        ihdr_t this_ack = {0,0,0,0};
-        recv_bytes = recv(sd, &this_ack, sizeof(ihdr_t), MSG_DONTWAIT);
-
-        if (recv_bytes == 0){
-          cout << "no more acks" << endl;
-          break;
-        }
-        else if (recv_bytes < 0){
-          cout << "error on recv ack" << endl;
-          abort();
-        }
-        //set snd_una to this ack
-        else {
-          snd_una = ntohl(this_ack.ih_seqn);
-        }
+      if (recv_bytes == 0){
+        cout << "no more acks" << endl;
+        break;
       }
-
+      else if (recv_bytes < 0){
+        cout << "error on recv ack" << endl;
+        abort();
+      }
+      //set snd_una to this ack
+      else {
+        snd_una = ntohl(this_ack.ih_seqn);
+      }
     }
 
     /* Task 2.2: If no ACK returned up to the timeout time, trigger Go-Back-N
@@ -504,11 +498,11 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
      * at the segment to be retransmitted.
     */
     /* YOUR CODE HERE */
-    if (err <= 0){
+    if (this_ack.ih_vers == 0){
       snd_next = snd_una; //TODO: this simple??
     }
-    //TODO: image???
-  } while (snd_una <= image); // Task 2.2: replace the '1' with your condition for detecting 
+    //TODO: less than????
+  } while (snd_next < img_size); // Task 2.2: replace the '1' with your condition for detecting 
                // that all segments sent have been acknowledged
 
   
@@ -517,6 +511,16 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
    * using imgdb_sendpkt().
    */
   /* YOUR CODE HERE */
+  for (int i = 0; i < NETIMG_MAXTRIES; i++){
+    ihdr_t ack = {0,0,0,0};
+    //TODO: convert and add size?????
+    ihdr_t FIN = {NETIMG_VERS, NETIMG_FIN, 0, NETIMG_FINSEQ};
+    FIN.ih_seqn = htonl(FIN.ih_seqn); //convert to network order before sending
+    err = imgdb_sendpkt(sd, client, (char *)&FIN, sizeof(ihdr_t), &ack);
+    if(err == 0){
+      break;
+    }
+  }
   
   return;
 }

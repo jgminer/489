@@ -561,7 +561,8 @@ netimg_recvimage(void)
     /* Task 2.3: else it's a NETIMG_FIN packet, prepare to send back an
        ACK with NETIMG_FINSEQ as the sequence number */
     /* YOUR CODE HERE */
-    ack.ih_seqn = NETIMG_FINSEQ;
+    cout << "received FIN!!!" << endl;
+    ack.ih_seqn = htonl(NETIMG_FINSEQ);
     ack.ih_size = 0;
 
   }

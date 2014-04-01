@@ -243,7 +243,7 @@ imgdb_recvquery(int sd, struct sockaddr_in *client, unsigned short *mss,
     recv_bytes = recvfrom(sd, &tmpqry, sizeof(iqry_t), 0, (sockaddr *) client, &clientsize);
     //  cout << "type: " << tmpqry.iq_type << endl;
     if ((recv_bytes <= 0) || (tmpqry.iq_vers != NETIMG_VERS) || (tmpqry.iq_type != NETIMG_SYN)){
-      cout << "waiting: nothing received or error or incorrect type" << endl;
+      // cout << "waiting: nothing received or error or incorrect type" << endl;
       continue;
     }
     *mss = ntohs(tmpqry.iq_mss);
@@ -386,7 +386,8 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
   // int acked_bytes = 0;
   int snd_una = 0;
   int snd_next = 0;
-  int wnd_size = 10;
+  cout << "receiver's window is: " << (int)rwnd << endl;
+  int wnd_size = 11;
   int usable = 0;
   int window_sent = 0;
 
@@ -427,7 +428,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
      */
     /* YOUR CODE HERE */
 
-    while(window_sent < usable){
+    while((window_sent < usable) && (snd_next <= img_size)){
       if (((float) random())/INT_MAX < pdrop) {
       fprintf(stderr, "imgdb_sendimage: DROPPED offset %d, %d bytes\n",
               snd_next, segsize);
@@ -435,7 +436,6 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
       window_sent += datasize;
       continue;
       } 
-
 
       msg_hdr.msg_iov[1].iov_base = ip+snd_next;
       msg_hdr.msg_iov[1].iov_len = segsize;
@@ -481,22 +481,20 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
     ihdr_t this_ack = {0,0,0,0}; //TODO: OK outside?
     while(1){
       int recv_bytes = -1;
-      recv_bytes = recv(sd, &this_ack, sizeof(ihdr_t), MSG_DONTWAIT);
+      recv_bytes = recv(sd, &this_ack, sizeof(ihdr_t), 0);
 
       if (recv_bytes == 0){
         cout << "no more acks" << endl;
-        break;
       }
       else if (recv_bytes < 0){
         cout << "no ack?" << endl;
-        break;
-        //abort();
       }
       //set snd_una to this ack
       else {
         cout << "received ACK for: " << ntohl(this_ack.ih_seqn) << endl;
         snd_una = ntohl(this_ack.ih_seqn);
       }
+      break;
     }
 
     /* Task 2.2: If no ACK returned up to the timeout time, trigger Go-Back-N
@@ -511,7 +509,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
       window_sent = 0;
     }
     //TODO: less than????
-  } while (snd_next < img_size); // Task 2.2: replace the '1' with your condition for detecting 
+  } while (snd_next <= img_size); // Task 2.2: replace the '1' with your condition for detecting 
                // that all segments sent have been acknowledged
 
   

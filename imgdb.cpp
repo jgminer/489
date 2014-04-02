@@ -485,7 +485,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
     FD_ZERO(&rset);
     FD_SET(sd, &rset);
 
-    // while(1){
+    while(1){
       int recv_bytes = -1;
       err = select(sd+1, &rset, 0, 0, &tv);
       cout << "result of select: " << err << endl;
@@ -494,9 +494,11 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
 
         if (recv_bytes == 0){
           cout << "no more acks" << endl;
+          break;
         }
         else if (recv_bytes < 0){
           cout << "no ack?" << endl;
+          break;
         }
         //set snd_una to this ack
         else {
@@ -505,8 +507,9 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
         }
         // break;
       }
+      else break;
 
-    // }
+    }
 
     /* Task 2.2: If no ACK returned up to the timeout time, trigger Go-Back-N
      * and re-send all segments starting from the last unACKed segment.

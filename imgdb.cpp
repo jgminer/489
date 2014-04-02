@@ -298,14 +298,10 @@ imgdb_sendpkt(int sd, struct sockaddr_in *client, char *pkt, int size, ihdr_t *a
     abort();
   }
 
-  err = setsockopt(sd, SOL_SOCKET, SO_RCVTIMEO, (char*) &tv, sizeof(timeval));
-  if (err < 0){
-    cout << "err on setting listen time" << endl;
-    abort();
-  }
   for (int i = 0; i < NETIMG_MAXTRIES; i++){
-    // select(sd+1, &rset, 0, 0, &tv);
-    // if (FD_ISSET(sd+1, &rset)){
+    err = select(sd+1, &rset, 0, 0, &tv);
+    cout << "result of select: " << err << endl;
+    if (err > 0){
       err = recv(sd, (char *) ack, sizeof(ihdr_t), 0);   // imsg global
       if (err <= 0) {
         //close(sd);
@@ -314,7 +310,7 @@ imgdb_sendpkt(int sd, struct sockaddr_in *client, char *pkt, int size, ihdr_t *a
       //convert seqn back to host order for assert following
       ack->ih_seqn = ntohl(ack->ih_seqn);
       return(0);
-    // }
+    }
   }
 
   return(1);
@@ -479,23 +475,38 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
      */
     /* YOUR CODE HERE */
     ihdr_t this_ack = {0,0,0,0}; //TODO: OK outside?
-    while(1){
-      int recv_bytes = -1;
-      recv_bytes = recv(sd, &this_ack, sizeof(ihdr_t), 0);
 
-      if (recv_bytes == 0){
-        cout << "no more acks" << endl;
+    struct timeval tv = {0,0};
+    fd_set rset;
+
+    tv.tv_sec = NETIMG_SLEEP;
+    tv.tv_usec = NETIMG_USLEEP;
+
+    FD_ZERO(&rset);
+    FD_SET(sd, &rset);
+
+    // while(1){
+      int recv_bytes = -1;
+      err = select(sd+1, &rset, 0, 0, &tv);
+      cout << "result of select: " << err << endl;
+      if (err>0){
+        recv_bytes = recv(sd, &this_ack, sizeof(ihdr_t), MSG_DONTWAIT);
+
+        if (recv_bytes == 0){
+          cout << "no more acks" << endl;
+        }
+        else if (recv_bytes < 0){
+          cout << "no ack?" << endl;
+        }
+        //set snd_una to this ack
+        else {
+          cout << "received ACK for: " << ntohl(this_ack.ih_seqn) << endl;
+          snd_una = ntohl(this_ack.ih_seqn);
+        }
+        // break;
       }
-      else if (recv_bytes < 0){
-        cout << "no ack?" << endl;
-      }
-      //set snd_una to this ack
-      else {
-        cout << "received ACK for: " << ntohl(this_ack.ih_seqn) << endl;
-        snd_una = ntohl(this_ack.ih_seqn);
-      }
-      break;
-    }
+
+    // }
 
     /* Task 2.2: If no ACK returned up to the timeout time, trigger Go-Back-N
      * and re-send all segments starting from the last unACKed segment.

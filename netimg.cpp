@@ -562,6 +562,8 @@ netimg_recvimage(void)
        ACK with NETIMG_FINSEQ as the sequence number */
     /* YOUR CODE HERE */
     cout << "received FIN!!!" << endl;
+    //actually receive the FIN!!!
+    recvmsg(sd, &recvhdr, 0);
     ack.ih_seqn = htonl(NETIMG_FINSEQ);
     ack.ih_size = 0;
 

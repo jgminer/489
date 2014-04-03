@@ -1,0 +1,483 @@
+current: 0x0 next: 0x0
+sending ack with seqno: 0x7f4
+current: 0x7f4 next: 0x7f4
+sending ack with seqno: 0xfe8
+current: 0xfe8 next: 0xfe8
+current: 0x17dc next: 0x17dc
+sending ack with seqno: 0x1fd0
+current: 0x1fd0 next: 0x1fd0
+sending ack with seqno: 0x27c4
+current: 0x27c4 next: 0x27c4
+sending ack with seqno: 0x2fb8
+current: 0x2fb8 next: 0x2fb8
+sending ack with seqno: 0x37ac
+current: 0x37ac next: 0x37ac
+sending ack with seqno: 0x3fa0
+current: 0x3fa0 next: 0x3fa0
+sending ack with seqno: 0x4794
+current: 0x4794 next: 0x4794
+sending ack with seqno: 0x4f88
+current: 0x4f88 next: 0x4f88
+sending ack with seqno: 0x577c
+RECVD FEC!!!
+received fec!, expecting to get 0x577c next
+current: 0x577c next: 0x577c
+sending ack with seqno: 0x5f70
+current: 0x5f70 next: 0x5f70
+sending ack with seqno: 0x6764
+current: 0x6764 next: 0x6764
+sending ack with seqno: 0x6f58
+current: 0x6f58 next: 0x6f58
+sending ack with seqno: 0x774c
+current: 0x774c next: 0x774c
+sending ack with seqno: 0x7f40
+current: 0x7f40 next: 0x7f40
+sending ack with seqno: 0x8734
+current: 0x8734 next: 0x8734
+sending ack with seqno: 0x8f28
+current: 0x8f28 next: 0x8f28
+sending ack with seqno: 0x971c
+current: 0x971c next: 0x971c
+sending ack with seqno: 0x9f10
+current: 0x9f10 next: 0x9f10
+sending ack with seqno: 0xa704
+current: 0xa704 next: 0xa704
+sending ack with seqno: 0xaef8
+RECVD FEC!!!
+received fec!, expecting to get 0xaef8 next
+current: 0xaef8 next: 0xaef8
+sending ack with seqno: 0xb6ec
+current: 0xb6ec next: 0xb6ec
+sending ack with seqno: 0xbee0
+current: 0xbee0 next: 0xbee0
+sending ack with seqno: 0xc6d4
+current: 0xc6d4 next: 0xc6d4
+sending ack with seqno: 0xcec8
+current: 0xcec8 next: 0xcec8
+sending ack with seqno: 0xd6bc
+current: 0xd6bc next: 0xd6bc
+sending ack with seqno: 0xdeb0
+current: 0xdeb0 next: 0xdeb0
+sending ack with seqno: 0xe6a4
+current: 0xe6a4 next: 0xe6a4
+sending ack with seqno: 0xee98
+current: 0xee98 next: 0xee98
+sending ack with seqno: 0xf68c
+current: 0xf68c next: 0xf68c
+sending ack with seqno: 0xfe80
+current: 0xfe80 next: 0xfe80
+sending ack with seqno: 0x10674
+RECVD FEC!!!
+received fec!, expecting to get 0x10674 next
+current: 0x10674 next: 0x10674
+sending ack with seqno: 0x10e68
+current: 0x10e68 next: 0x10e68
+sending ack with seqno: 0x1165c
+current: 0x11e50 next: 0x1165c
+1 miss(es) detected, next expected is: 0x12644
+current: 0x12644 next: 0x12644
+sending ack with seqno: 0x12e38
+current: 0x12e38 next: 0x12e38
+sending ack with seqno: 0x1362c
+current: 0x1362c next: 0x1362c
+sending ack with seqno: 0x13e20
+current: 0x13e20 next: 0x13e20
+sending ack with seqno: 0x14614
+current: 0x14614 next: 0x14614
+sending ack with seqno: 0x14e08
+current: 0x14e08 next: 0x14e08
+sending ack with seqno: 0x155fc
+current: 0x155fc next: 0x155fc
+sending ack with seqno: 0x15df0
+RECVD FEC!!!
+fix at: 0x1165c
+looping over a received packets (-1)
+accum at: 0x10674
+accum at: 0x10e68
+accum at: 0x11e50
+accum at: 0x12644
+accum at: 0x12e38
+accum at: 0x1362c
+accum at: 0x13e20
+accum at: 0x14614
+accum at: 0x14e08
+final accum at: 0x155fc
+received fec!, expecting to get 0x15df0 next
+sending ack with seqno: 0x15df0
+current: 0x15df0 next: 0x15df0
+sending ack with seqno: 0x165e4
+current: 0x165e4 next: 0x165e4
+sending ack with seqno: 0x16dd8
+current: 0x16dd8 next: 0x16dd8
+sending ack with seqno: 0x175cc
+current: 0x175cc next: 0x175cc
+sending ack with seqno: 0x17dc0
+current: 0x17dc0 next: 0x17dc0
+sending ack with seqno: 0x185b4
+current: 0x185b4 next: 0x185b4
+sending ack with seqno: 0x18da8
+current: 0x18da8 next: 0x18da8
+sending ack with seqno: 0x1959c
+current: 0x1959c next: 0x1959c
+sending ack with seqno: 0x19d90
+current: 0x19d90 next: 0x19d90
+sending ack with seqno: 0x1a584
+current: 0x1a584 next: 0x1a584
+sending ack with seqno: 0x1ad78
+current: 0x1ad78 next: 0x1ad78
+sending ack with seqno: 0x1b56c
+RECVD FEC!!!
+received fec!, expecting to get 0x1b56c next
+current: 0x1b56c next: 0x1b56c
+sending ack with seqno: 0x1bd60
+current: 0x1bd60 next: 0x1bd60
+sending ack with seqno: 0x1c554
+current: 0x1c554 next: 0x1c554
+sending ack with seqno: 0x1cd48
+current: 0x1cd48 next: 0x1cd48
+sending ack with seqno: 0x1d53c
+current: 0x1d53c next: 0x1d53c
+sending ack with seqno: 0x1dd30
+current: 0x1dd30 next: 0x1dd30
+sending ack with seqno: 0x1e524
+current: 0x1e524 next: 0x1e524
+sending ack with seqno: 0x1ed18
+current: 0x1ed18 next: 0x1ed18
+sending ack with seqno: 0x1f50c
+current: 0x1f50c next: 0x1f50c
+sending ack with seqno: 0x1fd00
+current: 0x1fd00 next: 0x1fd00
+sending ack with seqno: 0x204f4
+current: 0x204f4 next: 0x204f4
+sending ack with seqno: 0x20ce8
+RECVD FEC!!!
+received fec!, expecting to get 0x20ce8 next
+current: 0x20ce8 next: 0x20ce8
+sending ack with seqno: 0x214dc
+current: 0x214dc next: 0x214dc
+sending ack with seqno: 0x21cd0
+current: 0x21cd0 next: 0x21cd0
+sending ack with seqno: 0x224c4
+current: 0x224c4 next: 0x224c4
+sending ack with seqno: 0x22cb8
+current: 0x22cb8 next: 0x22cb8
+sending ack with seqno: 0x234ac
+current: 0x234ac next: 0x234ac
+sending ack with seqno: 0x23ca0
+current: 0x23ca0 next: 0x23ca0
+sending ack with seqno: 0x24494
+current: 0x24494 next: 0x24494
+sending ack with seqno: 0x24c88
+current: 0x24c88 next: 0x24c88
+sending ack with seqno: 0x2547c
+current: 0x2547c next: 0x2547c
+sending ack with seqno: 0x25c70
+current: 0x25c70 next: 0x25c70
+sending ack with seqno: 0x26464
+RECVD FEC!!!
+received fec!, expecting to get 0x26464 next
+current: 0x26464 next: 0x26464
+sending ack with seqno: 0x26c58
+current: 0x26c58 next: 0x26c58
+sending ack with seqno: 0x2744c
+current: 0x2744c next: 0x2744c
+sending ack with seqno: 0x27c40
+current: 0x27c40 next: 0x27c40
+sending ack with seqno: 0x28434
+current: 0x28434 next: 0x28434
+sending ack with seqno: 0x28c28
+current: 0x28c28 next: 0x28c28
+sending ack with seqno: 0x2941c
+current: 0x2941c next: 0x2941c
+sending ack with seqno: 0x29c10
+current: 0x29c10 next: 0x29c10
+sending ack with seqno: 0x2a404
+current: 0x2a404 next: 0x2a404
+sending ack with seqno: 0x2abf8
+current: 0x2abf8 next: 0x2abf8
+sending ack with seqno: 0x2b3ec
+current: 0x2b3ec next: 0x2b3ec
+sending ack with seqno: 0x2bbe0
+RECVD FEC!!!
+received fec!, expecting to get 0x2bbe0 next
+current: 0x2bbe0 next: 0x2bbe0
+sending ack with seqno: 0x2c3d4
+current: 0x2c3d4 next: 0x2c3d4
+sending ack with seqno: 0x2cbc8
+current: 0x2cbc8 next: 0x2cbc8
+sending ack with seqno: 0x2d3bc
+current: 0x2d3bc next: 0x2d3bc
+sending ack with seqno: 0x2dbb0
+current: 0x2dbb0 next: 0x2dbb0
+sending ack with seqno: 0x2e3a4
+current: 0x2eb98 next: 0x2e3a4
+1 miss(es) detected, next expected is: 0x2f38c
+current: 0x2f38c next: 0x2f38c
+sending ack with seqno: 0x2fb80
+current: 0x2fb80 next: 0x2fb80
+sending ack with seqno: 0x30374
+current: 0x30374 next: 0x30374
+sending ack with seqno: 0x30b68
+current: 0x30b68 next: 0x30b68
+sending ack with seqno: 0x3135c
+RECVD FEC!!!
+fix at: 0x2e3a4
+looping over a received packets (-1)
+accum at: 0x2bbe0
+accum at: 0x2c3d4
+accum at: 0x2cbc8
+accum at: 0x2d3bc
+accum at: 0x2dbb0
+accum at: 0x2eb98
+accum at: 0x2f38c
+accum at: 0x2fb80
+accum at: 0x30374
+final accum at: 0x30b68
+received fec!, expecting to get 0x3135c next
+sending ack with seqno: 0x3135c
+current: 0x3135c next: 0x3135c
+sending ack with seqno: 0x31b50
+current: 0x5cf3c next: 0x31b50
+57 miss(es) detected, next expected is: 0x5d730
+no FEC, changing fec_base to: 0x36ad8 and next expected is: 0x5d730
+current: 0x636a0 next: 0x5d730
+c miss(es) detected, next expected is: 0x63e94
+no FEC, changing fec_base to: 0x3c254 and next expected is: 0x63e94
+current: 0x63e94 next: 0x63e94
+no FEC, changing fec_base to: 0x419d0 and next expected is: 0x64688
+sending ack with seqno: 0x64688
+current: 0x64688 next: 0x64688
+no FEC, changing fec_base to: 0x4714c and next expected is: 0x64e7c
+sending ack with seqno: 0x64e7c
+current: 0x64e7c next: 0x64e7c
+no FEC, changing fec_base to: 0x4c8c8 and next expected is: 0x65670
+sending ack with seqno: 0x65670
+current: 0x65670 next: 0x65670
+no FEC, changing fec_base to: 0x52044 and next expected is: 0x65e64
+sending ack with seqno: 0x65e64
+current: 0x66658 next: 0x65e64
+1 miss(es) detected, next expected is: 0x66e4c
+no FEC, changing fec_base to: 0x577c0 and next expected is: 0x66e4c
+current: 0x66e4c next: 0x66e4c
+no FEC, changing fec_base to: 0x5cf3c and next expected is: 0x67640
+sending ack with seqno: 0x67640
+current: 0x67640 next: 0x67640
+no FEC, changing fec_base to: 0x626b8 and next expected is: 0x67e34
+sending ack with seqno: 0x67e34
+RECVD FEC!!!
+received fec!, expecting to get 0x67e34 next
+current: 0x67e34 next: 0x67e34
+sending ack with seqno: 0x68628
+current: 0x68628 next: 0x68628
+sending ack with seqno: 0x68e1c
+current: 0x68e1c next: 0x68e1c
+sending ack with seqno: 0x69610
+current: 0x69610 next: 0x69610
+sending ack with seqno: 0x69e04
+current: 0x69e04 next: 0x69e04
+sending ack with seqno: 0x6a5f8
+current: 0x6a5f8 next: 0x6a5f8
+sending ack with seqno: 0x6adec
+current: 0x6adec next: 0x6adec
+sending ack with seqno: 0x6b5e0
+current: 0x6b5e0 next: 0x6b5e0
+sending ack with seqno: 0x6bdd4
+current: 0x6bdd4 next: 0x6bdd4
+sending ack with seqno: 0x6c5c8
+current: 0x6c5c8 next: 0x6c5c8
+sending ack with seqno: 0x6cdbc
+current: 0x6cdbc next: 0x6cdbc
+sending ack with seqno: 0x6d5b0
+RECVD FEC!!!
+received fec!, expecting to get 0x6d5b0 next
+current: 0x6d5b0 next: 0x6d5b0
+sending ack with seqno: 0x6dda4
+current: 0x6dda4 next: 0x6dda4
+sending ack with seqno: 0x6e598
+current: 0x6e598 next: 0x6e598
+sending ack with seqno: 0x6ed8c
+current: 0x6ed8c next: 0x6ed8c
+sending ack with seqno: 0x6f580
+current: 0x6f580 next: 0x6f580
+sending ack with seqno: 0x6fd74
+current: 0x6fd74 next: 0x6fd74
+sending ack with seqno: 0x70568
+current: 0x70568 next: 0x70568
+sending ack with seqno: 0x70d5c
+current: 0x70d5c next: 0x70d5c
+sending ack with seqno: 0x71550
+current: 0x71550 next: 0x71550
+sending ack with seqno: 0x71d44
+current: 0x71d44 next: 0x71d44
+sending ack with seqno: 0x72538
+current: 0x72538 next: 0x72538
+sending ack with seqno: 0x72d2c
+RECVD FEC!!!
+received fec!, expecting to get 0x72d2c next
+current: 0x72d2c next: 0x72d2c
+sending ack with seqno: 0x73520
+current: 0x73520 next: 0x73520
+sending ack with seqno: 0x73d14
+current: 0x73d14 next: 0x73d14
+sending ack with seqno: 0x74508
+current: 0x74508 next: 0x74508
+sending ack with seqno: 0x74cfc
+current: 0x74cfc next: 0x74cfc
+sending ack with seqno: 0x754f0
+current: 0x754f0 next: 0x754f0
+sending ack with seqno: 0x75ce4
+current: 0x75ce4 next: 0x75ce4
+sending ack with seqno: 0x764d8
+current: 0x764d8 next: 0x764d8
+sending ack with seqno: 0x76ccc
+current: 0x76ccc next: 0x76ccc
+sending ack with seqno: 0x774c0
+current: 0x774c0 next: 0x774c0
+sending ack with seqno: 0x77cb4
+current: 0x77cb4 next: 0x77cb4
+sending ack with seqno: 0x784a8
+current: 0x784a8 next: 0x784a8
+no FEC, changing fec_base to: 0x784a8 and next expected is: 0x78c9c
+sending ack with seqno: 0x78c9c
+current: 0x78c9c next: 0x78c9c
+sending ack with seqno: 0x79490
+current: 0x79490 next: 0x79490
+sending ack with seqno: 0x79c84
+current: 0x79c84 next: 0x79c84
+sending ack with seqno: 0x7a478
+current: 0x7a478 next: 0x7a478
+sending ack with seqno: 0x7ac6c
+current: 0x7ac6c next: 0x7ac6c
+sending ack with seqno: 0x7b460
+current: 0x7b460 next: 0x7b460
+sending ack with seqno: 0x7bc54
+current: 0x7bc54 next: 0x7bc54
+sending ack with seqno: 0x7c448
+current: 0x7c448 next: 0x7c448
+sending ack with seqno: 0x7cc3c
+current: 0x7cc3c next: 0x7cc3c
+sending ack with seqno: 0x7d430
+current: 0x7d430 next: 0x7d430
+sending ack with seqno: 0x7dc24
+RECVD FEC!!!
+received fec!, expecting to get 0x7dc24 next
+current: 0x7dc24 next: 0x7dc24
+sending ack with seqno: 0x7e418
+current: 0x7e418 next: 0x7e418
+sending ack with seqno: 0x7ec0c
+current: 0x7ec0c next: 0x7ec0c
+sending ack with seqno: 0x7f400
+current: 0x7f400 next: 0x7f400
+sending ack with seqno: 0x7fbf4
+current: 0x7fbf4 next: 0x7fbf4
+sending ack with seqno: 0x803e8
+current: 0x803e8 next: 0x803e8
+sending ack with seqno: 0x80bdc
+current: 0x80bdc next: 0x80bdc
+sending ack with seqno: 0x813d0
+current: 0x813d0 next: 0x813d0
+sending ack with seqno: 0x81bc4
+current: 0x81bc4 next: 0x81bc4
+sending ack with seqno: 0x823b8
+current: 0x823b8 next: 0x823b8
+sending ack with seqno: 0x82bac
+current: 0x82bac next: 0x82bac
+sending ack with seqno: 0x833a0
+RECVD FEC!!!
+received fec!, expecting to get 0x833a0 next
+current: 0x833a0 next: 0x833a0
+sending ack with seqno: 0x83b94
+current: 0x83b94 next: 0x83b94
+sending ack with seqno: 0x84388
+current: 0x84388 next: 0x84388
+sending ack with seqno: 0x84b7c
+current: 0x84b7c next: 0x84b7c
+sending ack with seqno: 0x85370
+current: 0x85370 next: 0x85370
+sending ack with seqno: 0x85b64
+current: 0x85b64 next: 0x85b64
+sending ack with seqno: 0x86358
+current: 0x86358 next: 0x86358
+sending ack with seqno: 0x86b4c
+current: 0x86b4c next: 0x86b4c
+sending ack with seqno: 0x87340
+current: 0x87340 next: 0x87340
+sending ack with seqno: 0x87b34
+current: 0x87b34 next: 0x87b34
+sending ack with seqno: 0x88328
+current: 0x88328 next: 0x88328
+sending ack with seqno: 0x88b1c
+RECVD FEC!!!
+received fec!, expecting to get 0x88b1c next
+current: 0x88b1c next: 0x88b1c
+sending ack with seqno: 0x89310
+current: 0x89310 next: 0x89310
+sending ack with seqno: 0x89b04
+current: 0x89b04 next: 0x89b04
+sending ack with seqno: 0x8a2f8
+current: 0x8a2f8 next: 0x8a2f8
+sending ack with seqno: 0x8aaec
+current: 0x8b2e0 next: 0x8aaec
+1 miss(es) detected, next expected is: 0x8bad4
+current: 0x8bad4 next: 0x8bad4
+sending ack with seqno: 0x8c2c8
+current: 0x8c2c8 next: 0x8c2c8
+sending ack with seqno: 0x8cabc
+current: 0x8cabc next: 0x8cabc
+sending ack with seqno: 0x8d2b0
+current: 0x8d2b0 next: 0x8d2b0
+sending ack with seqno: 0x8daa4
+current: 0x8daa4 next: 0x8daa4
+sending ack with seqno: 0x8e298
+RECVD FEC!!!
+fix at: 0x8aaec
+looping over a received packets (-1)
+accum at: 0x88b1c
+accum at: 0x89310
+accum at: 0x89b04
+accum at: 0x8a2f8
+accum at: 0x8b2e0
+accum at: 0x8bad4
+accum at: 0x8c2c8
+accum at: 0x8cabc
+accum at: 0x8d2b0
+final accum at: 0x8daa4
+received fec!, expecting to get 0x8e298 next
+sending ack with seqno: 0x8e298
+current: 0x8ea8c next: 0x8e298
+1 miss(es) detected, next expected is: 0x8f280
+current: 0x8f280 next: 0x8f280
+sending ack with seqno: 0x8fa74
+current: 0x8fa74 next: 0x8fa74
+sending ack with seqno: 0x90268
+current: 0x90268 next: 0x90268
+sending ack with seqno: 0x90a5c
+current: 0x90a5c next: 0x90a5c
+sending ack with seqno: 0x91250
+current: 0x91250 next: 0x91250
+sending ack with seqno: 0x91a44
+current: 0x91a44 next: 0x91a44
+sending ack with seqno: 0x92238
+current: 0x92238 next: 0x92238
+sending ack with seqno: 0x92a2c
+current: 0x92a2c next: 0x92a2c
+sending ack with seqno: 0x93220
+current: 0x93220 next: 0x93220
+sending ack with seqno: 0x93a14
+RECVD FEC!!!
+fix at: 0x8e298
+looping over a received packets (-1)
+accum at: 0x8ea8c
+accum at: 0x8f280
+accum at: 0x8fa74
+accum at: 0x90268
+accum at: 0x90a5c
+accum at: 0x91250
+accum at: 0x91a44
+accum at: 0x92238
+accum at: 0x92a2c
+accum at: 0x93220
+final accum at: 0x93a14
+received fec!, expecting to get 0x94208 next
+sending ack with seqno: 0x94208
+current: 0x93a14 next: 0x94208

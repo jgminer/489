@@ -68,7 +68,7 @@ unsigned int num_data_pkts = 0; // mytlab6...
 unsigned int fec_base = 0;
 unsigned int miss_base = 0;
 unsigned int miss_pkts = 0;
-unsigned int snd_next = 0;
+// unsigned int snd_next = 0;
 unsigned int last_size = 0;
 
 
@@ -371,7 +371,7 @@ netimg_recvimage(void)
   hdr.ih_size = ntohs(hdr.ih_size);
   hdr.ih_seqn = ntohl(hdr.ih_seqn);
 
-  fprintf(stderr, "netimg_recvimage: received offset %d, %d bytes\n",
+  fprintf(stderr, "netimg_recvimage: received offset 0x%x, %d bytes\n",
             hdr.ih_seqn, hdr.ih_size);
 
   /* Populate a struct msghdr with a pointer to a struct iovec
@@ -411,7 +411,7 @@ netimg_recvimage(void)
   ihdr_t ack = {NETIMG_VERS, NETIMG_ACK, 1, 0};
 
   if (hdr.ih_type == NETIMG_DAT) {
-    fprintf(stderr, "netimg_recvimage: received offset %d, %d bytes, waiting for %d\n",
+    fprintf(stderr, "netimg_recvimage: received offset 0x%x, %d bytes, waiting for 0x%x\n",
             hdr.ih_seqn, hdr.ih_size, next_seqn);
     
     /* 
@@ -446,15 +446,15 @@ netimg_recvimage(void)
      * expectation is.
      */
     /* YOUR CODE HERE */
-    if (hdr.ih_seqn == next_seqn){
-      next_seqn+=datasize;
-      ack.ih_seqn = htonl(next_seqn);
-      ack.ih_size = 0;
-    }
-    else if (hdr.ih_seqn < next_seqn){
-      ack.ih_seqn = htonl(next_seqn);
-      ack.ih_size = 0;
-    }
+    // if (hdr.ih_seqn == next_seqn){
+    //   next_seqn+=datasize;
+    //   ack.ih_seqn = htonl(next_seqn);
+    //   ack.ih_size = 0;
+    // }
+    // else if (hdr.ih_seqn < next_seqn){
+    //   ack.ih_seqn = htonl(next_seqn);
+    //   ack.ih_size = 0;
+    // }
     /* You should handle the case when the FEC data packet itself may be
      * lost, and when multiple packets within an FEC window are lost, and
      * when the first few packets from the subsequent FEC window following a
@@ -473,52 +473,70 @@ netimg_recvimage(void)
      * determine the next expected packet.
      */
     /* Lab 6: YOUR CODE HERE */
-
     if (num_data_pkts == 0){
-      fec_base = hdr.ih_seqn;
+      //if a miss, want to set it to expected next!!!
+      if (hdr.ih_seqn != next_seqn){
+        fec_base = next_seqn;
+      }
+      else fec_base = hdr.ih_seqn;
+
+      cout << "first data pkt of fec window, fec_base now: 0x" << hex << fec_base;
     }
 
-    cout << "current: " << hdr.ih_seqn << " next: " << snd_next << endl;
+        //sequence number in next window, no FEC 
+    if (hdr.ih_seqn >= next_wnd_base){
+
+      num_data_pkts = 0;
+      cout << "fec_base: " << fec_base << endl;
+      fec_base += fwnd*datasize;
+      cout << "fec_base: " << fec_base << endl;
+      miss_base = 0;
+      miss_pkts = 0;
+      next_seqn = fec_base;
+      last_size = last_size; //doesn't matter?
+      next_wnd_base = fec_base + (fwnd*datasize);
+
+      cout << "no FEC, changing fec_base to: 0x" << hex << fec_base << " and next expected is: 0x" << hex << next_seqn << endl;
+      cout << "3data: " << num_data_pkts << "miss: " << miss_pkts << endl;
+
+    } 
+
+
+    cout << "current: 0x" << hex << hdr.ih_seqn << " next: 0x" << hex << next_seqn << endl;
 
     //if the current seq no. does not match the next one
-    if (hdr.ih_seqn != snd_next){
+    if (hdr.ih_seqn != next_seqn){
       //if first packet to miss, mark it down. otherwise, don't bother.
       if (miss_pkts == 0){
-        miss_base = snd_next; //miss base is what we were expecting in the first place
+        miss_base = next_seqn; //miss base is what we were expecting in the first place
       }
-      assert(hdr.ih_seqn>snd_next);
-      uint num_miss = ceil(hdr.ih_seqn-snd_next)/datasize;
+      assert(hdr.ih_seqn>next_seqn);
+      uint num_miss = ceil(hdr.ih_seqn-fec_base)/datasize;
       miss_pkts+=num_miss;
 
+      if (hdr.ih_seqn < next_seqn){
+        ack.ih_seqn = htonl(next_seqn);
+        ack.ih_size = 0;
+      }
 
-      snd_next = hdr.ih_seqn+datasize;
+      next_seqn = hdr.ih_seqn+datasize;
       num_data_pkts++; //TODO: what about the misses?!
-      cout << num_miss << " miss(es) detected, next expected is: " << snd_next << endl;
-    }
+      cout << num_miss << " miss(es) detected, next expected is: 0x" << hex << next_seqn << endl;
+      cout << "1data: " << num_data_pkts << "miss: " << miss_pkts << endl;
 
+    }
     //receive expected seqnum
     else {
-      snd_next+=datasize;
+      next_seqn+=datasize;
       num_data_pkts++;
       //4.2
       if (gobackn) gobackn=false;
+
+      ack.ih_seqn = htonl(next_seqn);
+      ack.ih_size = 0;
+      cout << "2data: " << num_data_pkts << "miss: " << miss_pkts << endl;
+
     }
-
-    //sequence number in next window, no FEC 
-    if (hdr.ih_seqn >= next_wnd_base){
-      //update the base seqno to the windowsize times the actual
-      //image segsize
-      fec_base += fwnd*datasize;
-      //subtract off a window size worth of data packets to reset for
-      //this window
-      num_data_pkts -= fwnd;
-      //update pos of next expected packet
-      snd_next = (fec_base+((num_data_pkts+miss_pkts)*datasize));
-      //update next fec wnd
-      next_wnd_base+=fwnd*datasize;
-      cout << "no FEC, changing fec_base to: " << fec_base << " and next expected is: "<< snd_next << endl;
-
-    } 
 
 
     //TODO: more logic here for 'normal case'
@@ -619,35 +637,38 @@ netimg_recvimage(void)
      */
     /* Lab 6: YOUR CODE HERE */
 
-    if (hdr.ih_seqn != snd_next){
+    if (hdr.ih_seqn != next_seqn){
       //if first packet to miss, mark it down. otherwise, don't bother.
       if (miss_pkts == 0){
-        miss_base = snd_next; //miss base is what we were expecting in the first place
+        miss_base = next_seqn; //miss base is what we were expecting in the first place
       }
-      uint num_miss = (hdr.ih_seqn-snd_next)/datasize;
+      uint num_miss = (hdr.ih_seqn-next_seqn)/datasize;
       miss_pkts+=num_miss;
 
 
-      snd_next = hdr.ih_seqn; //should have the same seqn as the FEC
+      next_seqn = hdr.ih_seqn; //should have the same seqn as the FEC
       num_data_pkts++; //TODO: what about the misses!
-      cout << num_miss << " miss detected right before FEC!, next expected is: " << snd_next << endl;
+      cout << num_miss << " miss detected right before FEC!, next expected is: 0x" << hex << next_seqn << endl;
+      cout << "4data: " << num_data_pkts << "miss: " << miss_pkts << endl;
+
     }
 
     if (miss_pkts>1) gobackn = true;
 
     if (miss_pkts == 1){
-      cout << "fix at: " << miss_base << endl;
+      cout << "fix at: 0x" << hex << miss_base << endl;
       cout << "looping over " << num_data_pkts+miss_pkts-1 << " received packets (-1)" << endl;
       for (uint i = 0; i < num_data_pkts+miss_pkts-1; i++){
         if (fec_base+(datasize*i) != miss_base){
-          cout << "accum at: " << fec_base+(datasize*i) << endl;
+          cout << "accum at: 0x" << hex << fec_base+(datasize*i) << endl;
           fec_accum(image+hdr.ih_seqn, image+fec_base+(datasize*i), datasize, datasize);
         }
 
       }
       //last one could be smaller
-      if (fec_base+(datasize*(num_data_pkts+miss_pkts-1)) != miss_base){
-        cout << "final accum at: " << fec_base+(datasize*(num_data_pkts+miss_pkts-1)) << endl;
+      uint addr = fec_base+(datasize*(num_data_pkts+miss_pkts-1));
+      if ((fec_base+(datasize*(num_data_pkts+miss_pkts-1)) != miss_base) && (addr!=next_wnd_base)){
+        cout << "final accum at: 0x" << hex << fec_base+(datasize*(num_data_pkts+miss_pkts-1)) << endl;
         fec_accum(image+hdr.ih_seqn, image+fec_base+(datasize*(num_data_pkts+miss_pkts-1)), datasize, last_size);
       }
 
@@ -655,19 +676,24 @@ netimg_recvimage(void)
       memcpy(image+miss_base, image+hdr.ih_seqn, datasize);
 
       //prepare ACK for 4.2:
-      ack.ih_seqn = htonl(next_seqn); //correct???
+      ack.ih_seqn = htonl(fec_base+(fwnd*datasize)); //correct???
       ack.ih_size = 0;
 
     }
 
+
+    printf("netimg_recvimage: received FEC offset: 0x%x, start: 0x%x, lost: 0x%x, count: %d",
+     next_wnd_base, fec_base, miss_base, miss_pkts+num_data_pkts); 
+
     num_data_pkts = 0;
+    cout << "fec_base: " << fec_base << endl;
     fec_base += fwnd*datasize;
+    cout << "fec_base: " << fec_base << endl;
     miss_base = 0;
     miss_pkts = 0;
-    snd_next = fec_base;
+    next_seqn = fec_base;
     last_size = last_size; //doesn't matter?
     next_wnd_base = fec_base + (fwnd*datasize);
-    cout << "received fec!, expecting to get " << snd_next << " next" << endl;
 
 
 
@@ -691,11 +717,11 @@ netimg_recvimage(void)
   /* YOUR CODE HERE */
   if (ack.ih_size != 1){
     if (((float) random())/INT_MAX < pdrop) {
-    fprintf(stderr, "netimg_recvimage: DROPPED ACK %d\n",
+    fprintf(stderr, "netimg_recvimage: DROPPED ACK 0x%x\n",
             ntohl(ack.ih_seqn));
     }
     else {
-      cout << "sending ack with seqno: " << ntohl(ack.ih_seqn) << endl;
+      cout << "netimg_recvimage: ack sent 0x" << hex << ntohl(ack.ih_seqn) << endl;
       err = send(sd, &ack, sizeof(ihdr_t), 0);
       if (err <= 0){
         cout << "error sending ack" << endl;

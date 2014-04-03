@@ -20,6 +20,12 @@
 
 #include "ltga.h"
 
+ #include <string.h>
+#include <algorithm>
+#include <iterator>
+
+using namespace std;
+
 /*
  * fec_init(): initialize the FEC data by copying the provided "imgseg"
  * into the provided "fecdata".  If "segsize" is smaller than "datasize",
@@ -28,8 +34,9 @@
 void
 fec_init(unsigned char *fecdata, unsigned char *imgseg, int datasize, int segsize)
 {
-  /* Lab 6: YOUR CODE HERE */
-
+  /* YOUR CODE HERE */
+  memset(fecdata, 0, datasize); //zero-out fecdata
+	memcpy(fecdata, imgseg, segsize);	//copy in only as big as we have data for - rest are zeros
   return;
 }
 
@@ -41,8 +48,12 @@ fec_init(unsigned char *fecdata, unsigned char *imgseg, int datasize, int segsiz
 void
 fec_accum(unsigned char *fecdata, unsigned char *imgseg, int datasize, int segsize)
 {
-  /* Lab 6: YOUR CODE HERE */
-
+  /* YOUR CODE HERE */
+	unsigned char *tmp = new unsigned char[datasize];
+	memset(tmp, 0, datasize);
+	memcpy(tmp, imgseg, segsize);
+	transform(tmp, tmp+datasize, fecdata, fecdata, bit_xor<unsigned char>());
+	//*fecdata^=*tmp;
   return;
 }
 

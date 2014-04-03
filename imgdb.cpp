@@ -300,7 +300,7 @@ imgdb_sendpkt(int sd, struct sockaddr_in *client, char *pkt, int size, ihdr_t *a
 
   for (int i = 0; i < NETIMG_MAXTRIES; i++){
     err = select(sd+1, &rset, 0, 0, &tv);
-    cout << "result of select: " << err << endl;
+    // cout << "result of select: " << err << endl;
     if (err > 0){
       err = recv(sd, (char *) ack, sizeof(ihdr_t), 0);   // imsg global
       if (err <= 0) {
@@ -384,7 +384,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
   // int acked_bytes = 0;
   int snd_una = 0;
   int snd_next = 0;
-  cout << "receiver's window is: " << (int)rwnd << endl;
+  // cout << "receiver's window is: " << (int)rwnd << endl;
   int wnd_size = rwnd;
   int usable = 0;
   int window_sent = 0;
@@ -434,62 +434,65 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
       //TODO: may not be correct??
       if (fec_count == 0) fec_init(fecdata, ip+snd_next, datasize, segsize);
       else fec_accum(fecdata, ip+snd_next, datasize, segsize);
+      cout << "accum on: 0x" << hex << snd_next << endl;
+
            
 
       if (((float) random())/INT_MAX < pdrop) {
-      fprintf(stderr, "imgdb_sendimage: DROPPED offset 0x%x, 0x%x bytes\n",
-              snd_next, segsize);
-      snd_next += datasize;
-      window_sent += datasize;
-      continue;
+      fprintf(stderr, "imgdb_sendimage: DROPPED offset 0x%x, 0x%x bytes, unacked: 0x%x\n",
+              snd_next, segsize, snd_una);
+        snd_next += datasize;
+        window_sent += datasize;
+        fec_count++;
       } 
 
-      msg_hdr.msg_iov[1].iov_base = ip+snd_next;
-      msg_hdr.msg_iov[1].iov_len = segsize;
+      else {
+        msg_hdr.msg_iov[1].iov_base = ip+snd_next;
+        msg_hdr.msg_iov[1].iov_len = segsize;
 
-      //update header
-      ihdr.ih_size = htons(segsize);
-      ihdr.ih_seqn = htonl(snd_next);
+        //update header
+        ihdr.ih_size = htons(segsize);
+        ihdr.ih_seqn = htonl(snd_next);
 
-      err = sendmsg(sd, &msg_hdr, 0);
-      if (err <= 0){
-        net_assert(err<=0, "error in sendmsg - IMGDATA");
-        abort();
+        err = sendmsg(sd, &msg_hdr, 0);
+        if (err <= 0){
+          net_assert(err<=0, "error in sendmsg - IMGDATA");
+          abort();
+        }
+
+        fprintf(stderr, "imgdb_sendimage: sent offset 0x%x, 0x%x bytes, unacked: 0x%x\n",
+                snd_next, segsize, snd_una);
+        snd_next += datasize;
+        window_sent += datasize;
+
+        fec_count++;
       }
 
-      fprintf(stderr, "imgdb_sendimage: sent offset 0x%x, 0x%x bytes\n",
-              snd_next, segsize);
-      snd_next += datasize;
-      window_sent += datasize;
+      if (fec_count == 11 || snd_next > img_size || window_sent >= usable){
+        //update header with next windows' seq number - incremented above
+        ihdr.ih_seqn = htonl(snd_next);
+        ihdr.ih_size = htons(datasize);
 
-      fec_count++;
-      // cout << "snd_next: " << snd_next << "usable: " << usable << endl;
+        ihdr.ih_type = NETIMG_FEC;
 
+        //update iovec second entry to point to FEC data
+        msg_hdr.msg_iov[1].iov_base = fecdata;
+        msg_hdr.msg_iov[1].iov_len = datasize;
+
+        fprintf(stderr, "imgdb_sendimage: sent FEC offset 0x%x, segment count: %d\n",
+                snd_next, fec_count);
+        err = sendmsg(sd, &msg_hdr, 0);
+        if (err <= 0){
+          net_assert(err<=0, "error in sendmsg - FEC");
+          abort();
+        }
+
+
+        ihdr.ih_type = NETIMG_DAT; //reset type
+        memset(fecdata, 0, datasize);
+        fec_count = 0;
+      }
     }
-
-    cout << "fec_count: " << fec_count << endl;
-    // if (fec_count == wnd_size-1){ //TODO: use usable here???
-      //update header with next windows' seq number - incremented above
-      ihdr.ih_seqn = htonl(snd_next);
-      ihdr.ih_size = htons(datasize);
-
-      ihdr.ih_type = NETIMG_FEC;
-
-      //update iovec second entry to point to FEC data
-      msg_hdr.msg_iov[1].iov_base = fecdata;
-      msg_hdr.msg_iov[1].iov_len = datasize;
-
-      err = sendmsg(sd, &msg_hdr, 0);
-      if (err <= 0){
-        net_assert(err<=0, "error in sendmsg - FEC");
-        abort();
-      }
-
-
-      ihdr.ih_type = NETIMG_DAT; //reset type
-      memset(fecdata, 0, datasize);
-      fec_count = 0;
-    // }
 
     /* Task 2.2: Next wait for ACKs for up to NETIMG_SLEEP secs and NETIMG_USLEEp usec. */
     /* YOUR CODE HERE */
@@ -523,7 +526,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
     while(1){
       int recv_bytes = -1;
       err = select(sd+1, &rset, 0, 0, &tv);
-      cout << "result of select: " << err << endl;
+      // cout << "result of select: " << err << endl;
       if (err>0){
         recv_bytes = recv(sd, &this_ack, sizeof(ihdr_t), MSG_DONTWAIT);
 
@@ -537,7 +540,8 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
         }
         //set snd_una to this ack
         else {
-          printf("received ACK for: 0x%x\n", ntohl(this_ack.ih_seqn));
+          printf("imgdb_sendimage: received ack: 0x%x, unacked was: 0x%x, send next 0x%x\n",
+           ntohl(this_ack.ih_seqn), snd_una, snd_next);
           snd_una = ntohl(this_ack.ih_seqn);
         }
         // break;
@@ -554,6 +558,9 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
     */
     /* YOUR CODE HERE */
     if (this_ack.ih_vers == 0){
+      printf("imgdb_sendimage: RTO unacked: 0x%x, next offset 0x%x, usable %d bytes\n",
+       snd_una, snd_next, (usable-window_sent)); 
+
       snd_next = snd_una; //TODO: this simple??
       window_sent = 0;
       fec_count = 0;
@@ -561,11 +568,11 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
     else if ((snd_una < img_size) && (snd_next > img_size)){
       cout << "here once, at end if necessary" << endl;
       snd_next = snd_una;
+      window_sent = 0;
       fec_count = 0;
-
     }
           
-    cout << "snd_next: " << snd_next << endl;
+    // cout << "snd_next: " << snd_next << endl;
     //TODO: less than????
   } while (snd_next <= img_size); // Task 2.2: replace the '1' with your condition for detecting 
                // that all segments sent have been acknowledged
@@ -580,6 +587,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
     ihdr_t ack = {0,0,0,0};
     //TODO: convert and add size?????
     ihdr_t FIN = {NETIMG_VERS, NETIMG_FIN, 0, NETIMG_FINSEQ};
+    printf("imgdb_sendimage: sent FIN (0x%x), unacked: 0x%x", (int)NETIMG_FINSEQ, snd_una); 
     FIN.ih_seqn = htonl(FIN.ih_seqn); //convert to network order before sending
     err = imgdb_sendpkt(sd, client, (char *)&FIN, sizeof(ihdr_t), &ack);
     if(err == 0){

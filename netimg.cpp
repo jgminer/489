@@ -405,8 +405,6 @@ netimg_recvimage(void)
 
   static unsigned int next_wnd_base = fwnd*datasize; //must initialize
 
-
-
   /* Task 2.3: initialize your ACK packet */
   ihdr_t ack = {NETIMG_VERS, NETIMG_ACK, 1, 0};
 
@@ -480,18 +478,19 @@ netimg_recvimage(void)
       }
       else fec_base = hdr.ih_seqn;
 
-      cout << "first data pkt of fec window, fec_base now: 0x" << hex << fec_base;
+      // cout << "first data pkt of fec window, fec_base now: 0x" << hex << fec_base;
     }
 
         //sequence number in next window, no FEC 
     //fwnd number of packets without bytes
     //if (hdr.ih_seqn >= next_wnd_base){
-    if (((miss_pkts+miss_base) > fwnd) && (!gobackn)){
+
+    if (((miss_pkts+miss_base) >= next_wnd_base) && (!gobackn)){
 
       num_data_pkts = 0;
-      cout << "fec_base: " << fec_base << endl;
+      // cout << "fec_base: " << fec_base << endl;
       fec_base += fwnd*datasize;
-      cout << "fec_base: " << fec_base << endl;
+      // cout << "fec_base: " << fec_base << endl;
       miss_base = 0;
       miss_pkts = 0;
       next_seqn = fec_base;
@@ -501,12 +500,12 @@ netimg_recvimage(void)
       //TODO: should be in gobackn?????
 
       cout << "no FEC, changing fec_base to: 0x" << hex << fec_base << " and next expected is: 0x" << hex << next_seqn << endl;
-      cout << "3data: " << num_data_pkts << "miss: " << miss_pkts << endl;
+      // cout << "3data: " << num_data_pkts << "miss: " << miss_pkts << endl;
 
     } 
 
 
-    cout << "current: 0x" << hex << hdr.ih_seqn << " next: 0x" << hex << next_seqn << endl;
+    // cout << "current: 0x" << hex << hdr.ih_seqn << " next: 0x" << hex << next_seqn << endl;
 
     //missed a packet (or more somewhere)
     if ((hdr.ih_seqn > next_seqn) && (!gobackn)){
@@ -518,13 +517,14 @@ netimg_recvimage(void)
         uint num_miss = ceil(hdr.ih_seqn-fec_base)/datasize;
         miss_pkts+=num_miss;
 
-        next_seqn = miss_base; //need to request the missing one until we get it!!!
+        next_seqn = hdr.ih_seqn+datasize; //need to request the next one if we only have one miss!!!
         num_data_pkts++; //TODO: what about the misses?!
-        cout << num_miss << " miss(es) detected, need to get 0x" << hex << next_seqn << endl;
+        cout << (int) num_miss << " miss(es) detected, need to get 0x" << hex << next_seqn << endl;
         // cout << "1data: " << num_data_pkts << "miss: " << miss_pkts << endl;
       } 
 
       if (miss_pkts > 1){
+        next_seqn = miss_base; //now we keep acking the missing one
         cout << "DATA pkt recvd and miss now more than 1: gobackn enabled" << endl;
         gobackn = true;
       }
@@ -667,9 +667,10 @@ netimg_recvimage(void)
     /* Lab 6: YOUR CODE HERE */
 
     // corner case where not in go-back-n - misspkts should be zero anyway!!!
-    if (hdr.ih_seqn != next_seqn){
+     // cout << "seqn: " << hdr.ih_seqn << " next: " << next_seqn << endl;
+    if (hdr.ih_seqn > next_seqn){
       //if first packet to miss, mark it down. otherwise, don't bother.
-
+      // cout << "should not be here!!!" << endl;
       //only care if one miss
       if (miss_pkts == 0){
         miss_base = next_seqn; //miss base is what we were expecting in the first place
@@ -681,9 +682,11 @@ netimg_recvimage(void)
         next_seqn = hdr.ih_seqn; //should have the same seqn as the FEC since FEC and next are the same
         num_data_pkts++; //TODO: what about the misses!
         cout << num_miss << " miss detected right before FEC!, next expected is: 0x" << hex << next_seqn << endl;
-        cout << "4data: " << num_data_pkts << "miss: " << miss_pkts << endl;
+        // cout << "4data: " << num_data_pkts << "miss: " << miss_pkts << endl;
       }
     }
+
+    if (hdr.ih_seqn < next_seqn) cout << "out of order fec" << endl; //throw away FEC??
 
     fprintf(stderr, "miss_pkts: %d", miss_pkts);
     if (miss_pkts>1) {
@@ -691,24 +694,25 @@ netimg_recvimage(void)
         gobackn = true;
     }
     if (miss_pkts == 1){
-      cout << "fix at: 0x" << hex << miss_base << endl;
-      cout << "looping over " << num_data_pkts+miss_pkts-1 << " received packets (-1)" << endl;
+      // cout << "fix at: 0x" << hex << miss_base << endl;
+      // cout << "looping over " << num_data_pkts+miss_pkts-1 << " received packets (-1)" << endl;
       for (uint i = 0; i < num_data_pkts+miss_pkts-1; i++){
         if (fec_base+(datasize*i) != miss_base){
-          cout << "accum at: 0x" << hex << fec_base+(datasize*i) << endl;
-          fec_accum(image+hdr.ih_seqn, image+fec_base+(datasize*i), datasize, datasize);
+          // cout << "accum at: 0x" << hex << fec_base+(datasize*i) << endl;
+          fec_accum(fecdata, image+fec_base+(datasize*i), datasize, datasize);
         }
 
       }
+
       //last one could be smaller
       uint addr = fec_base+(datasize*(num_data_pkts+miss_pkts-1));
       if ((fec_base+(datasize*(num_data_pkts+miss_pkts-1)) != miss_base) && (addr!=next_wnd_base)){
-        cout << "final accum at: 0x" << hex << fec_base+(datasize*(num_data_pkts+miss_pkts-1)) << endl;
-        fec_accum(image+hdr.ih_seqn, image+fec_base+(datasize*(num_data_pkts+miss_pkts-1)), datasize, last_size);
+        // cout << "final accum at: 0x" << hex << fec_base+(datasize*(num_data_pkts+miss_pkts-1)) << endl;
+        fec_accum(fecdata, image+fec_base+(datasize*(num_data_pkts+miss_pkts-1)), datasize, last_size);
       }
 
       //copy into image!!
-      memcpy(image+miss_base, image+hdr.ih_seqn, datasize);
+      memcpy(image+miss_base, fecdata, datasize);
 
       //prepare ACK for 4.2:
       ack.ih_seqn = htonl(fec_base+(fwnd*datasize)); //correct???
@@ -716,28 +720,27 @@ netimg_recvimage(void)
 
     }
 
+    if (miss_pkts <=1 && !(hdr.ih_seqn < next_seqn)){
+        fprintf(stderr, "netimg_recvimage: received FEC offset: 0x%x, start: 0x%x, lost: 0x%x, count: %d\n",
+        hdr.ih_seqn, fec_base, miss_base, miss_pkts+num_data_pkts); 
 
-    fprintf(stderr, "netimg_recvimage: received FEC offset: 0x%x, start: 0x%x, lost: 0x%x, count: %d\n",
-     next_wnd_base, fec_base, miss_base, miss_pkts+num_data_pkts); 
-
-    num_data_pkts = 0;
-    cout << "fec_base: " << fec_base << endl;
-    fec_base += fwnd*datasize;
-    cout << "fec_base: " << fec_base << endl;
-    miss_base = 0;
-    miss_pkts = 0;
-    next_seqn = fec_base;
-    last_size = last_size; //doesn't matter?
-    next_wnd_base = fec_base + (fwnd*datasize);
-
-
+        num_data_pkts = 0;
+        // cout << "fec_base: " << fec_base << endl;
+        fec_base = hdr.ih_seqn;
+        // cout << "fec_base: " << fec_base << endl;
+        miss_base = 0;
+        miss_pkts = 0;
+        next_seqn = fec_base;
+        last_size = last_size; //doesn't matter?
+        next_wnd_base = hdr.ih_seqn + (fwnd*datasize);
+    }
 
   } else {  // NETIMG_FIN pkt
 
     /* Task 2.3: else it's a NETIMG_FIN packet, prepare to send back an
        ACK with NETIMG_FINSEQ as the sequence number */
     /* YOUR CODE HERE */
-    cout << "received FIN!!!" << endl;
+    // cout << "received FIN!!!" << endl;
     //actually receive the FIN!!!
     recvmsg(sd, &recvhdr, 0);
     ack.ih_seqn = htonl(NETIMG_FINSEQ);

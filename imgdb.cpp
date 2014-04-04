@@ -252,7 +252,7 @@ imgdb_recvquery(int sd, struct sockaddr_in *client, unsigned short *mss,
     *fwnd = tmpqry.iq_fwnd;
     strcpy(fname, tmpqry.iq_name);
     if ((tmpqry.iq_vers == NETIMG_VERS) || (tmpqry.iq_type == NETIMG_SYN)){
-      cout << "received proper-form query" << endl;
+      // cout << "received proper-form query" << endl;
       break;
     }
   }
@@ -351,7 +351,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
   /* make sure that the send buffer is of size at least mss. */
   /* Lab 5: YOUR CODE HERE */
   int i_mss = mss;
-  cout << "mss is: " << i_mss << endl;
+  // cout << "mss is: " << i_mss << endl;
   int err = setsockopt(sd, SOL_SOCKET, SO_SNDBUF, &i_mss, sizeof(i_mss));
   net_assert(err==-1, "setting buffer size");
 
@@ -436,7 +436,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
       //TODO: may not be correct??
       if (fec_count == 0) fec_init(fecdata, ip+snd_next, datasize, segsize);
       else fec_accum(fecdata, ip+snd_next, datasize, segsize);
-      cout << "accum on: 0x" << hex << snd_next << endl;
+      // cout << "accum on: 0x" << hex << snd_next << endl;
 
       //check again
       left = img_size - snd_next;
@@ -474,13 +474,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
       }
 
 
-      cout << "fwnd: " << (int)fwnd << endl;
-      fprintf(stderr, "before \n fec_count: %d fwnd: %d snd_next: 0x%x img_size: %d window_sent: %d usable: %d segsize: 0x%x\n",
-          fec_count, fwnd, snd_next, img_size, window_sent, usable, segsize);
       if (fec_count == fwnd || snd_next > img_size || window_sent >= usable || segsize == 0){
-
-        fprintf(stderr, "after \n fec_count: %d fwnd: %d snd_next: 0x%x img_size: %d window_sent: %d usable: %d segsize: 0x%x\n",
-          fec_count, fwnd, snd_next, img_size, window_sent, usable, segsize);
         //update header with next windows' seq number - incremented above
         ihdr.ih_seqn = htonl(snd_next);
         ihdr.ih_size = htons(datasize);
@@ -594,7 +588,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
       fec_count = 0;
     }
     else if ((snd_una < img_size) && (snd_next > img_size)){
-      cout << "here once, at end if necessary" << endl;
+      // cout << "here once, at end if necessary" << endl;
       snd_next = snd_una;
       window_sent = 0;
       fec_count = 0;

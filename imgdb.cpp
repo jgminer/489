@@ -475,7 +475,12 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
 
 
       cout << "fwnd: " << (int)fwnd << endl;
+      fprintf(stderr, "before \n fec_count: %d fwnd: %d snd_next: 0x%x img_size: %d window_sent: %d usable: %d segsize: 0x%x\n",
+          fec_count, fwnd, snd_next, img_size, window_sent, usable, segsize);
       if (fec_count == fwnd || snd_next > img_size || window_sent >= usable || segsize == 0){
+
+        fprintf(stderr, "after \n fec_count: %d fwnd: %d snd_next: 0x%x img_size: %d window_sent: %d usable: %d segsize: 0x%x\n",
+          fec_count, fwnd, snd_next, img_size, window_sent, usable, segsize);
         //update header with next windows' seq number - incremented above
         ihdr.ih_seqn = htonl(snd_next);
         ihdr.ih_size = htons(datasize);
@@ -493,6 +498,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
           // snd_next += datasize;
           // window_sent += datasize;
           fec_count=0; //TODO: these parameters correct???
+          window_sent = 0;
           continue;
         } 
 
@@ -506,6 +512,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
 
         ihdr.ih_type = NETIMG_DAT; //reset type
         memset(fecdata, 0, datasize);
+        window_sent = 0;
         fec_count = 0;
       }
 

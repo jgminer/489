@@ -439,7 +439,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
            
 
       if (((float) random())/INT_MAX < pdrop) {
-      fprintf(stderr, "imgdb_sendimage: DROPPED offset 0x%x, 0x%x bytes, unacked: 0x%x\n",
+      fprintf(stderr, "imgdb_sendimage: DROPPED offset 0x%x, %d bytes, unacked: 0x%x\n",
               snd_next, segsize, snd_una);
         snd_next += datasize;
         window_sent += datasize;
@@ -460,7 +460,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
           abort();
         }
 
-        fprintf(stderr, "imgdb_sendimage: sent offset 0x%x, 0x%x bytes, unacked: 0x%x\n",
+        fprintf(stderr, "imgdb_sendimage: sent offset 0x%x, %d bytes, unacked: 0x%x\n",
                 snd_next, segsize, snd_una);
         snd_next += datasize;
         window_sent += datasize;
@@ -468,7 +468,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
         fec_count++;
       }
 
-      if (fec_count == 11 || snd_next > img_size || window_sent >= usable){
+      if (fec_count == fwnd || snd_next > img_size || window_sent >= usable){
         //update header with next windows' seq number - incremented above
         ihdr.ih_seqn = htonl(snd_next);
         ihdr.ih_size = htons(datasize);
@@ -478,6 +478,16 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
         //update iovec second entry to point to FEC data
         msg_hdr.msg_iov[1].iov_base = fecdata;
         msg_hdr.msg_iov[1].iov_len = datasize;
+
+        //drop random FEC
+        if (((float) random())/INT_MAX < pdrop) {
+        fprintf(stderr, "imgdb_sendimage: DROPPED FEC offset 0x%x, segment count: %d\n",
+                snd_next, fec_count);
+          snd_next += datasize;
+          window_sent += datasize;
+          fec_count=0; //TODO: these parameters correct???
+          continue;
+        } 
 
         fprintf(stderr, "imgdb_sendimage: sent FEC offset 0x%x, segment count: %d\n",
                 snd_next, fec_count);

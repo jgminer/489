@@ -771,7 +771,8 @@ main(int argc, char *argv[])
       
       /* set socket non blocking */
       /* Lab 5: YOUR CODE HERE */
-
+      int nonblocking = 1; // 0 for blocking 
+      ioctl(sd, FIONBIO, &nonblocking); 
       /* start the GLUT main loop */
       glutMainLoop();
 

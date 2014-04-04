@@ -219,8 +219,9 @@ imgdb_sendimage: sent offset 0x626b8, 2036 bytes, unacked: 0x7f4
 imgdb_sendimage: sent offset 0x62eac, 2036 bytes, unacked: 0x7f4
 imgdb_sendimage: received ack: 0xfe8, unacked was: 0x7f4, send next 0x636a0
 imgdb_sendimage: sent offset 0x636a0, 2036 bytes, unacked: 0xfe8
-imgdb_sendimage: received ack: 0x1fd0, unacked was: 0xfe8, send next 0x63e94
-imgdb_sendimage: sent offset 0x63e94, 2036 bytes, unacked: 0x1fd0
+imgdb_sendimage: received ack: 0x17dc, unacked was: 0xfe8, send next 0x63e94
+imgdb_sendimage: sent offset 0x63e94, 2036 bytes, unacked: 0x17dc
+imgdb_sendimage: received ack: 0x1fd0, unacked was: 0x17dc, send next 0x64688
 imgdb_sendimage: sent offset 0x64688, 2036 bytes, unacked: 0x1fd0
 imgdb_sendimage: received ack: 0x27c4, unacked was: 0x1fd0, send next 0x64e7c
 imgdb_sendimage: sent offset 0x64e7c, 2036 bytes, unacked: 0x27c4
@@ -241,9 +242,8 @@ imgdb_sendimage: received ack: 0x5f70, unacked was: 0x577c, send next 0x68628
 imgdb_sendimage: sent offset 0x68628, 2036 bytes, unacked: 0x5f70
 imgdb_sendimage: received ack: 0x6764, unacked was: 0x5f70, send next 0x68e1c
 imgdb_sendimage: sent offset 0x68e1c, 2036 bytes, unacked: 0x6764
-imgdb_sendimage: received ack: 0x6f58, unacked was: 0x6764, send next 0x69610
-imgdb_sendimage: sent offset 0x69610, 2036 bytes, unacked: 0x6f58
-imgdb_sendimage: received ack: 0x774c, unacked was: 0x6f58, send next 0x69e04
+imgdb_sendimage: received ack: 0x774c, unacked was: 0x6764, send next 0x69610
+imgdb_sendimage: sent offset 0x69610, 2036 bytes, unacked: 0x774c
 imgdb_sendimage: sent offset 0x69e04, 2036 bytes, unacked: 0x774c
 imgdb_sendimage: received ack: 0x7f40, unacked was: 0x774c, send next 0x6a5f8
 imgdb_sendimage: sent offset 0x6a5f8, 2036 bytes, unacked: 0x7f40
@@ -287,24 +287,249 @@ imgdb_sendimage: received ack: 0x10e68, unacked was: 0x10674, send next 0x73520
 imgdb_sendimage: sent offset 0x73520, 2036 bytes, unacked: 0x10e68
 imgdb_sendimage: received ack: 0x1165c, unacked was: 0x10e68, send next 0x73d14
 imgdb_sendimage: sent offset 0x73d14, 2036 bytes, unacked: 0x1165c
-imgdb_sendimage: received ack: 0x15df0, unacked was: 0x1165c, send next 0x74508
-imgdb_sendimage: sent offset 0x74508, 2036 bytes, unacked: 0x15df0
-imgdb_sendimage: sent offset 0x74cfc, 2036 bytes, unacked: 0x15df0
-imgdb_sendimage: sent offset 0x754f0, 2036 bytes, unacked: 0x15df0
-imgdb_sendimage: sent offset 0x75ce4, 2036 bytes, unacked: 0x15df0
-imgdb_sendimage: sent offset 0x764d8, 2036 bytes, unacked: 0x15df0
-imgdb_sendimage: sent offset 0x76ccc, 2036 bytes, unacked: 0x15df0
-imgdb_sendimage: sent offset 0x774c0, 2036 bytes, unacked: 0x15df0
-imgdb_sendimage: sent offset 0x77cb4, 2036 bytes, unacked: 0x15df0
-imgdb_sendimage: sent FEC offset 0x784a8, segment count: 11
-imgdb_sendimage: received ack: 0x165e4, unacked was: 0x15df0, send next 0x784a8
-imgdb_sendimage: sent offset 0x784a8, 2036 bytes, unacked: 0x165e4
+imgdb_sendimage: RTO unacked: 0x1165c, next offset 0x74508, usable 2036 bytes
+imgdb_sendimage: sent offset 0x1165c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x11e50, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x12644, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x12e38, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x1362c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x13e20, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x14614, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x14e08, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x155fc, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x15df0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x165e4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent FEC offset 0x16dd8, segment count: 11
+imgdb_sendimage: sent offset 0x16dd8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x175cc, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x17dc0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x185b4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x18da8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x1959c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x19d90, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x1a584, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x1ad78, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x1b56c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x1bd60, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent FEC offset 0x1c554, segment count: 11
+imgdb_sendimage: sent offset 0x1c554, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x1cd48, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x1d53c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x1dd30, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x1e524, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x1ed18, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x1f50c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x1fd00, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x204f4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x20ce8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x214dc, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent FEC offset 0x21cd0, segment count: 11
+imgdb_sendimage: sent offset 0x21cd0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x224c4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x22cb8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x234ac, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x23ca0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x24494, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x24c88, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x2547c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x25c70, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x26464, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x26c58, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent FEC offset 0x2744c, segment count: 11
+imgdb_sendimage: sent offset 0x2744c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: DROPPED offset 0x27c40, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x28434, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x28c28, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x2941c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x29c10, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x2a404, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x2abf8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x2b3ec, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: DROPPED offset 0x2bbe0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x2c3d4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent FEC offset 0x2cbc8, segment count: 11
+imgdb_sendimage: sent offset 0x2cbc8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x2d3bc, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x2dbb0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x2e3a4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x2eb98, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x2f38c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x2fb80, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x30374, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x30b68, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x3135c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x31b50, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent FEC offset 0x32344, segment count: 11
+imgdb_sendimage: sent offset 0x32344, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x32b38, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x3332c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x33b20, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x34314, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x34b08, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x352fc, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x35af0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x362e4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x36ad8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x372cc, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent FEC offset 0x37ac0, segment count: 11
+imgdb_sendimage: sent offset 0x37ac0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x382b4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x38aa8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x3929c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x39a90, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x3a284, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x3aa78, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x3b26c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x3ba60, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x3c254, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x3ca48, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent FEC offset 0x3d23c, segment count: 11
+imgdb_sendimage: sent offset 0x3d23c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x3da30, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x3e224, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x3ea18, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x3f20c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x3fa00, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x401f4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x409e8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x411dc, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x419d0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x421c4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent FEC offset 0x429b8, segment count: 11
+imgdb_sendimage: sent offset 0x429b8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x431ac, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x439a0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x44194, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x44988, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x4517c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: DROPPED offset 0x45970, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x46164, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x46958, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x4714c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x47940, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent FEC offset 0x48134, segment count: 11
+imgdb_sendimage: sent offset 0x48134, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x48928, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x4911c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x49910, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x4a104, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x4a8f8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x4b0ec, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x4b8e0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x4c0d4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x4c8c8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x4d0bc, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent FEC offset 0x4d8b0, segment count: 11
+imgdb_sendimage: sent offset 0x4d8b0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x4e0a4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x4e898, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x4f08c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x4f880, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x50074, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x50868, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x5105c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x51850, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x52044, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x52838, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent FEC offset 0x5302c, segment count: 11
+imgdb_sendimage: sent offset 0x5302c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x53820, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x54014, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x54808, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x54ffc, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x557f0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x55fe4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x567d8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x56fcc, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x577c0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x57fb4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent FEC offset 0x587a8, segment count: 11
+imgdb_sendimage: sent offset 0x587a8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x58f9c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x59790, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x59f84, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x5a778, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x5af6c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x5b760, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x5bf54, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x5c748, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x5cf3c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x5d730, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent FEC offset 0x5df24, segment count: 11
+imgdb_sendimage: sent offset 0x5df24, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x5e718, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x5ef0c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x5f700, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x5fef4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x606e8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x60edc, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x616d0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x61ec4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x626b8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x62eac, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent FEC offset 0x636a0, segment count: 11
+imgdb_sendimage: sent offset 0x636a0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x63e94, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x64688, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x64e7c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x65670, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x65e64, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x66658, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x66e4c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x67640, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x67e34, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x68628, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent FEC offset 0x68e1c, segment count: 11
+imgdb_sendimage: sent offset 0x68e1c, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x69610, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x69e04, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x6a5f8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x6adec, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x6b5e0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x6bdd4, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x6c5c8, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x6cdbc, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: sent offset 0x6d5b0, 2036 bytes, unacked: 0x1165c
+imgdb_sendimage: received ack: 0x11e50, unacked was: 0x1165c, send next 0x6dda4
+imgdb_sendimage: sent offset 0x6dda4, 2036 bytes, unacked: 0x11e50
+imgdb_sendimage: sent FEC offset 0x6e598, segment count: 11
+imgdb_sendimage: sent offset 0x6e598, 2036 bytes, unacked: 0x11e50
+imgdb_sendimage: sent offset 0x6ed8c, 2036 bytes, unacked: 0x11e50
+imgdb_sendimage: sent offset 0x6f580, 2036 bytes, unacked: 0x11e50
+imgdb_sendimage: sent offset 0x6fd74, 2036 bytes, unacked: 0x11e50
+imgdb_sendimage: sent offset 0x70568, 2036 bytes, unacked: 0x11e50
+imgdb_sendimage: sent offset 0x70d5c, 2036 bytes, unacked: 0x11e50
+imgdb_sendimage: sent offset 0x71550, 2036 bytes, unacked: 0x11e50
+imgdb_sendimage: sent offset 0x71d44, 2036 bytes, unacked: 0x11e50
+imgdb_sendimage: sent offset 0x72538, 2036 bytes, unacked: 0x11e50
+imgdb_sendimage: sent offset 0x72d2c, 2036 bytes, unacked: 0x11e50
+imgdb_sendimage: sent offset 0x73520, 2036 bytes, unacked: 0x11e50
+imgdb_sendimage: sent FEC offset 0x73d14, segment count: 11
+imgdb_sendimage: received ack: 0x12644, unacked was: 0x11e50, send next 0x73d14
+imgdb_sendimage: sent offset 0x73d14, 2036 bytes, unacked: 0x12644
+imgdb_sendimage: sent offset 0x74508, 2036 bytes, unacked: 0x12644
+imgdb_sendimage: DROPPED offset 0x74cfc, 2036 bytes, unacked: 0x12644
+imgdb_sendimage: sent offset 0x754f0, 2036 bytes, unacked: 0x12644
+imgdb_sendimage: received ack: 0x12e38, unacked was: 0x12644, send next 0x75ce4
+imgdb_sendimage: received ack: 0x1362c, unacked was: 0x12e38, send next 0x75ce4
+imgdb_sendimage: sent offset 0x75ce4, 2036 bytes, unacked: 0x1362c
+imgdb_sendimage: received ack: 0x13e20, unacked was: 0x1362c, send next 0x764d8
+imgdb_sendimage: sent offset 0x764d8, 2036 bytes, unacked: 0x13e20
+imgdb_sendimage: received ack: 0x14614, unacked was: 0x13e20, send next 0x76ccc
+imgdb_sendimage: sent offset 0x76ccc, 2036 bytes, unacked: 0x14614
+imgdb_sendimage: received ack: 0x14e08, unacked was: 0x14614, send next 0x774c0
+imgdb_sendimage: sent offset 0x774c0, 2036 bytes, unacked: 0x14e08
+imgdb_sendimage: received ack: 0x155fc, unacked was: 0x14e08, send next 0x77cb4
+imgdb_sendimage: sent offset 0x77cb4, 2036 bytes, unacked: 0x155fc
+imgdb_sendimage: received ack: 0x15df0, unacked was: 0x155fc, send next 0x784a8
+imgdb_sendimage: sent offset 0x784a8, 2036 bytes, unacked: 0x15df0
+imgdb_sendimage: received ack: 0x165e4, unacked was: 0x15df0, send next 0x78c9c
 imgdb_sendimage: sent offset 0x78c9c, 2036 bytes, unacked: 0x165e4
+imgdb_sendimage: sent FEC offset 0x79490, segment count: 11
 imgdb_sendimage: received ack: 0x16dd8, unacked was: 0x165e4, send next 0x79490
 imgdb_sendimage: sent offset 0x79490, 2036 bytes, unacked: 0x16dd8
-imgdb_sendimage: received ack: 0x175cc, unacked was: 0x16dd8, send next 0x79c84
-imgdb_sendimage: sent offset 0x79c84, 2036 bytes, unacked: 0x175cc
-imgdb_sendimage: received ack: 0x17dc0, unacked was: 0x175cc, send next 0x7a478
+imgdb_sendimage: received ack: 0x17dc0, unacked was: 0x16dd8, send next 0x79c84
+imgdb_sendimage: sent offset 0x79c84, 2036 bytes, unacked: 0x17dc0
 imgdb_sendimage: sent offset 0x7a478, 2036 bytes, unacked: 0x17dc0
 imgdb_sendimage: received ack: 0x185b4, unacked was: 0x17dc0, send next 0x7ac6c
 imgdb_sendimage: sent offset 0x7ac6c, 2036 bytes, unacked: 0x185b4
@@ -318,39 +543,37 @@ imgdb_sendimage: received ack: 0x1a584, unacked was: 0x19d90, send next 0x7cc3c
 imgdb_sendimage: sent offset 0x7cc3c, 2036 bytes, unacked: 0x1a584
 imgdb_sendimage: received ack: 0x1ad78, unacked was: 0x1a584, send next 0x7d430
 imgdb_sendimage: sent offset 0x7d430, 2036 bytes, unacked: 0x1ad78
-imgdb_sendimage: sent FEC offset 0x7dc24, segment count: 11
 imgdb_sendimage: received ack: 0x1b56c, unacked was: 0x1ad78, send next 0x7dc24
-imgdb_sendimage: sent offset 0x7dc24, 2036 bytes, unacked: 0x1b56c
-imgdb_sendimage: received ack: 0x1bd60, unacked was: 0x1b56c, send next 0x7e418
-imgdb_sendimage: sent offset 0x7e418, 2036 bytes, unacked: 0x1bd60
+imgdb_sendimage: DROPPED offset 0x7dc24, 2036 bytes, unacked: 0x1b56c
+imgdb_sendimage: sent offset 0x7e418, 2036 bytes, unacked: 0x1b56c
+imgdb_sendimage: sent FEC offset 0x7ec0c, segment count: 11
+imgdb_sendimage: received ack: 0x1bd60, unacked was: 0x1b56c, send next 0x7ec0c
 imgdb_sendimage: received ack: 0x1c554, unacked was: 0x1bd60, send next 0x7ec0c
 imgdb_sendimage: sent offset 0x7ec0c, 2036 bytes, unacked: 0x1c554
-imgdb_sendimage: received ack: 0x1cd48, unacked was: 0x1c554, send next 0x7f400
-imgdb_sendimage: sent offset 0x7f400, 2036 bytes, unacked: 0x1cd48
-imgdb_sendimage: received ack: 0x1d53c, unacked was: 0x1cd48, send next 0x7fbf4
+imgdb_sendimage: received ack: 0x1d53c, unacked was: 0x1c554, send next 0x7f400
+imgdb_sendimage: sent offset 0x7f400, 2036 bytes, unacked: 0x1d53c
 imgdb_sendimage: sent offset 0x7fbf4, 2036 bytes, unacked: 0x1d53c
 imgdb_sendimage: received ack: 0x1dd30, unacked was: 0x1d53c, send next 0x803e8
 imgdb_sendimage: sent offset 0x803e8, 2036 bytes, unacked: 0x1dd30
 imgdb_sendimage: received ack: 0x1e524, unacked was: 0x1dd30, send next 0x80bdc
 imgdb_sendimage: sent offset 0x80bdc, 2036 bytes, unacked: 0x1e524
 imgdb_sendimage: received ack: 0x1ed18, unacked was: 0x1e524, send next 0x813d0
-imgdb_sendimage: sent offset 0x813d0, 2036 bytes, unacked: 0x1ed18
-imgdb_sendimage: received ack: 0x1f50c, unacked was: 0x1ed18, send next 0x81bc4
-imgdb_sendimage: sent offset 0x81bc4, 2036 bytes, unacked: 0x1f50c
+imgdb_sendimage: DROPPED offset 0x813d0, 2036 bytes, unacked: 0x1ed18
+imgdb_sendimage: sent offset 0x81bc4, 2036 bytes, unacked: 0x1ed18
+imgdb_sendimage: received ack: 0x1f50c, unacked was: 0x1ed18, send next 0x823b8
 imgdb_sendimage: received ack: 0x1fd00, unacked was: 0x1f50c, send next 0x823b8
 imgdb_sendimage: sent offset 0x823b8, 2036 bytes, unacked: 0x1fd00
 imgdb_sendimage: received ack: 0x204f4, unacked was: 0x1fd00, send next 0x82bac
 imgdb_sendimage: sent offset 0x82bac, 2036 bytes, unacked: 0x204f4
-imgdb_sendimage: sent FEC offset 0x833a0, segment count: 11
 imgdb_sendimage: received ack: 0x20ce8, unacked was: 0x204f4, send next 0x833a0
 imgdb_sendimage: sent offset 0x833a0, 2036 bytes, unacked: 0x20ce8
 imgdb_sendimage: received ack: 0x214dc, unacked was: 0x20ce8, send next 0x83b94
 imgdb_sendimage: sent offset 0x83b94, 2036 bytes, unacked: 0x214dc
+imgdb_sendimage: sent FEC offset 0x84388, segment count: 11
 imgdb_sendimage: received ack: 0x21cd0, unacked was: 0x214dc, send next 0x84388
 imgdb_sendimage: sent offset 0x84388, 2036 bytes, unacked: 0x21cd0
-imgdb_sendimage: received ack: 0x224c4, unacked was: 0x21cd0, send next 0x84b7c
-imgdb_sendimage: sent offset 0x84b7c, 2036 bytes, unacked: 0x224c4
-imgdb_sendimage: received ack: 0x22cb8, unacked was: 0x224c4, send next 0x85370
+imgdb_sendimage: received ack: 0x22cb8, unacked was: 0x21cd0, send next 0x84b7c
+imgdb_sendimage: sent offset 0x84b7c, 2036 bytes, unacked: 0x22cb8
 imgdb_sendimage: sent offset 0x85370, 2036 bytes, unacked: 0x22cb8
 imgdb_sendimage: received ack: 0x234ac, unacked was: 0x22cb8, send next 0x85b64
 imgdb_sendimage: sent offset 0x85b64, 2036 bytes, unacked: 0x234ac
@@ -364,49 +587,1839 @@ imgdb_sendimage: received ack: 0x2547c, unacked was: 0x24c88, send next 0x87b34
 imgdb_sendimage: sent offset 0x87b34, 2036 bytes, unacked: 0x2547c
 imgdb_sendimage: received ack: 0x25c70, unacked was: 0x2547c, send next 0x88328
 imgdb_sendimage: sent offset 0x88328, 2036 bytes, unacked: 0x25c70
-imgdb_sendimage: sent FEC offset 0x88b1c, segment count: 11
 imgdb_sendimage: received ack: 0x26464, unacked was: 0x25c70, send next 0x88b1c
 imgdb_sendimage: sent offset 0x88b1c, 2036 bytes, unacked: 0x26464
 imgdb_sendimage: received ack: 0x26c58, unacked was: 0x26464, send next 0x89310
 imgdb_sendimage: sent offset 0x89310, 2036 bytes, unacked: 0x26c58
+imgdb_sendimage: sent FEC offset 0x89b04, segment count: 11
 imgdb_sendimage: received ack: 0x2744c, unacked was: 0x26c58, send next 0x89b04
 imgdb_sendimage: sent offset 0x89b04, 2036 bytes, unacked: 0x2744c
-imgdb_sendimage: received ack: 0x27c40, unacked was: 0x2744c, send next 0x8a2f8
-imgdb_sendimage: sent offset 0x8a2f8, 2036 bytes, unacked: 0x27c40
-imgdb_sendimage: received ack: 0x28434, unacked was: 0x27c40, send next 0x8aaec
-imgdb_sendimage: DROPPED offset 0x8aaec, 2036 bytes, unacked: 0x28434
-imgdb_sendimage: sent offset 0x8b2e0, 2036 bytes, unacked: 0x28434
-imgdb_sendimage: received ack: 0x28c28, unacked was: 0x28434, send next 0x8bad4
-imgdb_sendimage: received ack: 0x2941c, unacked was: 0x28c28, send next 0x8bad4
-imgdb_sendimage: sent offset 0x8bad4, 2036 bytes, unacked: 0x2941c
-imgdb_sendimage: received ack: 0x29c10, unacked was: 0x2941c, send next 0x8c2c8
-imgdb_sendimage: sent offset 0x8c2c8, 2036 bytes, unacked: 0x29c10
-imgdb_sendimage: received ack: 0x2a404, unacked was: 0x29c10, send next 0x8cabc
-imgdb_sendimage: sent offset 0x8cabc, 2036 bytes, unacked: 0x2a404
-imgdb_sendimage: received ack: 0x2abf8, unacked was: 0x2a404, send next 0x8d2b0
-imgdb_sendimage: sent offset 0x8d2b0, 2036 bytes, unacked: 0x2abf8
-imgdb_sendimage: received ack: 0x2b3ec, unacked was: 0x2abf8, send next 0x8daa4
-imgdb_sendimage: sent offset 0x8daa4, 2036 bytes, unacked: 0x2b3ec
-imgdb_sendimage: sent FEC offset 0x8e298, segment count: 11
-imgdb_sendimage: received ack: 0x2bbe0, unacked was: 0x2b3ec, send next 0x8e298
-imgdb_sendimage: DROPPED offset 0x8e298, 2036 bytes, unacked: 0x2bbe0
-imgdb_sendimage: sent offset 0x8ea8c, 2036 bytes, unacked: 0x2bbe0
-imgdb_sendimage: received ack: 0x2c3d4, unacked was: 0x2bbe0, send next 0x8f280
-imgdb_sendimage: received ack: 0x2cbc8, unacked was: 0x2c3d4, send next 0x8f280
-imgdb_sendimage: sent offset 0x8f280, 2036 bytes, unacked: 0x2cbc8
-imgdb_sendimage: received ack: 0x2d3bc, unacked was: 0x2cbc8, send next 0x8fa74
-imgdb_sendimage: received ack: 0x2dbb0, unacked was: 0x2d3bc, send next 0x8fa74
-imgdb_sendimage: sent offset 0x8fa74, 2036 bytes, unacked: 0x2dbb0
-imgdb_sendimage: sent offset 0x90268, 2036 bytes, unacked: 0x2dbb0
-imgdb_sendimage: received ack: 0x2e3a4, unacked was: 0x2dbb0, send next 0x90a5c
-imgdb_sendimage: sent offset 0x90a5c, 2036 bytes, unacked: 0x2e3a4
-imgdb_sendimage: received ack: 0x3135c, unacked was: 0x2e3a4, send next 0x91250
-imgdb_sendimage: sent offset 0x91250, 2036 bytes, unacked: 0x3135c
-imgdb_sendimage: sent offset 0x91a44, 2036 bytes, unacked: 0x3135c
-imgdb_sendimage: sent offset 0x92238, 2036 bytes, unacked: 0x3135c
-imgdb_sendimage: sent offset 0x92a2c, 2036 bytes, unacked: 0x3135c
-imgdb_sendimage: sent offset 0x93220, 2036 bytes, unacked: 0x3135c
-imgdb_sendimage: sent FEC offset 0x93a14, segment count: 11
-imgdb_sendimage: received ack: 0x31b50, unacked was: 0x3135c, send next 0x93a14
-imgdb_sendimage: sent offset 0x93a14, 2036 bytes, unacked: 0x31b50
-imgdb_sendimage: sent offset 0x94208, 2036 bytes, unacked: 0x31b50
+imgdb_sendimage: received ack: 0x3332c, unacked was: 0x2744c, send next 0x8a2f8
+imgdb_sendimage: sent offset 0x8a2f8, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x8aaec, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x8b2e0, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x8bad4, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x8c2c8, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x8cabc, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x8d2b0, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x8daa4, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x8e298, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x8ea8c, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent FEC offset 0x8f280, segment count: 11
+imgdb_sendimage: sent offset 0x8f280, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x8fa74, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x90268, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x90a5c, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x91250, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x91a44, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x92238, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x92a2c, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x93220, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x93a14, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent offset 0x94208, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: sent FEC offset 0x949fc, segment count: 11
+imgdb_sendimage: sent offset 0x949fc, 2036 bytes, unacked: 0x3332c
+imgdb_sendimage: received ack: 0x33b20, unacked was: 0x3332c, send next 0x951f0
+imgdb_sendimage: sent offset 0x951f0, 2036 bytes, unacked: 0x33b20
+imgdb_sendimage: sent offset 0x959e4, 2036 bytes, unacked: 0x33b20
+imgdb_sendimage: sent offset 0x961d8, 2036 bytes, unacked: 0x33b20
+imgdb_sendimage: received ack: 0x34314, unacked was: 0x33b20, send next 0x969cc
+imgdb_sendimage: sent offset 0x969cc, 2036 bytes, unacked: 0x34314
+imgdb_sendimage: received ack: 0x34b08, unacked was: 0x34314, send next 0x971c0
+imgdb_sendimage: sent offset 0x971c0, 2036 bytes, unacked: 0x34b08
+imgdb_sendimage: received ack: 0x352fc, unacked was: 0x34b08, send next 0x979b4
+imgdb_sendimage: sent offset 0x979b4, 2036 bytes, unacked: 0x352fc
+imgdb_sendimage: received ack: 0x35af0, unacked was: 0x352fc, send next 0x981a8
+imgdb_sendimage: sent offset 0x981a8, 2036 bytes, unacked: 0x35af0
+imgdb_sendimage: received ack: 0x362e4, unacked was: 0x35af0, send next 0x9899c
+imgdb_sendimage: sent offset 0x9899c, 2036 bytes, unacked: 0x362e4
+imgdb_sendimage: received ack: 0x36ad8, unacked was: 0x362e4, send next 0x99190
+imgdb_sendimage: sent offset 0x99190, 2036 bytes, unacked: 0x36ad8
+imgdb_sendimage: received ack: 0x37ac0, unacked was: 0x36ad8, send next 0x99984
+imgdb_sendimage: sent offset 0x99984, 2036 bytes, unacked: 0x37ac0
+imgdb_sendimage: sent FEC offset 0x9a178, segment count: 11
+imgdb_sendimage: received ack: 0x3929c, unacked was: 0x37ac0, send next 0x9a178
+imgdb_sendimage: sent offset 0x9a178, 2036 bytes, unacked: 0x3929c
+imgdb_sendimage: sent offset 0x9a96c, 2036 bytes, unacked: 0x3929c
+imgdb_sendimage: sent offset 0x9b160, 2036 bytes, unacked: 0x3929c
+imgdb_sendimage: sent offset 0x9b954, 2036 bytes, unacked: 0x3929c
+imgdb_sendimage: received ack: 0x39a90, unacked was: 0x3929c, send next 0x9c148
+imgdb_sendimage: DROPPED offset 0x9c148, 2036 bytes, unacked: 0x39a90
+imgdb_sendimage: DROPPED offset 0x9c93c, 2036 bytes, unacked: 0x39a90
+imgdb_sendimage: sent offset 0x9d130, 2036 bytes, unacked: 0x39a90
+imgdb_sendimage: received ack: 0x3a284, unacked was: 0x39a90, send next 0x9d924
+imgdb_sendimage: received ack: 0x3aa78, unacked was: 0x3a284, send next 0x9d924
+imgdb_sendimage: received ack: 0x3b26c, unacked was: 0x3aa78, send next 0x9d924
+imgdb_sendimage: sent offset 0x9d924, 2036 bytes, unacked: 0x3b26c
+imgdb_sendimage: received ack: 0x3ba60, unacked was: 0x3b26c, send next 0x9e118
+imgdb_sendimage: sent offset 0x9e118, 2036 bytes, unacked: 0x3ba60
+imgdb_sendimage: received ack: 0x3c254, unacked was: 0x3ba60, send next 0x9e90c
+imgdb_sendimage: sent offset 0x9e90c, 2036 bytes, unacked: 0x3c254
+imgdb_sendimage: received ack: 0x3ca48, unacked was: 0x3c254, send next 0x9f100
+imgdb_sendimage: sent offset 0x9f100, 2036 bytes, unacked: 0x3ca48
+imgdb_sendimage: sent FEC offset 0x9f8f4, segment count: 11
+imgdb_sendimage: received ack: 0x3d23c, unacked was: 0x3ca48, send next 0x9f8f4
+imgdb_sendimage: sent offset 0x9f8f4, 2036 bytes, unacked: 0x3d23c
+imgdb_sendimage: received ack: 0x3ea18, unacked was: 0x3d23c, send next 0xa00e8
+imgdb_sendimage: sent offset 0xa00e8, 2036 bytes, unacked: 0x3ea18
+imgdb_sendimage: sent offset 0xa08dc, 2036 bytes, unacked: 0x3ea18
+imgdb_sendimage: sent offset 0xa10d0, 2036 bytes, unacked: 0x3ea18
+imgdb_sendimage: received ack: 0x3f20c, unacked was: 0x3ea18, send next 0xa18c4
+imgdb_sendimage: sent offset 0xa18c4, 2036 bytes, unacked: 0x3f20c
+imgdb_sendimage: received ack: 0x3fa00, unacked was: 0x3f20c, send next 0xa20b8
+imgdb_sendimage: sent offset 0xa20b8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: RTO unacked: 0x3fa00, next offset 0xa28ac, usable 2036 bytes
+imgdb_sendimage: sent offset 0x3fa00, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x401f4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x409e8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x411dc, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x419d0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x421c4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x429b8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x431ac, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x439a0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x44194, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x44988, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x4517c, segment count: 11
+imgdb_sendimage: sent offset 0x4517c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x45970, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x46164, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x46958, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x4714c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x47940, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x48134, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x48928, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x4911c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x49910, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x4a104, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x4a8f8, segment count: 11
+imgdb_sendimage: sent offset 0x4a8f8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x4b0ec, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x4b8e0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x4c0d4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x4c8c8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x4d0bc, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x4d8b0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x4e0a4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x4e898, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x4f08c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x4f880, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x50074, segment count: 11
+imgdb_sendimage: sent offset 0x50074, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x50868, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x5105c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x51850, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x52044, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x52838, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x5302c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x53820, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x54014, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x54808, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x54ffc, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x557f0, segment count: 11
+imgdb_sendimage: sent offset 0x557f0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x55fe4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x567d8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: DROPPED offset 0x56fcc, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x577c0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x57fb4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x587a8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: DROPPED offset 0x58f9c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: DROPPED offset 0x59790, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x59f84, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x5a778, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x5af6c, segment count: 11
+imgdb_sendimage: sent offset 0x5af6c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x5b760, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x5bf54, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x5c748, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: DROPPED offset 0x5cf3c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x5d730, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x5df24, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x5e718, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x5ef0c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x5f700, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x5fef4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x606e8, segment count: 11
+imgdb_sendimage: sent offset 0x606e8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x60edc, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x616d0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x61ec4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x626b8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x62eac, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x636a0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x63e94, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x64688, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x64e7c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x65670, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x65e64, segment count: 11
+imgdb_sendimage: sent offset 0x65e64, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x66658, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x66e4c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x67640, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x67e34, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x68628, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x68e1c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x69610, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x69e04, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x6a5f8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x6adec, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x6b5e0, segment count: 11
+imgdb_sendimage: sent offset 0x6b5e0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x6bdd4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x6c5c8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x6cdbc, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x6d5b0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x6dda4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x6e598, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x6ed8c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x6f580, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x6fd74, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x70568, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x70d5c, segment count: 11
+imgdb_sendimage: sent offset 0x70d5c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x71550, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x71d44, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x72538, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x72d2c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x73520, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x73d14, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x74508, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x74cfc, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x754f0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x75ce4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x764d8, segment count: 11
+imgdb_sendimage: sent offset 0x764d8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x76ccc, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x774c0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x77cb4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x784a8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x78c9c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x79490, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x79c84, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: DROPPED offset 0x7a478, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x7ac6c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x7b460, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x7bc54, segment count: 11
+imgdb_sendimage: sent offset 0x7bc54, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x7c448, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x7cc3c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x7d430, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x7dc24, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x7e418, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x7ec0c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x7f400, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x7fbf4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x803e8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x80bdc, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x813d0, segment count: 11
+imgdb_sendimage: sent offset 0x813d0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x81bc4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x823b8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x82bac, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x833a0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x83b94, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x84388, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x84b7c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x85370, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x85b64, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x86358, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x86b4c, segment count: 11
+imgdb_sendimage: sent offset 0x86b4c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x87340, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x87b34, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x88328, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x88b1c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x89310, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x89b04, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x8a2f8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x8aaec, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x8b2e0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x8bad4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x8c2c8, segment count: 11
+imgdb_sendimage: sent offset 0x8c2c8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x8cabc, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x8d2b0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x8daa4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x8e298, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x8ea8c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x8f280, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x8fa74, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x90268, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x90a5c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x91250, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x91a44, segment count: 11
+imgdb_sendimage: sent offset 0x91a44, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x92238, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x92a2c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x93220, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x93a14, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x94208, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x949fc, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x951f0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x959e4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x961d8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x969cc, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x971c0, segment count: 11
+imgdb_sendimage: sent offset 0x971c0, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x979b4, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x981a8, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x9899c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x99190, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x99984, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x9a178, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x9a96c, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x9b160, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x9b954, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent offset 0x9c148, 2036 bytes, unacked: 0x3fa00
+imgdb_sendimage: sent FEC offset 0x9c93c, segment count: 11
+imgdb_sendimage: received ack: 0x401f4, unacked was: 0x3fa00, send next 0x9c93c
+imgdb_sendimage: received ack: 0x409e8, unacked was: 0x401f4, send next 0x9c93c
+imgdb_sendimage: sent offset 0x9c93c, 2036 bytes, unacked: 0x409e8
+imgdb_sendimage: sent offset 0x9d130, 2036 bytes, unacked: 0x409e8
+imgdb_sendimage: sent offset 0x9d924, 2036 bytes, unacked: 0x409e8
+imgdb_sendimage: sent offset 0x9e118, 2036 bytes, unacked: 0x409e8
+imgdb_sendimage: sent offset 0x9e90c, 2036 bytes, unacked: 0x409e8
+imgdb_sendimage: sent offset 0x9f100, 2036 bytes, unacked: 0x409e8
+imgdb_sendimage: sent offset 0x9f8f4, 2036 bytes, unacked: 0x409e8
+imgdb_sendimage: sent offset 0xa00e8, 2036 bytes, unacked: 0x409e8
+imgdb_sendimage: sent offset 0xa08dc, 2036 bytes, unacked: 0x409e8
+imgdb_sendimage: sent offset 0xa10d0, 2036 bytes, unacked: 0x409e8
+imgdb_sendimage: sent offset 0xa18c4, 2036 bytes, unacked: 0x409e8
+imgdb_sendimage: sent FEC offset 0xa20b8, segment count: 11
+imgdb_sendimage: sent offset 0xa20b8, 2036 bytes, unacked: 0x409e8
+imgdb_sendimage: sent offset 0xa28ac, 2036 bytes, unacked: 0x409e8
+imgdb_sendimage: received ack: 0x411dc, unacked was: 0x409e8, send next 0xa30a0
+imgdb_sendimage: sent offset 0xa30a0, 2036 bytes, unacked: 0x411dc
+imgdb_sendimage: sent offset 0xa3894, 2036 bytes, unacked: 0x411dc
+imgdb_sendimage: received ack: 0x419d0, unacked was: 0x411dc, send next 0xa4088
+imgdb_sendimage: sent offset 0xa4088, 2036 bytes, unacked: 0x419d0
+imgdb_sendimage: received ack: 0x421c4, unacked was: 0x419d0, send next 0xa487c
+imgdb_sendimage: sent offset 0xa487c, 2036 bytes, unacked: 0x421c4
+imgdb_sendimage: received ack: 0x429b8, unacked was: 0x421c4, send next 0xa5070
+imgdb_sendimage: sent offset 0xa5070, 2036 bytes, unacked: 0x429b8
+imgdb_sendimage: received ack: 0x431ac, unacked was: 0x429b8, send next 0xa5864
+imgdb_sendimage: sent offset 0xa5864, 2036 bytes, unacked: 0x431ac
+imgdb_sendimage: received ack: 0x439a0, unacked was: 0x431ac, send next 0xa6058
+imgdb_sendimage: sent offset 0xa6058, 2036 bytes, unacked: 0x439a0
+imgdb_sendimage: received ack: 0x44194, unacked was: 0x439a0, send next 0xa684c
+imgdb_sendimage: sent offset 0xa684c, 2036 bytes, unacked: 0x44194
+imgdb_sendimage: received ack: 0x44988, unacked was: 0x44194, send next 0xa7040
+imgdb_sendimage: sent offset 0xa7040, 2036 bytes, unacked: 0x44988
+imgdb_sendimage: sent FEC offset 0xa7834, segment count: 11
+imgdb_sendimage: received ack: 0x4517c, unacked was: 0x44988, send next 0xa7834
+imgdb_sendimage: sent offset 0xa7834, 2036 bytes, unacked: 0x4517c
+imgdb_sendimage: received ack: 0x46164, unacked was: 0x4517c, send next 0xa8028
+imgdb_sendimage: sent offset 0xa8028, 2036 bytes, unacked: 0x46164
+imgdb_sendimage: sent offset 0xa881c, 2036 bytes, unacked: 0x46164
+imgdb_sendimage: received ack: 0x46958, unacked was: 0x46164, send next 0xa9010
+imgdb_sendimage: sent offset 0xa9010, 2036 bytes, unacked: 0x46958
+imgdb_sendimage: received ack: 0x4714c, unacked was: 0x46958, send next 0xa9804
+imgdb_sendimage: sent offset 0xa9804, 2036 bytes, unacked: 0x4714c
+imgdb_sendimage: received ack: 0x47940, unacked was: 0x4714c, send next 0xa9ff8
+imgdb_sendimage: sent offset 0xa9ff8, 2036 bytes, unacked: 0x47940
+imgdb_sendimage: received ack: 0x48134, unacked was: 0x47940, send next 0xaa7ec
+imgdb_sendimage: sent offset 0xaa7ec, 2036 bytes, unacked: 0x48134
+imgdb_sendimage: received ack: 0x48928, unacked was: 0x48134, send next 0xaafe0
+imgdb_sendimage: sent offset 0xaafe0, 2036 bytes, unacked: 0x48928
+imgdb_sendimage: received ack: 0x4911c, unacked was: 0x48928, send next 0xab7d4
+imgdb_sendimage: sent offset 0xab7d4, 2036 bytes, unacked: 0x4911c
+imgdb_sendimage: received ack: 0x49910, unacked was: 0x4911c, send next 0xabfc8
+imgdb_sendimage: sent offset 0xabfc8, 2036 bytes, unacked: 0x49910
+imgdb_sendimage: received ack: 0x4a104, unacked was: 0x49910, send next 0xac7bc
+imgdb_sendimage: sent offset 0xac7bc, 2036 bytes, unacked: 0x4a104
+imgdb_sendimage: sent FEC offset 0xacfb0, segment count: 11
+imgdb_sendimage: received ack: 0x4a8f8, unacked was: 0x4a104, send next 0xacfb0
+imgdb_sendimage: sent offset 0xacfb0, 2036 bytes, unacked: 0x4a8f8
+imgdb_sendimage: received ack: 0x4b8e0, unacked was: 0x4a8f8, send next 0xad7a4
+imgdb_sendimage: sent offset 0xad7a4, 2036 bytes, unacked: 0x4b8e0
+imgdb_sendimage: sent offset 0xadf98, 2036 bytes, unacked: 0x4b8e0
+imgdb_sendimage: received ack: 0x4c0d4, unacked was: 0x4b8e0, send next 0xae78c
+imgdb_sendimage: sent offset 0xae78c, 2036 bytes, unacked: 0x4c0d4
+imgdb_sendimage: received ack: 0x4c8c8, unacked was: 0x4c0d4, send next 0xaef80
+imgdb_sendimage: sent offset 0xaef80, 2036 bytes, unacked: 0x4c8c8
+imgdb_sendimage: received ack: 0x4d0bc, unacked was: 0x4c8c8, send next 0xaf774
+imgdb_sendimage: sent offset 0xaf774, 2036 bytes, unacked: 0x4d0bc
+imgdb_sendimage: received ack: 0x4d8b0, unacked was: 0x4d0bc, send next 0xaff68
+imgdb_sendimage: sent offset 0xaff68, 2036 bytes, unacked: 0x4d8b0
+imgdb_sendimage: received ack: 0x4e0a4, unacked was: 0x4d8b0, send next 0xb075c
+imgdb_sendimage: sent offset 0xb075c, 2036 bytes, unacked: 0x4e0a4
+imgdb_sendimage: received ack: 0x4e898, unacked was: 0x4e0a4, send next 0xb0f50
+imgdb_sendimage: sent offset 0xb0f50, 2036 bytes, unacked: 0x4e898
+imgdb_sendimage: received ack: 0x4f08c, unacked was: 0x4e898, send next 0xb1744
+imgdb_sendimage: sent offset 0xb1744, 2036 bytes, unacked: 0x4f08c
+imgdb_sendimage: received ack: 0x4f880, unacked was: 0x4f08c, send next 0xb1f38
+imgdb_sendimage: sent offset 0xb1f38, 2036 bytes, unacked: 0x4f880
+imgdb_sendimage: sent FEC offset 0xb272c, segment count: 11
+imgdb_sendimage: received ack: 0x50074, unacked was: 0x4f880, send next 0xb272c
+imgdb_sendimage: sent offset 0xb272c, 2036 bytes, unacked: 0x50074
+imgdb_sendimage: received ack: 0x5105c, unacked was: 0x50074, send next 0xb2f20
+imgdb_sendimage: sent offset 0xb2f20, 2036 bytes, unacked: 0x5105c
+imgdb_sendimage: sent offset 0xb3714, 2036 bytes, unacked: 0x5105c
+imgdb_sendimage: received ack: 0x51850, unacked was: 0x5105c, send next 0xb3f08
+imgdb_sendimage: sent offset 0xb3f08, 2036 bytes, unacked: 0x51850
+imgdb_sendimage: received ack: 0x52044, unacked was: 0x51850, send next 0xb46fc
+imgdb_sendimage: sent offset 0xb46fc, 2036 bytes, unacked: 0x52044
+imgdb_sendimage: received ack: 0x52838, unacked was: 0x52044, send next 0xb4ef0
+imgdb_sendimage: sent offset 0xb4ef0, 2036 bytes, unacked: 0x52838
+imgdb_sendimage: received ack: 0x5302c, unacked was: 0x52838, send next 0xb56e4
+imgdb_sendimage: sent offset 0xb56e4, 2036 bytes, unacked: 0x5302c
+imgdb_sendimage: received ack: 0x53820, unacked was: 0x5302c, send next 0xb5ed8
+imgdb_sendimage: sent offset 0xb5ed8, 2036 bytes, unacked: 0x53820
+imgdb_sendimage: received ack: 0x54014, unacked was: 0x53820, send next 0xb66cc
+imgdb_sendimage: sent offset 0xb66cc, 2036 bytes, unacked: 0x54014
+imgdb_sendimage: received ack: 0x54808, unacked was: 0x54014, send next 0xb6ec0
+imgdb_sendimage: sent offset 0xb6ec0, 2036 bytes, unacked: 0x54808
+imgdb_sendimage: received ack: 0x54ffc, unacked was: 0x54808, send next 0xb76b4
+imgdb_sendimage: sent offset 0xb76b4, 2036 bytes, unacked: 0x54ffc
+imgdb_sendimage: sent FEC offset 0xb7ea8, segment count: 11
+imgdb_sendimage: received ack: 0x557f0, unacked was: 0x54ffc, send next 0xb7ea8
+imgdb_sendimage: sent offset 0xb7ea8, 2036 bytes, unacked: 0x557f0
+imgdb_sendimage: received ack: 0x567d8, unacked was: 0x557f0, send next 0xb869c
+imgdb_sendimage: sent offset 0xb869c, 2036 bytes, unacked: 0x567d8
+imgdb_sendimage: sent offset 0xb8e90, 2036 bytes, unacked: 0x567d8
+imgdb_sendimage: received ack: 0x56fcc, unacked was: 0x567d8, send next 0xb9684
+imgdb_sendimage: sent offset 0xb9684, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: RTO unacked: 0x56fcc, next offset 0xb9e78, usable 2036 bytes
+imgdb_sendimage: sent offset 0x56fcc, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x577c0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x57fb4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x587a8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x58f9c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x59790, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x59f84, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x5a778, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x5af6c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x5b760, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x5bf54, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent FEC offset 0x5c748, segment count: 11
+imgdb_sendimage: sent offset 0x5c748, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x5cf3c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x5d730, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x5df24, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x5e718, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x5ef0c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x5f700, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x5fef4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x606e8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x60edc, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x616d0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent FEC offset 0x61ec4, segment count: 11
+imgdb_sendimage: sent offset 0x61ec4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: DROPPED offset 0x626b8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x62eac, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x636a0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x63e94, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x64688, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x64e7c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x65670, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x65e64, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x66658, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x66e4c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent FEC offset 0x67640, segment count: 11
+imgdb_sendimage: sent offset 0x67640, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x67e34, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x68628, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x68e1c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x69610, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x69e04, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x6a5f8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x6adec, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x6b5e0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x6bdd4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x6c5c8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent FEC offset 0x6cdbc, segment count: 11
+imgdb_sendimage: sent offset 0x6cdbc, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x6d5b0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x6dda4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x6e598, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x6ed8c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x6f580, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x6fd74, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x70568, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x70d5c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x71550, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x71d44, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent FEC offset 0x72538, segment count: 11
+imgdb_sendimage: sent offset 0x72538, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x72d2c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x73520, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x73d14, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x74508, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x74cfc, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x754f0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x75ce4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x764d8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x76ccc, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x774c0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent FEC offset 0x77cb4, segment count: 11
+imgdb_sendimage: sent offset 0x77cb4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x784a8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x78c9c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x79490, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x79c84, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x7a478, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x7ac6c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x7b460, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x7bc54, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x7c448, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x7cc3c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent FEC offset 0x7d430, segment count: 11
+imgdb_sendimage: sent offset 0x7d430, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x7dc24, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x7e418, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x7ec0c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x7f400, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x7fbf4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x803e8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x80bdc, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x813d0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x81bc4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x823b8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent FEC offset 0x82bac, segment count: 11
+imgdb_sendimage: sent offset 0x82bac, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: DROPPED offset 0x833a0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x83b94, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x84388, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x84b7c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x85370, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x85b64, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x86358, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x86b4c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x87340, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x87b34, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent FEC offset 0x88328, segment count: 11
+imgdb_sendimage: sent offset 0x88328, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x88b1c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x89310, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x89b04, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x8a2f8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x8aaec, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x8b2e0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x8bad4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x8c2c8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x8cabc, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x8d2b0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent FEC offset 0x8daa4, segment count: 11
+imgdb_sendimage: sent offset 0x8daa4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x8e298, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x8ea8c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x8f280, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x8fa74, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x90268, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x90a5c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x91250, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x91a44, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x92238, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x92a2c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent FEC offset 0x93220, segment count: 11
+imgdb_sendimage: sent offset 0x93220, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x93a14, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x94208, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x949fc, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x951f0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x959e4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x961d8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x969cc, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x971c0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x979b4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x981a8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent FEC offset 0x9899c, segment count: 11
+imgdb_sendimage: sent offset 0x9899c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x99190, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x99984, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x9a178, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x9a96c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x9b160, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x9b954, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: DROPPED offset 0x9c148, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x9c93c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x9d130, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x9d924, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent FEC offset 0x9e118, segment count: 11
+imgdb_sendimage: sent offset 0x9e118, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x9e90c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x9f100, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0x9f8f4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa00e8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa08dc, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa10d0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa18c4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa20b8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa28ac, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa30a0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent FEC offset 0xa3894, segment count: 11
+imgdb_sendimage: sent offset 0xa3894, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa4088, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa487c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa5070, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa5864, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa6058, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa684c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa7040, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa7834, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa8028, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa881c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent FEC offset 0xa9010, segment count: 11
+imgdb_sendimage: sent offset 0xa9010, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa9804, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xa9ff8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xaa7ec, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xaafe0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xab7d4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xabfc8, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xac7bc, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xacfb0, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xad7a4, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xadf98, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent FEC offset 0xae78c, segment count: 11
+imgdb_sendimage: sent offset 0xae78c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xaef80, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xaf774, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xaff68, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xb075c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xb0f50, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xb1744, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xb1f38, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xb272c, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: sent offset 0xb2f20, 2036 bytes, unacked: 0x56fcc
+imgdb_sendimage: received ack: 0x577c0, unacked was: 0x56fcc, send next 0xb3714
+imgdb_sendimage: sent offset 0xb3714, 2036 bytes, unacked: 0x577c0
+imgdb_sendimage: sent FEC offset 0xb3f08, segment count: 11
+imgdb_sendimage: sent offset 0xb3f08, 2036 bytes, unacked: 0x577c0
+imgdb_sendimage: sent offset 0xb46fc, 2036 bytes, unacked: 0x577c0
+imgdb_sendimage: sent offset 0xb4ef0, 2036 bytes, unacked: 0x577c0
+imgdb_sendimage: sent offset 0xb56e4, 2036 bytes, unacked: 0x577c0
+imgdb_sendimage: sent offset 0xb5ed8, 2036 bytes, unacked: 0x577c0
+imgdb_sendimage: sent offset 0xb66cc, 2036 bytes, unacked: 0x577c0
+imgdb_sendimage: DROPPED offset 0xb6ec0, 2036 bytes, unacked: 0x577c0
+imgdb_sendimage: sent offset 0xb76b4, 2036 bytes, unacked: 0x577c0
+imgdb_sendimage: sent offset 0xb7ea8, 2036 bytes, unacked: 0x577c0
+imgdb_sendimage: sent offset 0xb869c, 2036 bytes, unacked: 0x577c0
+imgdb_sendimage: sent offset 0xb8e90, 2036 bytes, unacked: 0x577c0
+imgdb_sendimage: sent FEC offset 0xb9684, segment count: 11
+imgdb_sendimage: sent offset 0xb9684, 2036 bytes, unacked: 0x577c0
+imgdb_sendimage: received ack: 0x57fb4, unacked was: 0x577c0, send next 0xb9e78
+imgdb_sendimage: sent offset 0xb9e78, 2036 bytes, unacked: 0x57fb4
+imgdb_sendimage: sent offset 0xba66c, 2036 bytes, unacked: 0x57fb4
+imgdb_sendimage: received ack: 0x587a8, unacked was: 0x57fb4, send next 0xbae60
+imgdb_sendimage: sent offset 0xbae60, 2036 bytes, unacked: 0x587a8
+imgdb_sendimage: received ack: 0x58f9c, unacked was: 0x587a8, send next 0xbb654
+imgdb_sendimage: sent offset 0xbb654, 2036 bytes, unacked: 0x58f9c
+imgdb_sendimage: received ack: 0x59790, unacked was: 0x58f9c, send next 0xbbe48
+imgdb_sendimage: sent offset 0xbbe48, 2036 bytes, unacked: 0x59790
+imgdb_sendimage: received ack: 0x59f84, unacked was: 0x59790, send next 0xbc63c
+imgdb_sendimage: sent offset 0xbc63c, 2036 bytes, unacked: 0x59f84
+imgdb_sendimage: received ack: 0x5a778, unacked was: 0x59f84, send next 0xbce30
+imgdb_sendimage: sent offset 0xbce30, 2036 bytes, unacked: 0x5a778
+imgdb_sendimage: received ack: 0x5af6c, unacked was: 0x5a778, send next 0xbd624
+imgdb_sendimage: sent offset 0xbd624, 2036 bytes, unacked: 0x5af6c
+imgdb_sendimage: received ack: 0x5b760, unacked was: 0x5af6c, send next 0xbde18
+imgdb_sendimage: sent offset 0xbde18, 2036 bytes, unacked: 0x5b760
+imgdb_sendimage: received ack: 0x5bf54, unacked was: 0x5b760, send next 0xbe60c
+imgdb_sendimage: sent offset 0xbe60c, 2036 bytes, unacked: 0x5bf54
+imgdb_sendimage: sent FEC offset 0xbee00, segment count: 11
+imgdb_sendimage: received ack: 0x5c748, unacked was: 0x5bf54, send next 0xbee00
+imgdb_sendimage: sent offset 0xbee00, 2036 bytes, unacked: 0x5c748
+imgdb_sendimage: received ack: 0x5d730, unacked was: 0x5c748, send next 0xbf5f4
+imgdb_sendimage: sent offset 0xbf5f4, 2036 bytes, unacked: 0x5d730
+imgdb_sendimage: sent offset 0xbfde8, 2036 bytes, unacked: 0x5d730
+imgdb_sendimage: received ack: 0x5df24, unacked was: 0x5d730, send next 0xc05dc
+imgdb_sendimage: sent offset 0xc05dc, 2036 bytes, unacked: 0x5df24
+imgdb_sendimage: received ack: 0x5e718, unacked was: 0x5df24, send next 0xc0dd0
+imgdb_sendimage: sent offset 0xc0dd0, 2036 bytes, unacked: 0x5e718
+imgdb_sendimage: received ack: 0x5ef0c, unacked was: 0x5e718, send next 0xc15c4
+imgdb_sendimage: sent offset 0xc15c4, 2036 bytes, unacked: 0x5ef0c
+imgdb_sendimage: received ack: 0x5f700, unacked was: 0x5ef0c, send next 0xc1db8
+imgdb_sendimage: sent offset 0xc1db8, 2036 bytes, unacked: 0x5f700
+imgdb_sendimage: received ack: 0x5fef4, unacked was: 0x5f700, send next 0xc25ac
+imgdb_sendimage: sent offset 0xc25ac, 2036 bytes, unacked: 0x5fef4
+imgdb_sendimage: received ack: 0x606e8, unacked was: 0x5fef4, send next 0xc2da0
+imgdb_sendimage: sent offset 0xc2da0, 2036 bytes, unacked: 0x606e8
+imgdb_sendimage: received ack: 0x60edc, unacked was: 0x606e8, send next 0xc3594
+imgdb_sendimage: sent offset 0xc3594, 2036 bytes, unacked: 0x60edc
+imgdb_sendimage: received ack: 0x616d0, unacked was: 0x60edc, send next 0xc3d88
+imgdb_sendimage: sent offset 0xc3d88, 2036 bytes, unacked: 0x616d0
+imgdb_sendimage: sent FEC offset 0xc457c, segment count: 11
+imgdb_sendimage: received ack: 0x61ec4, unacked was: 0x616d0, send next 0xc457c
+imgdb_sendimage: sent offset 0xc457c, 2036 bytes, unacked: 0x61ec4
+imgdb_sendimage: received ack: 0x6dda4, unacked was: 0x61ec4, send next 0xc4d70
+imgdb_sendimage: sent offset 0xc4d70, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xc5564, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xc5d58, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xc654c, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xc6d40, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xc7534, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xc7d28, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xc851c, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xc8d10, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xc9504, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent FEC offset 0xc9cf8, segment count: 11
+imgdb_sendimage: sent offset 0xc9cf8, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xca4ec, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xcace0, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xcb4d4, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xcbcc8, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xcc4bc, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xcccb0, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: DROPPED offset 0xcd4a4, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xcdc98, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xce48c, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xcec80, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent FEC offset 0xcf474, segment count: 11
+imgdb_sendimage: sent offset 0xcf474, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: sent offset 0xcfc68, 2036 bytes, unacked: 0x6dda4
+imgdb_sendimage: received ack: 0x6e598, unacked was: 0x6dda4, send next 0xd045c
+imgdb_sendimage: sent offset 0xd045c, 2036 bytes, unacked: 0x6e598
+imgdb_sendimage: sent offset 0xd0c50, 2036 bytes, unacked: 0x6e598
+imgdb_sendimage: received ack: 0x6ed8c, unacked was: 0x6e598, send next 0xd1444
+imgdb_sendimage: sent offset 0xd1444, 2036 bytes, unacked: 0x6ed8c
+imgdb_sendimage: received ack: 0x6f580, unacked was: 0x6ed8c, send next 0xd1c38
+imgdb_sendimage: sent offset 0xd1c38, 2036 bytes, unacked: 0x6f580
+imgdb_sendimage: received ack: 0x6fd74, unacked was: 0x6f580, send next 0xd242c
+imgdb_sendimage: sent offset 0xd242c, 2036 bytes, unacked: 0x6fd74
+imgdb_sendimage: received ack: 0x70568, unacked was: 0x6fd74, send next 0xd2c20
+imgdb_sendimage: sent offset 0xd2c20, 2036 bytes, unacked: 0x70568
+imgdb_sendimage: received ack: 0x70d5c, unacked was: 0x70568, send next 0xd3414
+imgdb_sendimage: sent offset 0xd3414, 2036 bytes, unacked: 0x70d5c
+imgdb_sendimage: received ack: 0x71550, unacked was: 0x70d5c, send next 0xd3c08
+imgdb_sendimage: sent offset 0xd3c08, 2036 bytes, unacked: 0x71550
+imgdb_sendimage: received ack: 0x71d44, unacked was: 0x71550, send next 0xd43fc
+imgdb_sendimage: sent offset 0xd43fc, 2036 bytes, unacked: 0x71d44
+imgdb_sendimage: sent FEC offset 0xd4bf0, segment count: 11
+imgdb_sendimage: received ack: 0x72538, unacked was: 0x71d44, send next 0xd4bf0
+imgdb_sendimage: sent offset 0xd4bf0, 2036 bytes, unacked: 0x72538
+imgdb_sendimage: received ack: 0x73d14, unacked was: 0x72538, send next 0xd53e4
+imgdb_sendimage: sent offset 0xd53e4, 2036 bytes, unacked: 0x73d14
+imgdb_sendimage: sent offset 0xd5bd8, 2036 bytes, unacked: 0x73d14
+imgdb_sendimage: sent offset 0xd63cc, 2036 bytes, unacked: 0x73d14
+imgdb_sendimage: received ack: 0x74508, unacked was: 0x73d14, send next 0xd6bc0
+imgdb_sendimage: sent offset 0xd6bc0, 2036 bytes, unacked: 0x74508
+imgdb_sendimage: received ack: 0x74cfc, unacked was: 0x74508, send next 0xd73b4
+imgdb_sendimage: sent offset 0xd73b4, 2036 bytes, unacked: 0x74cfc
+imgdb_sendimage: received ack: 0x754f0, unacked was: 0x74cfc, send next 0xd7ba8
+imgdb_sendimage: sent offset 0xd7ba8, 2036 bytes, unacked: 0x754f0
+imgdb_sendimage: received ack: 0x75ce4, unacked was: 0x754f0, send next 0xd839c
+imgdb_sendimage: sent offset 0xd839c, 2036 bytes, unacked: 0x75ce4
+imgdb_sendimage: received ack: 0x764d8, unacked was: 0x75ce4, send next 0xd8b90
+imgdb_sendimage: sent offset 0xd8b90, 2036 bytes, unacked: 0x764d8
+imgdb_sendimage: received ack: 0x76ccc, unacked was: 0x764d8, send next 0xd9384
+imgdb_sendimage: sent offset 0xd9384, 2036 bytes, unacked: 0x76ccc
+imgdb_sendimage: received ack: 0x774c0, unacked was: 0x76ccc, send next 0xd9b78
+imgdb_sendimage: sent offset 0xd9b78, 2036 bytes, unacked: 0x774c0
+imgdb_sendimage: sent FEC offset 0xda36c, segment count: 11
+imgdb_sendimage: received ack: 0x77cb4, unacked was: 0x774c0, send next 0xda36c
+imgdb_sendimage: sent offset 0xda36c, 2036 bytes, unacked: 0x77cb4
+imgdb_sendimage: received ack: 0x79490, unacked was: 0x77cb4, send next 0xdab60
+imgdb_sendimage: sent offset 0xdab60, 2036 bytes, unacked: 0x79490
+imgdb_sendimage: sent offset 0xdb354, 2036 bytes, unacked: 0x79490
+imgdb_sendimage: sent offset 0xdbb48, 2036 bytes, unacked: 0x79490
+imgdb_sendimage: received ack: 0x79c84, unacked was: 0x79490, send next 0xdc33c
+imgdb_sendimage: sent offset 0xdc33c, 2036 bytes, unacked: 0x79c84
+imgdb_sendimage: received ack: 0x7a478, unacked was: 0x79c84, send next 0xdcb30
+imgdb_sendimage: sent offset 0xdcb30, 2036 bytes, unacked: 0x7a478
+imgdb_sendimage: received ack: 0x7ac6c, unacked was: 0x7a478, send next 0xdd324
+imgdb_sendimage: sent offset 0xdd324, 2036 bytes, unacked: 0x7ac6c
+imgdb_sendimage: received ack: 0x7b460, unacked was: 0x7ac6c, send next 0xddb18
+imgdb_sendimage: sent offset 0xddb18, 2036 bytes, unacked: 0x7b460
+imgdb_sendimage: received ack: 0x7bc54, unacked was: 0x7b460, send next 0xde30c
+imgdb_sendimage: sent offset 0xde30c, 2036 bytes, unacked: 0x7bc54
+imgdb_sendimage: received ack: 0x7c448, unacked was: 0x7bc54, send next 0xdeb00
+imgdb_sendimage: sent offset 0xdeb00, 2036 bytes, unacked: 0x7c448
+imgdb_sendimage: received ack: 0x7cc3c, unacked was: 0x7c448, send next 0xdf2f4
+imgdb_sendimage: sent offset 0xdf2f4, 2036 bytes, unacked: 0x7cc3c
+imgdb_sendimage: sent FEC offset 0xdfae8, segment count: 11
+imgdb_sendimage: received ack: 0x7d430, unacked was: 0x7cc3c, send next 0xdfae8
+imgdb_sendimage: sent offset 0xdfae8, 2036 bytes, unacked: 0x7d430
+imgdb_sendimage: received ack: 0x7ec0c, unacked was: 0x7d430, send next 0xe02dc
+imgdb_sendimage: sent offset 0xe02dc, 2036 bytes, unacked: 0x7ec0c
+imgdb_sendimage: sent offset 0xe0ad0, 2036 bytes, unacked: 0x7ec0c
+imgdb_sendimage: sent offset 0xe12c4, 2036 bytes, unacked: 0x7ec0c
+imgdb_sendimage: received ack: 0x7f400, unacked was: 0x7ec0c, send next 0xe1ab8
+imgdb_sendimage: sent offset 0xe1ab8, 2036 bytes, unacked: 0x7f400
+imgdb_sendimage: received ack: 0x7fbf4, unacked was: 0x7f400, send next 0xe22ac
+imgdb_sendimage: sent offset 0xe22ac, 2036 bytes, unacked: 0x7fbf4
+imgdb_sendimage: received ack: 0x803e8, unacked was: 0x7fbf4, send next 0xe2aa0
+imgdb_sendimage: sent offset 0xe2aa0, 2036 bytes, unacked: 0x803e8
+imgdb_sendimage: received ack: 0x80bdc, unacked was: 0x803e8, send next 0xe3294
+imgdb_sendimage: sent offset 0xe3294, 2036 bytes, unacked: 0x80bdc
+imgdb_sendimage: received ack: 0x813d0, unacked was: 0x80bdc, send next 0xe3a88
+imgdb_sendimage: sent offset 0xe3a88, 2036 bytes, unacked: 0x813d0
+imgdb_sendimage: received ack: 0x81bc4, unacked was: 0x813d0, send next 0xe427c
+imgdb_sendimage: sent offset 0xe427c, 2036 bytes, unacked: 0x81bc4
+imgdb_sendimage: received ack: 0x823b8, unacked was: 0x81bc4, send next 0xe4a70
+imgdb_sendimage: sent offset 0xe4a70, 2036 bytes, unacked: 0x823b8
+imgdb_sendimage: sent FEC offset 0xe5264, segment count: 11
+imgdb_sendimage: received ack: 0x82bac, unacked was: 0x823b8, send next 0xe5264
+imgdb_sendimage: sent offset 0xe5264, 2036 bytes, unacked: 0x82bac
+imgdb_sendimage: received ack: 0x84388, unacked was: 0x82bac, send next 0xe5a58
+imgdb_sendimage: sent offset 0xe5a58, 2036 bytes, unacked: 0x84388
+imgdb_sendimage: sent offset 0xe624c, 2036 bytes, unacked: 0x84388
+imgdb_sendimage: sent offset 0xe6a40, 2036 bytes, unacked: 0x84388
+imgdb_sendimage: received ack: 0x84b7c, unacked was: 0x84388, send next 0xe7234
+imgdb_sendimage: sent offset 0xe7234, 2036 bytes, unacked: 0x84b7c
+imgdb_sendimage: received ack: 0x85370, unacked was: 0x84b7c, send next 0xe7a28
+imgdb_sendimage: sent offset 0xe7a28, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: RTO unacked: 0x85370, next offset 0xe821c, usable 2036 bytes
+imgdb_sendimage: sent offset 0x85370, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x85b64, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x86358, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x86b4c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x87340, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x87b34, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x88328, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x88b1c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x89310, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: DROPPED offset 0x89b04, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x8a2f8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0x8aaec, segment count: 11
+imgdb_sendimage: sent offset 0x8aaec, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x8b2e0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x8bad4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x8c2c8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x8cabc, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x8d2b0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x8daa4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x8e298, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x8ea8c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x8f280, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x8fa74, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0x90268, segment count: 11
+imgdb_sendimage: sent offset 0x90268, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x90a5c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x91250, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x91a44, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x92238, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x92a2c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x93220, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x93a14, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x94208, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: DROPPED offset 0x949fc, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x951f0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0x959e4, segment count: 11
+imgdb_sendimage: DROPPED offset 0x959e4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x961d8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x969cc, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x971c0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x979b4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x981a8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x9899c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x99190, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x99984, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x9a178, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x9a96c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0x9b160, segment count: 11
+imgdb_sendimage: sent offset 0x9b160, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x9b954, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x9c148, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x9c93c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x9d130, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x9d924, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x9e118, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x9e90c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x9f100, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0x9f8f4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa00e8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0xa08dc, segment count: 11
+imgdb_sendimage: sent offset 0xa08dc, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa10d0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa18c4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa20b8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa28ac, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa30a0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa3894, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa4088, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa487c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa5070, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa5864, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0xa6058, segment count: 11
+imgdb_sendimage: sent offset 0xa6058, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa684c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa7040, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa7834, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa8028, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa881c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa9010, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xa9804, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: DROPPED offset 0xa9ff8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xaa7ec, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xaafe0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0xab7d4, segment count: 11
+imgdb_sendimage: sent offset 0xab7d4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xabfc8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xac7bc, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xacfb0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xad7a4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xadf98, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xae78c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xaef80, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xaf774, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xaff68, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb075c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0xb0f50, segment count: 11
+imgdb_sendimage: sent offset 0xb0f50, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb1744, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb1f38, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb272c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb2f20, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb3714, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb3f08, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb46fc, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb4ef0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb56e4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb5ed8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0xb66cc, segment count: 11
+imgdb_sendimage: sent offset 0xb66cc, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb6ec0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb76b4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb7ea8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb869c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb8e90, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb9684, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xb9e78, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xba66c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xbae60, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xbb654, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0xbbe48, segment count: 11
+imgdb_sendimage: sent offset 0xbbe48, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xbc63c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xbce30, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xbd624, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xbde18, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xbe60c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xbee00, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xbf5f4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xbfde8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc05dc, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc0dd0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0xc15c4, segment count: 11
+imgdb_sendimage: sent offset 0xc15c4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc1db8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc25ac, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc2da0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc3594, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc3d88, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc457c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc4d70, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc5564, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc5d58, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc654c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0xc6d40, segment count: 11
+imgdb_sendimage: sent offset 0xc6d40, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc7534, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc7d28, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc851c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc8d10, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc9504, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xc9cf8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xca4ec, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xcace0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xcb4d4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xcbcc8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0xcc4bc, segment count: 11
+imgdb_sendimage: sent offset 0xcc4bc, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xcccb0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xcd4a4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xcdc98, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xce48c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: DROPPED offset 0xcec80, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xcf474, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xcfc68, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd045c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd0c50, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd1444, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0xd1c38, segment count: 11
+imgdb_sendimage: sent offset 0xd1c38, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd242c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd2c20, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd3414, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd3c08, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd43fc, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd4bf0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd53e4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd5bd8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd63cc, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd6bc0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0xd73b4, segment count: 11
+imgdb_sendimage: sent offset 0xd73b4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd7ba8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd839c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd8b90, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd9384, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xd9b78, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xda36c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: DROPPED offset 0xdab60, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xdb354, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xdbb48, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xdc33c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0xdcb30, segment count: 11
+imgdb_sendimage: sent offset 0xdcb30, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xdd324, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xddb18, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xde30c, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xdeb00, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xdf2f4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xdfae8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xe02dc, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xe0ad0, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xe12c4, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent offset 0xe1ab8, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: sent FEC offset 0xe22ac, segment count: 11
+imgdb_sendimage: sent offset 0xe22ac, 2036 bytes, unacked: 0x85370
+imgdb_sendimage: received ack: 0x85b64, unacked was: 0x85370, send next 0xe2aa0
+imgdb_sendimage: received ack: 0x86358, unacked was: 0x85b64, send next 0xe2aa0
+imgdb_sendimage: sent offset 0xe2aa0, 2036 bytes, unacked: 0x86358
+imgdb_sendimage: sent offset 0xe3294, 2036 bytes, unacked: 0x86358
+imgdb_sendimage: sent offset 0xe3a88, 2036 bytes, unacked: 0x86358
+imgdb_sendimage: sent offset 0xe427c, 2036 bytes, unacked: 0x86358
+imgdb_sendimage: sent offset 0xe4a70, 2036 bytes, unacked: 0x86358
+imgdb_sendimage: sent offset 0xe5264, 2036 bytes, unacked: 0x86358
+imgdb_sendimage: sent offset 0xe5a58, 2036 bytes, unacked: 0x86358
+imgdb_sendimage: sent offset 0xe624c, 2036 bytes, unacked: 0x86358
+imgdb_sendimage: sent offset 0xe6a40, 2036 bytes, unacked: 0x86358
+imgdb_sendimage: sent offset 0xe7234, 2036 bytes, unacked: 0x86358
+imgdb_sendimage: DROPPED FEC offset 0xe7a28, segment count: 11
+imgdb_sendimage: sent offset 0xe7a28, 2036 bytes, unacked: 0x86358
+imgdb_sendimage: sent offset 0xe821c, 2036 bytes, unacked: 0x86358
+imgdb_sendimage: sent offset 0xe8a10, 2036 bytes, unacked: 0x86358
+imgdb_sendimage: received ack: 0x86b4c, unacked was: 0x86358, send next 0xe9204
+imgdb_sendimage: sent offset 0xe9204, 2036 bytes, unacked: 0x86b4c
+imgdb_sendimage: received ack: 0x87340, unacked was: 0x86b4c, send next 0xe99f8
+imgdb_sendimage: sent offset 0xe99f8, 2036 bytes, unacked: 0x87340
+imgdb_sendimage: received ack: 0x87b34, unacked was: 0x87340, send next 0xea1ec
+imgdb_sendimage: sent offset 0xea1ec, 2036 bytes, unacked: 0x87b34
+imgdb_sendimage: received ack: 0x88328, unacked was: 0x87b34, send next 0xea9e0
+imgdb_sendimage: sent offset 0xea9e0, 2036 bytes, unacked: 0x88328
+imgdb_sendimage: received ack: 0x88b1c, unacked was: 0x88328, send next 0xeb1d4
+imgdb_sendimage: DROPPED offset 0xeb1d4, 2036 bytes, unacked: 0x88b1c
+imgdb_sendimage: sent offset 0xeb9c8, 2036 bytes, unacked: 0x88b1c
+imgdb_sendimage: received ack: 0x89310, unacked was: 0x88b1c, send next 0xec1bc
+imgdb_sendimage: received ack: 0x89b04, unacked was: 0x89310, send next 0xec1bc
+imgdb_sendimage: sent offset 0xec1bc, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: RTO unacked: 0x89b04, next offset 0xec9b0, usable 2036 bytes
+imgdb_sendimage: sent offset 0x89b04, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x8a2f8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x8aaec, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x8b2e0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x8bad4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x8c2c8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x8cabc, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x8d2b0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x8daa4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x8e298, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x8ea8c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent FEC offset 0x8f280, segment count: 11
+imgdb_sendimage: sent offset 0x8f280, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x8fa74, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x90268, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x90a5c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x91250, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x91a44, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x92238, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x92a2c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x93220, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x93a14, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x94208, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent FEC offset 0x949fc, segment count: 11
+imgdb_sendimage: sent offset 0x949fc, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x951f0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x959e4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x961d8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x969cc, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x971c0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x979b4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x981a8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x9899c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x99190, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x99984, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent FEC offset 0x9a178, segment count: 11
+imgdb_sendimage: sent offset 0x9a178, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x9a96c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x9b160, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x9b954, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x9c148, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x9c93c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x9d130, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x9d924, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x9e118, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x9e90c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0x9f100, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent FEC offset 0x9f8f4, segment count: 11
+imgdb_sendimage: sent offset 0x9f8f4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa00e8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa08dc, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa10d0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa18c4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa20b8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa28ac, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa30a0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa3894, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa4088, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa487c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent FEC offset 0xa5070, segment count: 11
+imgdb_sendimage: sent offset 0xa5070, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa5864, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa6058, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa684c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa7040, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa7834, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa8028, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa881c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa9010, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa9804, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xa9ff8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent FEC offset 0xaa7ec, segment count: 11
+imgdb_sendimage: sent offset 0xaa7ec, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xaafe0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xab7d4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xabfc8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xac7bc, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xacfb0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xad7a4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xadf98, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xae78c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xaef80, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xaf774, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent FEC offset 0xaff68, segment count: 11
+imgdb_sendimage: sent offset 0xaff68, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb075c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb0f50, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb1744, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb1f38, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb272c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb2f20, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb3714, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb3f08, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb46fc, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb4ef0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent FEC offset 0xb56e4, segment count: 11
+imgdb_sendimage: sent offset 0xb56e4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb5ed8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb66cc, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb6ec0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb76b4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb7ea8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb869c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb8e90, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb9684, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xb9e78, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xba66c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent FEC offset 0xbae60, segment count: 11
+imgdb_sendimage: sent offset 0xbae60, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xbb654, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: DROPPED offset 0xbbe48, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xbc63c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xbce30, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xbd624, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xbde18, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xbe60c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xbee00, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xbf5f4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xbfde8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent FEC offset 0xc05dc, segment count: 11
+imgdb_sendimage: sent offset 0xc05dc, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc0dd0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc15c4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc1db8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc25ac, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc2da0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc3594, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc3d88, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc457c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc4d70, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc5564, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent FEC offset 0xc5d58, segment count: 11
+imgdb_sendimage: sent offset 0xc5d58, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: DROPPED offset 0xc654c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc6d40, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc7534, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc7d28, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc851c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc8d10, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc9504, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xc9cf8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xca4ec, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xcace0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent FEC offset 0xcb4d4, segment count: 11
+imgdb_sendimage: sent offset 0xcb4d4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xcbcc8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xcc4bc, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xcccb0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xcd4a4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xcdc98, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xce48c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xcec80, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xcf474, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xcfc68, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd045c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent FEC offset 0xd0c50, segment count: 11
+imgdb_sendimage: sent offset 0xd0c50, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd1444, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd1c38, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd242c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd2c20, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd3414, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd3c08, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd43fc, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd4bf0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd53e4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd5bd8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent FEC offset 0xd63cc, segment count: 11
+imgdb_sendimage: sent offset 0xd63cc, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd6bc0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd73b4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd7ba8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd839c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd8b90, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd9384, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xd9b78, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xda36c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: DROPPED offset 0xdab60, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xdb354, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent FEC offset 0xdbb48, segment count: 11
+imgdb_sendimage: sent offset 0xdbb48, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xdc33c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xdcb30, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xdd324, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xddb18, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xde30c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xdeb00, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xdf2f4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xdfae8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xe02dc, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xe0ad0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent FEC offset 0xe12c4, segment count: 11
+imgdb_sendimage: sent offset 0xe12c4, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xe1ab8, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xe22ac, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xe2aa0, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xe3294, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xe3a88, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xe427c, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xe4a70, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xe5264, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: sent offset 0xe5a58, 2036 bytes, unacked: 0x89b04
+imgdb_sendimage: received ack: 0x8a2f8, unacked was: 0x89b04, send next 0xe624c
+imgdb_sendimage: received ack: 0x8aaec, unacked was: 0x8a2f8, send next 0xe624c
+imgdb_sendimage: sent offset 0xe624c, 2036 bytes, unacked: 0x8aaec
+imgdb_sendimage: sent FEC offset 0xe6a40, segment count: 11
+imgdb_sendimage: sent offset 0xe6a40, 2036 bytes, unacked: 0x8aaec
+imgdb_sendimage: sent offset 0xe7234, 2036 bytes, unacked: 0x8aaec
+imgdb_sendimage: DROPPED offset 0xe7a28, 2036 bytes, unacked: 0x8aaec
+imgdb_sendimage: sent offset 0xe821c, 2036 bytes, unacked: 0x8aaec
+imgdb_sendimage: sent offset 0xe8a10, 2036 bytes, unacked: 0x8aaec
+imgdb_sendimage: sent offset 0xe9204, 2036 bytes, unacked: 0x8aaec
+imgdb_sendimage: DROPPED offset 0xe99f8, 2036 bytes, unacked: 0x8aaec
+imgdb_sendimage: sent offset 0xea1ec, 2036 bytes, unacked: 0x8aaec
+imgdb_sendimage: sent offset 0xea9e0, 2036 bytes, unacked: 0x8aaec
+imgdb_sendimage: sent offset 0xeb1d4, 2036 bytes, unacked: 0x8aaec
+imgdb_sendimage: sent offset 0xeb9c8, 2036 bytes, unacked: 0x8aaec
+imgdb_sendimage: sent FEC offset 0xec1bc, segment count: 11
+imgdb_sendimage: sent offset 0xec1bc, 2036 bytes, unacked: 0x8aaec
+imgdb_sendimage: sent offset 0xec9b0, 2036 bytes, unacked: 0x8aaec
+imgdb_sendimage: sent offset 0xed1a4, 2036 bytes, unacked: 0x8aaec
+imgdb_sendimage: received ack: 0x8b2e0, unacked was: 0x8aaec, send next 0xed998
+imgdb_sendimage: sent offset 0xed998, 2036 bytes, unacked: 0x8b2e0
+imgdb_sendimage: received ack: 0x8bad4, unacked was: 0x8b2e0, send next 0xee18c
+imgdb_sendimage: sent offset 0xee18c, 2036 bytes, unacked: 0x8bad4
+imgdb_sendimage: received ack: 0x8c2c8, unacked was: 0x8bad4, send next 0xee980
+imgdb_sendimage: sent offset 0xee980, 2036 bytes, unacked: 0x8c2c8
+imgdb_sendimage: received ack: 0x8cabc, unacked was: 0x8c2c8, send next 0xef174
+imgdb_sendimage: DROPPED offset 0xef174, 2036 bytes, unacked: 0x8cabc
+imgdb_sendimage: sent offset 0xef968, 2036 bytes, unacked: 0x8cabc
+imgdb_sendimage: received ack: 0x8d2b0, unacked was: 0x8cabc, send next 0xf015c
+imgdb_sendimage: received ack: 0x8daa4, unacked was: 0x8d2b0, send next 0xf015c
+imgdb_sendimage: sent offset 0xf015c, 2036 bytes, unacked: 0x8daa4
+imgdb_sendimage: received ack: 0x8e298, unacked was: 0x8daa4, send next 0xf0950
+imgdb_sendimage: sent offset 0xf0950, 2036 bytes, unacked: 0x8e298
+imgdb_sendimage: received ack: 0x8ea8c, unacked was: 0x8e298, send next 0xf1144
+imgdb_sendimage: sent offset 0xf1144, 2036 bytes, unacked: 0x8ea8c
+imgdb_sendimage: sent FEC offset 0xf1938, segment count: 11
+imgdb_sendimage: received ack: 0x8f280, unacked was: 0x8ea8c, send next 0xf1938
+imgdb_sendimage: sent offset 0xf1938, 2036 bytes, unacked: 0x8f280
+imgdb_sendimage: received ack: 0x90268, unacked was: 0x8f280, send next 0xf212c
+imgdb_sendimage: sent offset 0xf212c, 2036 bytes, unacked: 0x90268
+imgdb_sendimage: sent offset 0xf2920, 2036 bytes, unacked: 0x90268
+imgdb_sendimage: received ack: 0x90a5c, unacked was: 0x90268, send next 0xf3114
+imgdb_sendimage: sent offset 0xf3114, 2036 bytes, unacked: 0x90a5c
+imgdb_sendimage: received ack: 0x91250, unacked was: 0x90a5c, send next 0xf3908
+imgdb_sendimage: sent offset 0xf3908, 2036 bytes, unacked: 0x91250
+imgdb_sendimage: received ack: 0x91a44, unacked was: 0x91250, send next 0xf40fc
+imgdb_sendimage: sent offset 0xf40fc, 2036 bytes, unacked: 0x91a44
+imgdb_sendimage: received ack: 0x92238, unacked was: 0x91a44, send next 0xf48f0
+imgdb_sendimage: sent offset 0xf48f0, 2036 bytes, unacked: 0x92238
+imgdb_sendimage: received ack: 0x92a2c, unacked was: 0x92238, send next 0xf50e4
+imgdb_sendimage: sent offset 0xf50e4, 2036 bytes, unacked: 0x92a2c
+imgdb_sendimage: received ack: 0x93220, unacked was: 0x92a2c, send next 0xf58d8
+imgdb_sendimage: sent offset 0xf58d8, 2036 bytes, unacked: 0x93220
+imgdb_sendimage: received ack: 0x93a14, unacked was: 0x93220, send next 0xf60cc
+imgdb_sendimage: sent offset 0xf60cc, 2036 bytes, unacked: 0x93a14
+imgdb_sendimage: received ack: 0x94208, unacked was: 0x93a14, send next 0xf68c0
+imgdb_sendimage: sent offset 0xf68c0, 2036 bytes, unacked: 0x94208
+imgdb_sendimage: sent FEC offset 0xf70b4, segment count: 11
+imgdb_sendimage: received ack: 0x949fc, unacked was: 0x94208, send next 0xf70b4
+imgdb_sendimage: sent offset 0xf70b4, 2036 bytes, unacked: 0x949fc
+imgdb_sendimage: received ack: 0x959e4, unacked was: 0x949fc, send next 0xf78a8
+imgdb_sendimage: sent offset 0xf78a8, 2036 bytes, unacked: 0x959e4
+imgdb_sendimage: sent offset 0xf809c, 2036 bytes, unacked: 0x959e4
+imgdb_sendimage: received ack: 0x961d8, unacked was: 0x959e4, send next 0xf8890
+imgdb_sendimage: sent offset 0xf8890, 2036 bytes, unacked: 0x961d8
+imgdb_sendimage: received ack: 0x969cc, unacked was: 0x961d8, send next 0xf9084
+imgdb_sendimage: sent offset 0xf9084, 2036 bytes, unacked: 0x969cc
+imgdb_sendimage: received ack: 0x971c0, unacked was: 0x969cc, send next 0xf9878
+imgdb_sendimage: sent offset 0xf9878, 2036 bytes, unacked: 0x971c0
+imgdb_sendimage: received ack: 0x979b4, unacked was: 0x971c0, send next 0xfa06c
+imgdb_sendimage: sent offset 0xfa06c, 2036 bytes, unacked: 0x979b4
+imgdb_sendimage: received ack: 0x981a8, unacked was: 0x979b4, send next 0xfa860
+imgdb_sendimage: sent offset 0xfa860, 2036 bytes, unacked: 0x981a8
+imgdb_sendimage: received ack: 0x9899c, unacked was: 0x981a8, send next 0xfb054
+imgdb_sendimage: sent offset 0xfb054, 2036 bytes, unacked: 0x9899c
+imgdb_sendimage: received ack: 0x99190, unacked was: 0x9899c, send next 0xfb848
+imgdb_sendimage: sent offset 0xfb848, 2036 bytes, unacked: 0x99190
+imgdb_sendimage: received ack: 0x99984, unacked was: 0x99190, send next 0xfc03c
+imgdb_sendimage: sent offset 0xfc03c, 2036 bytes, unacked: 0x99984
+imgdb_sendimage: sent FEC offset 0xfc830, segment count: 11
+imgdb_sendimage: received ack: 0x9a178, unacked was: 0x99984, send next 0xfc830
+imgdb_sendimage: sent offset 0xfc830, 2036 bytes, unacked: 0x9a178
+imgdb_sendimage: received ack: 0x9b160, unacked was: 0x9a178, send next 0xfd024
+imgdb_sendimage: sent offset 0xfd024, 2036 bytes, unacked: 0x9b160
+imgdb_sendimage: sent offset 0xfd818, 2036 bytes, unacked: 0x9b160
+imgdb_sendimage: received ack: 0x9b954, unacked was: 0x9b160, send next 0xfe00c
+imgdb_sendimage: sent offset 0xfe00c, 2036 bytes, unacked: 0x9b954
+imgdb_sendimage: received ack: 0x9c148, unacked was: 0x9b954, send next 0xfe800
+imgdb_sendimage: sent offset 0xfe800, 2036 bytes, unacked: 0x9c148
+imgdb_sendimage: received ack: 0x9c93c, unacked was: 0x9c148, send next 0xfeff4
+imgdb_sendimage: sent offset 0xfeff4, 2036 bytes, unacked: 0x9c93c
+imgdb_sendimage: received ack: 0x9d130, unacked was: 0x9c93c, send next 0xff7e8
+imgdb_sendimage: sent offset 0xff7e8, 2036 bytes, unacked: 0x9d130
+imgdb_sendimage: received ack: 0x9d924, unacked was: 0x9d130, send next 0xfffdc
+imgdb_sendimage: sent offset 0xfffdc, 2036 bytes, unacked: 0x9d924
+imgdb_sendimage: received ack: 0x9e118, unacked was: 0x9d924, send next 0x1007d0
+imgdb_sendimage: sent offset 0x1007d0, 2036 bytes, unacked: 0x9e118
+imgdb_sendimage: received ack: 0x9e90c, unacked was: 0x9e118, send next 0x100fc4
+imgdb_sendimage: sent offset 0x100fc4, 2036 bytes, unacked: 0x9e90c
+imgdb_sendimage: received ack: 0x9f100, unacked was: 0x9e90c, send next 0x1017b8
+imgdb_sendimage: sent offset 0x1017b8, 2036 bytes, unacked: 0x9f100
+imgdb_sendimage: sent FEC offset 0x101fac, segment count: 11
+imgdb_sendimage: received ack: 0x9f8f4, unacked was: 0x9f100, send next 0x101fac
+imgdb_sendimage: sent offset 0x101fac, 2036 bytes, unacked: 0x9f8f4
+imgdb_sendimage: received ack: 0xa08dc, unacked was: 0x9f8f4, send next 0x1027a0
+imgdb_sendimage: sent offset 0x1027a0, 2036 bytes, unacked: 0xa08dc
+imgdb_sendimage: sent offset 0x102f94, 2036 bytes, unacked: 0xa08dc
+imgdb_sendimage: received ack: 0xa10d0, unacked was: 0xa08dc, send next 0x103788
+imgdb_sendimage: sent offset 0x103788, 2036 bytes, unacked: 0xa10d0
+imgdb_sendimage: received ack: 0xa18c4, unacked was: 0xa10d0, send next 0x103f7c
+imgdb_sendimage: sent offset 0x103f7c, 2036 bytes, unacked: 0xa18c4
+imgdb_sendimage: received ack: 0xa20b8, unacked was: 0xa18c4, send next 0x104770
+imgdb_sendimage: sent offset 0x104770, 2036 bytes, unacked: 0xa20b8
+imgdb_sendimage: received ack: 0xa28ac, unacked was: 0xa20b8, send next 0x104f64
+imgdb_sendimage: sent offset 0x104f64, 2036 bytes, unacked: 0xa28ac
+imgdb_sendimage: received ack: 0xa30a0, unacked was: 0xa28ac, send next 0x105758
+imgdb_sendimage: sent offset 0x105758, 2036 bytes, unacked: 0xa30a0
+imgdb_sendimage: received ack: 0xa3894, unacked was: 0xa30a0, send next 0x105f4c
+imgdb_sendimage: sent offset 0x105f4c, 2036 bytes, unacked: 0xa3894
+imgdb_sendimage: received ack: 0xa4088, unacked was: 0xa3894, send next 0x106740
+imgdb_sendimage: sent offset 0x106740, 2036 bytes, unacked: 0xa4088
+imgdb_sendimage: received ack: 0xa487c, unacked was: 0xa4088, send next 0x106f34
+imgdb_sendimage: sent offset 0x106f34, 2036 bytes, unacked: 0xa487c
+imgdb_sendimage: sent FEC offset 0x107728, segment count: 11
+imgdb_sendimage: received ack: 0xa5070, unacked was: 0xa487c, send next 0x107728
+imgdb_sendimage: sent offset 0x107728, 2036 bytes, unacked: 0xa5070
+imgdb_sendimage: received ack: 0xa6058, unacked was: 0xa5070, send next 0x107f1c
+imgdb_sendimage: sent offset 0x107f1c, 2036 bytes, unacked: 0xa6058
+imgdb_sendimage: sent offset 0x108710, 2036 bytes, unacked: 0xa6058
+imgdb_sendimage: received ack: 0xa684c, unacked was: 0xa6058, send next 0x108f04
+imgdb_sendimage: sent offset 0x108f04, 2036 bytes, unacked: 0xa684c
+imgdb_sendimage: received ack: 0xa7040, unacked was: 0xa684c, send next 0x1096f8
+imgdb_sendimage: sent offset 0x1096f8, 2036 bytes, unacked: 0xa7040
+imgdb_sendimage: received ack: 0xa7834, unacked was: 0xa7040, send next 0x109eec
+imgdb_sendimage: sent offset 0x109eec, 2036 bytes, unacked: 0xa7834
+imgdb_sendimage: received ack: 0xa8028, unacked was: 0xa7834, send next 0x10a6e0
+imgdb_sendimage: sent offset 0x10a6e0, 2036 bytes, unacked: 0xa8028
+imgdb_sendimage: received ack: 0xa881c, unacked was: 0xa8028, send next 0x10aed4
+imgdb_sendimage: sent offset 0x10aed4, 2036 bytes, unacked: 0xa881c
+imgdb_sendimage: received ack: 0xa9010, unacked was: 0xa881c, send next 0x10b6c8
+imgdb_sendimage: sent offset 0x10b6c8, 2036 bytes, unacked: 0xa9010
+imgdb_sendimage: received ack: 0xa9804, unacked was: 0xa9010, send next 0x10bebc
+imgdb_sendimage: sent offset 0x10bebc, 2036 bytes, unacked: 0xa9804
+imgdb_sendimage: received ack: 0xa9ff8, unacked was: 0xa9804, send next 0x10c6b0
+imgdb_sendimage: sent offset 0x10c6b0, 2036 bytes, unacked: 0xa9ff8
+imgdb_sendimage: sent FEC offset 0x10cea4, segment count: 11
+imgdb_sendimage: received ack: 0xaa7ec, unacked was: 0xa9ff8, send next 0x10cea4
+imgdb_sendimage: sent offset 0x10cea4, 2036 bytes, unacked: 0xaa7ec
+imgdb_sendimage: received ack: 0xab7d4, unacked was: 0xaa7ec, send next 0x10d698
+imgdb_sendimage: sent offset 0x10d698, 2036 bytes, unacked: 0xab7d4
+imgdb_sendimage: sent offset 0x10de8c, 2036 bytes, unacked: 0xab7d4
+imgdb_sendimage: received ack: 0xabfc8, unacked was: 0xab7d4, send next 0x10e680
+imgdb_sendimage: sent offset 0x10e680, 2036 bytes, unacked: 0xabfc8
+imgdb_sendimage: received ack: 0xac7bc, unacked was: 0xabfc8, send next 0x10ee74
+imgdb_sendimage: sent offset 0x10ee74, 2036 bytes, unacked: 0xac7bc
+imgdb_sendimage: received ack: 0xacfb0, unacked was: 0xac7bc, send next 0x10f668
+imgdb_sendimage: sent offset 0x10f668, 2036 bytes, unacked: 0xacfb0
+imgdb_sendimage: received ack: 0xad7a4, unacked was: 0xacfb0, send next 0x10fe5c
+imgdb_sendimage: sent offset 0x10fe5c, 2036 bytes, unacked: 0xad7a4
+imgdb_sendimage: received ack: 0xadf98, unacked was: 0xad7a4, send next 0x110650
+imgdb_sendimage: sent offset 0x110650, 2036 bytes, unacked: 0xadf98
+imgdb_sendimage: received ack: 0xae78c, unacked was: 0xadf98, send next 0x110e44
+imgdb_sendimage: sent offset 0x110e44, 1980 bytes, unacked: 0xae78c
+imgdb_sendimage: sent FEC offset 0x111600, segment count: 9
+imgdb_sendimage: received ack: 0xaef80, unacked was: 0xae78c, send next 0x111600
+imgdb_sendimage: received ack: 0xaf774, unacked was: 0xaef80, send next 0x111600
+imgdb_sendimage: received ack: 0xaff68, unacked was: 0xaf774, send next 0x111600
+imgdb_sendimage: received ack: 0xb0f50, unacked was: 0xaff68, send next 0x111600
+imgdb_sendimage: received ack: 0xb1744, unacked was: 0xb0f50, send next 0x111600
+imgdb_sendimage: received ack: 0xb1f38, unacked was: 0xb1744, send next 0x111600
+imgdb_sendimage: received ack: 0xb272c, unacked was: 0xb1f38, send next 0x111600
+imgdb_sendimage: received ack: 0xb2f20, unacked was: 0xb272c, send next 0x111600
+imgdb_sendimage: received ack: 0xb3714, unacked was: 0xb2f20, send next 0x111600
+imgdb_sendimage: received ack: 0xb3f08, unacked was: 0xb3714, send next 0x111600
+imgdb_sendimage: received ack: 0xb46fc, unacked was: 0xb3f08, send next 0x111600
+imgdb_sendimage: received ack: 0xb4ef0, unacked was: 0xb46fc, send next 0x111600
+imgdb_sendimage: received ack: 0xb56e4, unacked was: 0xb4ef0, send next 0x111600
+imgdb_sendimage: received ack: 0xb66cc, unacked was: 0xb56e4, send next 0x111600
+imgdb_sendimage: received ack: 0xb6ec0, unacked was: 0xb66cc, send next 0x111600
+imgdb_sendimage: RTO unacked: 0xb6ec0, next offset 0x111600, usable 36704 bytes
+imgdb_sendimage: sent offset 0xb6ec0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xb76b4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xb7ea8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xb869c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xb8e90, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xb9684, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xb9e78, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xba66c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xbae60, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xbb654, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xbbe48, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0xbc63c, segment count: 11
+imgdb_sendimage: sent offset 0xbc63c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xbce30, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xbd624, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xbde18, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xbe60c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xbee00, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xbf5f4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xbfde8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc05dc, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc0dd0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc15c4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0xc1db8, segment count: 11
+imgdb_sendimage: sent offset 0xc1db8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc25ac, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc2da0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc3594, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc3d88, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc457c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc4d70, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc5564, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc5d58, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc654c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc6d40, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0xc7534, segment count: 11
+imgdb_sendimage: sent offset 0xc7534, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc7d28, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc851c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc8d10, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc9504, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xc9cf8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xca4ec, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xcace0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xcb4d4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xcbcc8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xcc4bc, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0xcccb0, segment count: 11
+imgdb_sendimage: sent offset 0xcccb0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xcd4a4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xcdc98, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xce48c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xcec80, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xcf474, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xcfc68, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd045c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd0c50, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd1444, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd1c38, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0xd242c, segment count: 11
+imgdb_sendimage: sent offset 0xd242c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd2c20, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd3414, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd3c08, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd43fc, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd4bf0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd53e4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd5bd8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd63cc, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd6bc0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd73b4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0xd7ba8, segment count: 11
+imgdb_sendimage: sent offset 0xd7ba8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: DROPPED offset 0xd839c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd8b90, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd9384, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xd9b78, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xda36c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xdab60, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xdb354, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xdbb48, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xdc33c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xdcb30, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0xdd324, segment count: 11
+imgdb_sendimage: sent offset 0xdd324, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xddb18, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xde30c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xdeb00, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xdf2f4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xdfae8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe02dc, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe0ad0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe12c4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe1ab8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe22ac, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0xe2aa0, segment count: 11
+imgdb_sendimage: sent offset 0xe2aa0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe3294, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe3a88, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe427c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe4a70, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe5264, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe5a58, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe624c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe6a40, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe7234, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe7a28, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0xe821c, segment count: 11
+imgdb_sendimage: sent offset 0xe821c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe8a10, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe9204, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xe99f8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xea1ec, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xea9e0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xeb1d4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xeb9c8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xec1bc, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xec9b0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xed1a4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0xed998, segment count: 11
+imgdb_sendimage: sent offset 0xed998, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xee18c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xee980, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xef174, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xef968, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf015c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf0950, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf1144, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf1938, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf212c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf2920, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0xf3114, segment count: 11
+imgdb_sendimage: sent offset 0xf3114, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf3908, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf40fc, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf48f0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf50e4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf58d8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf60cc, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf68c0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf70b4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf78a8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf809c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0xf8890, segment count: 11
+imgdb_sendimage: sent offset 0xf8890, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf9084, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xf9878, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xfa06c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xfa860, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xfb054, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xfb848, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xfc03c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xfc830, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xfd024, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xfd818, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0xfe00c, segment count: 11
+imgdb_sendimage: sent offset 0xfe00c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xfe800, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xfeff4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xff7e8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0xfffdc, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x1007d0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x100fc4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x1017b8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x101fac, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x1027a0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x102f94, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0x103788, segment count: 11
+imgdb_sendimage: DROPPED offset 0x103788, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x103f7c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x104770, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x104f64, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x105758, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x105f4c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x106740, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x106f34, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x107728, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x107f1c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x108710, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0x108f04, segment count: 11
+imgdb_sendimage: sent offset 0x108f04, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x1096f8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x109eec, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x10a6e0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x10aed4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x10b6c8, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x10bebc, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x10c6b0, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x10cea4, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x10d698, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x10de8c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0x10e680, segment count: 11
+imgdb_sendimage: sent offset 0x10e680, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x10ee74, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x10f668, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x10fe5c, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x110650, 2036 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent offset 0x110e44, 1980 bytes, unacked: 0xb6ec0
+imgdb_sendimage: sent FEC offset 0x111600, segment count: 6
+imgdb_sendimage: received ack: 0xb76b4, unacked was: 0xb6ec0, send next 0x111600
+imgdb_sendimage: received ack: 0xb7ea8, unacked was: 0xb76b4, send next 0x111600
+imgdb_sendimage: received ack: 0xb869c, unacked was: 0xb7ea8, send next 0x111600
+imgdb_sendimage: received ack: 0xb8e90, unacked was: 0xb869c, send next 0x111600
+imgdb_sendimage: received ack: 0xb9684, unacked was: 0xb8e90, send next 0x111600
+imgdb_sendimage: received ack: 0xb9e78, unacked was: 0xb9684, send next 0x111600
+imgdb_sendimage: received ack: 0xba66c, unacked was: 0xb9e78, send next 0x111600
+imgdb_sendimage: received ack: 0xbae60, unacked was: 0xba66c, send next 0x111600
+imgdb_sendimage: received ack: 0xbb654, unacked was: 0xbae60, send next 0x111600
+imgdb_sendimage: received ack: 0xbbe48, unacked was: 0xbb654, send next 0x111600
+imgdb_sendimage: received ack: 0xbc63c, unacked was: 0xbbe48, send next 0x111600
+imgdb_sendimage: received ack: 0xbd624, unacked was: 0xbc63c, send next 0x111600
+imgdb_sendimage: received ack: 0xbde18, unacked was: 0xbd624, send next 0x111600
+imgdb_sendimage: received ack: 0xbe60c, unacked was: 0xbde18, send next 0x111600
+imgdb_sendimage: received ack: 0xbee00, unacked was: 0xbe60c, send next 0x111600
+imgdb_sendimage: received ack: 0xbf5f4, unacked was: 0xbee00, send next 0x111600
+imgdb_sendimage: received ack: 0xbfde8, unacked was: 0xbf5f4, send next 0x111600
+imgdb_sendimage: received ack: 0xc05dc, unacked was: 0xbfde8, send next 0x111600
+imgdb_sendimage: received ack: 0xc0dd0, unacked was: 0xc05dc, send next 0x111600
+imgdb_sendimage: received ack: 0xc15c4, unacked was: 0xc0dd0, send next 0x111600
+imgdb_sendimage: received ack: 0xc1db8, unacked was: 0xc15c4, send next 0x111600
+imgdb_sendimage: received ack: 0xc2da0, unacked was: 0xc1db8, send next 0x111600
+imgdb_sendimage: received ack: 0xc3594, unacked was: 0xc2da0, send next 0x111600
+imgdb_sendimage: received ack: 0xc3d88, unacked was: 0xc3594, send next 0x111600
+imgdb_sendimage: received ack: 0xc457c, unacked was: 0xc3d88, send next 0x111600
+imgdb_sendimage: received ack: 0xc4d70, unacked was: 0xc457c, send next 0x111600
+imgdb_sendimage: received ack: 0xc5564, unacked was: 0xc4d70, send next 0x111600
+imgdb_sendimage: received ack: 0xc5d58, unacked was: 0xc5564, send next 0x111600
+imgdb_sendimage: received ack: 0xc654c, unacked was: 0xc5d58, send next 0x111600
+imgdb_sendimage: received ack: 0xc6d40, unacked was: 0xc654c, send next 0x111600
+imgdb_sendimage: received ack: 0xc7534, unacked was: 0xc6d40, send next 0x111600
+imgdb_sendimage: received ack: 0xc851c, unacked was: 0xc7534, send next 0x111600
+imgdb_sendimage: received ack: 0xc9504, unacked was: 0xc851c, send next 0x111600
+imgdb_sendimage: received ack: 0xc9cf8, unacked was: 0xc9504, send next 0x111600
+imgdb_sendimage: received ack: 0xca4ec, unacked was: 0xc9cf8, send next 0x111600
+imgdb_sendimage: received ack: 0xcace0, unacked was: 0xca4ec, send next 0x111600
+imgdb_sendimage: received ack: 0xcb4d4, unacked was: 0xcace0, send next 0x111600
+imgdb_sendimage: received ack: 0xcbcc8, unacked was: 0xcb4d4, send next 0x111600
+imgdb_sendimage: received ack: 0xcc4bc, unacked was: 0xcbcc8, send next 0x111600
+imgdb_sendimage: received ack: 0xcccb0, unacked was: 0xcc4bc, send next 0x111600
+imgdb_sendimage: received ack: 0xcdc98, unacked was: 0xcccb0, send next 0x111600
+imgdb_sendimage: received ack: 0xce48c, unacked was: 0xcdc98, send next 0x111600
+imgdb_sendimage: received ack: 0xcec80, unacked was: 0xce48c, send next 0x111600
+imgdb_sendimage: received ack: 0xcf474, unacked was: 0xcec80, send next 0x111600
+imgdb_sendimage: received ack: 0xcfc68, unacked was: 0xcf474, send next 0x111600
+imgdb_sendimage: received ack: 0xd045c, unacked was: 0xcfc68, send next 0x111600
+imgdb_sendimage: received ack: 0xd0c50, unacked was: 0xd045c, send next 0x111600
+imgdb_sendimage: received ack: 0xd1444, unacked was: 0xd0c50, send next 0x111600
+imgdb_sendimage: received ack: 0xd1c38, unacked was: 0xd1444, send next 0x111600
+imgdb_sendimage: received ack: 0xd242c, unacked was: 0xd1c38, send next 0x111600
+imgdb_sendimage: received ack: 0xd3414, unacked was: 0xd242c, send next 0x111600
+imgdb_sendimage: received ack: 0xd3c08, unacked was: 0xd3414, send next 0x111600
+imgdb_sendimage: received ack: 0xd43fc, unacked was: 0xd3c08, send next 0x111600
+imgdb_sendimage: received ack: 0xd4bf0, unacked was: 0xd43fc, send next 0x111600
+imgdb_sendimage: received ack: 0xd53e4, unacked was: 0xd4bf0, send next 0x111600
+imgdb_sendimage: received ack: 0xd5bd8, unacked was: 0xd53e4, send next 0x111600
+imgdb_sendimage: received ack: 0xd63cc, unacked was: 0xd5bd8, send next 0x111600
+imgdb_sendimage: received ack: 0xd6bc0, unacked was: 0xd63cc, send next 0x111600
+imgdb_sendimage: received ack: 0xd73b4, unacked was: 0xd6bc0, send next 0x111600
+imgdb_sendimage: received ack: 0xd7ba8, unacked was: 0xd73b4, send next 0x111600
+imgdb_sendimage: received ack: 0xe3a88, unacked was: 0xd7ba8, send next 0x111600
+imgdb_sendimage: received ack: 0xe427c, unacked was: 0xe3a88, send next 0x111600
+imgdb_sendimage: received ack: 0xe4a70, unacked was: 0xe427c, send next 0x111600
+imgdb_sendimage: RTO unacked: 0xe4a70, next offset 0x111600, usable 224016 bytes
+imgdb_sendimage: sent offset 0xe4a70, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xe5264, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xe5a58, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xe624c, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xe6a40, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xe7234, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xe7a28, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xe821c, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xe8a10, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xe9204, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xe99f8, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent FEC offset 0xea1ec, segment count: 11
+imgdb_sendimage: sent offset 0xea1ec, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xea9e0, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xeb1d4, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xeb9c8, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xec1bc, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xec9b0, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xed1a4, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xed998, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xee18c, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xee980, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xef174, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent FEC offset 0xef968, segment count: 11
+imgdb_sendimage: sent offset 0xef968, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf015c, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf0950, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf1144, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf1938, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf212c, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf2920, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf3114, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf3908, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf40fc, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf48f0, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent FEC offset 0xf50e4, segment count: 11
+imgdb_sendimage: sent offset 0xf50e4, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf58d8, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf60cc, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf68c0, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf70b4, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf78a8, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf809c, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf8890, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf9084, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xf9878, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xfa06c, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent FEC offset 0xfa860, segment count: 11
+imgdb_sendimage: sent offset 0xfa860, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xfb054, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xfb848, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xfc03c, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xfc830, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xfd024, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xfd818, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xfe00c, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xfe800, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xfeff4, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0xff7e8, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent FEC offset 0xfffdc, segment count: 11
+imgdb_sendimage: sent offset 0xfffdc, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x1007d0, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x100fc4, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x1017b8, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x101fac, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x1027a0, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x102f94, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x103788, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x103f7c, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x104770, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x104f64, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent FEC offset 0x105758, segment count: 11
+imgdb_sendimage: sent offset 0x105758, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x105f4c, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x106740, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x106f34, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x107728, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x107f1c, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x108710, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x108f04, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x1096f8, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x109eec, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x10a6e0, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent FEC offset 0x10aed4, segment count: 11
+imgdb_sendimage: sent offset 0x10aed4, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x10b6c8, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x10bebc, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x10c6b0, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x10cea4, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x10d698, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x10de8c, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x10e680, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x10ee74, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x10f668, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x10fe5c, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent FEC offset 0x110650, segment count: 11
+imgdb_sendimage: sent offset 0x110650, 2036 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent offset 0x110e44, 1980 bytes, unacked: 0xe4a70
+imgdb_sendimage: sent FEC offset 0x111600, segment count: 2
+imgdb_sendimage: received ack: 0xe5264, unacked was: 0xe4a70, send next 0x111600
+imgdb_sendimage: received ack: 0xe5a58, unacked was: 0xe5264, send next 0x111600
+imgdb_sendimage: received ack: 0xe624c, unacked was: 0xe5a58, send next 0x111600
+imgdb_sendimage: received ack: 0xe6a40, unacked was: 0xe624c, send next 0x111600
+imgdb_sendimage: received ack: 0xe7234, unacked was: 0xe6a40, send next 0x111600
+imgdb_sendimage: received ack: 0xe7a28, unacked was: 0xe7234, send next 0x111600
+imgdb_sendimage: received ack: 0xe821c, unacked was: 0xe7a28, send next 0x111600
+imgdb_sendimage: received ack: 0xe8a10, unacked was: 0xe821c, send next 0x111600
+imgdb_sendimage: received ack: 0xe9204, unacked was: 0xe8a10, send next 0x111600
+imgdb_sendimage: received ack: 0xe99f8, unacked was: 0xe9204, send next 0x111600
+imgdb_sendimage: received ack: 0xea1ec, unacked was: 0xe99f8, send next 0x111600
+imgdb_sendimage: received ack: 0xeb1d4, unacked was: 0xea1ec, send next 0x111600
+imgdb_sendimage: received ack: 0xeb9c8, unacked was: 0xeb1d4, send next 0x111600
+imgdb_sendimage: received ack: 0xec1bc, unacked was: 0xeb9c8, send next 0x111600
+imgdb_sendimage: received ack: 0xec9b0, unacked was: 0xec1bc, send next 0x111600
+imgdb_sendimage: received ack: 0xed1a4, unacked was: 0xec9b0, send next 0x111600
+imgdb_sendimage: received ack: 0xed998, unacked was: 0xed1a4, send next 0x111600
+imgdb_sendimage: received ack: 0xee18c, unacked was: 0xed998, send next 0x111600
+imgdb_sendimage: received ack: 0xee980, unacked was: 0xee18c, send next 0x111600
+imgdb_sendimage: received ack: 0xef174, unacked was: 0xee980, send next 0x111600
+imgdb_sendimage: received ack: 0xef968, unacked was: 0xef174, send next 0x111600
+imgdb_sendimage: received ack: 0xf0950, unacked was: 0xef968, send next 0x111600
+imgdb_sendimage: received ack: 0xf1144, unacked was: 0xf0950, send next 0x111600
+imgdb_sendimage: received ack: 0xf1938, unacked was: 0xf1144, send next 0x111600
+imgdb_sendimage: received ack: 0xf212c, unacked was: 0xf1938, send next 0x111600
+imgdb_sendimage: received ack: 0xf2920, unacked was: 0xf212c, send next 0x111600
+imgdb_sendimage: received ack: 0xf3114, unacked was: 0xf2920, send next 0x111600
+imgdb_sendimage: received ack: 0xf3908, unacked was: 0xf3114, send next 0x111600
+imgdb_sendimage: received ack: 0xf40fc, unacked was: 0xf3908, send next 0x111600
+imgdb_sendimage: received ack: 0xf48f0, unacked was: 0xf40fc, send next 0x111600
+imgdb_sendimage: received ack: 0xf50e4, unacked was: 0xf48f0, send next 0x111600
+imgdb_sendimage: received ack: 0xf60cc, unacked was: 0xf50e4, send next 0x111600
+imgdb_sendimage: received ack: 0xf68c0, unacked was: 0xf60cc, send next 0x111600
+imgdb_sendimage: received ack: 0xf70b4, unacked was: 0xf68c0, send next 0x111600
+imgdb_sendimage: received ack: 0xf78a8, unacked was: 0xf70b4, send next 0x111600
+imgdb_sendimage: received ack: 0xf809c, unacked was: 0xf78a8, send next 0x111600
+imgdb_sendimage: received ack: 0xf8890, unacked was: 0xf809c, send next 0x111600
+imgdb_sendimage: received ack: 0xf9084, unacked was: 0xf8890, send next 0x111600
+imgdb_sendimage: received ack: 0xf9878, unacked was: 0xf9084, send next 0x111600
+imgdb_sendimage: received ack: 0xfa06c, unacked was: 0xf9878, send next 0x111600
+imgdb_sendimage: received ack: 0xfa860, unacked was: 0xfa06c, send next 0x111600
+imgdb_sendimage: received ack: 0xfb848, unacked was: 0xfa860, send next 0x111600
+imgdb_sendimage: received ack: 0xfc03c, unacked was: 0xfb848, send next 0x111600
+imgdb_sendimage: received ack: 0xfc830, unacked was: 0xfc03c, send next 0x111600
+imgdb_sendimage: received ack: 0xfd024, unacked was: 0xfc830, send next 0x111600
+imgdb_sendimage: received ack: 0xfd818, unacked was: 0xfd024, send next 0x111600
+imgdb_sendimage: received ack: 0xfe00c, unacked was: 0xfd818, send next 0x111600
+imgdb_sendimage: received ack: 0xfe800, unacked was: 0xfe00c, send next 0x111600
+imgdb_sendimage: received ack: 0xfeff4, unacked was: 0xfe800, send next 0x111600
+imgdb_sendimage: received ack: 0xff7e8, unacked was: 0xfeff4, send next 0x111600
+imgdb_sendimage: received ack: 0xfffdc, unacked was: 0xff7e8, send next 0x111600
+imgdb_sendimage: received ack: 0x100fc4, unacked was: 0xfffdc, send next 0x111600
+imgdb_sendimage: received ack: 0x101fac, unacked was: 0x100fc4, send next 0x111600
+imgdb_sendimage: received ack: 0x1027a0, unacked was: 0x101fac, send next 0x111600
+imgdb_sendimage: received ack: 0x102f94, unacked was: 0x1027a0, send next 0x111600
+imgdb_sendimage: received ack: 0x103788, unacked was: 0x102f94, send next 0x111600
+imgdb_sendimage: received ack: 0x103f7c, unacked was: 0x103788, send next 0x111600
+imgdb_sendimage: received ack: 0x104770, unacked was: 0x103f7c, send next 0x111600
+imgdb_sendimage: received ack: 0x104f64, unacked was: 0x104770, send next 0x111600
+imgdb_sendimage: received ack: 0x105758, unacked was: 0x104f64, send next 0x111600
+imgdb_sendimage: received ack: 0x106740, unacked was: 0x105758, send next 0x111600
+imgdb_sendimage: received ack: 0x106f34, unacked was: 0x106740, send next 0x111600
+imgdb_sendimage: received ack: 0x107728, unacked was: 0x106f34, send next 0x111600
+imgdb_sendimage: received ack: 0x107f1c, unacked was: 0x107728, send next 0x111600
+imgdb_sendimage: received ack: 0x108710, unacked was: 0x107f1c, send next 0x111600
+imgdb_sendimage: received ack: 0x108f04, unacked was: 0x108710, send next 0x111600
+imgdb_sendimage: received ack: 0x1096f8, unacked was: 0x108f04, send next 0x111600
+imgdb_sendimage: received ack: 0x109eec, unacked was: 0x1096f8, send next 0x111600
+imgdb_sendimage: received ack: 0x10a6e0, unacked was: 0x109eec, send next 0x111600
+imgdb_sendimage: received ack: 0x10aed4, unacked was: 0x10a6e0, send next 0x111600
+imgdb_sendimage: received ack: 0x10bebc, unacked was: 0x10aed4, send next 0x111600
+imgdb_sendimage: received ack: 0x10c6b0, unacked was: 0x10bebc, send next 0x111600
+imgdb_sendimage: received ack: 0x10cea4, unacked was: 0x10c6b0, send next 0x111600
+imgdb_sendimage: received ack: 0x10d698, unacked was: 0x10cea4, send next 0x111600
+imgdb_sendimage: received ack: 0x10de8c, unacked was: 0x10d698, send next 0x111600
+imgdb_sendimage: received ack: 0x10e680, unacked was: 0x10de8c, send next 0x111600
+imgdb_sendimage: received ack: 0x10ee74, unacked was: 0x10e680, send next 0x111600
+imgdb_sendimage: received ack: 0x10f668, unacked was: 0x10ee74, send next 0x111600
+imgdb_sendimage: received ack: 0x10fe5c, unacked was: 0x10f668, send next 0x111600
+imgdb_sendimage: received ack: 0x110650, unacked was: 0x10fe5c, send next 0x111600
+imgdb_sendimage: received ack: 0x111638, unacked was: 0x110650, send next 0x111600
+imgdb_sendimage: sent FIN (0xfffffffe), unacked: 0x111638

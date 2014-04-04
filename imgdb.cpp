@@ -129,6 +129,7 @@ imgdb_imginit(char *fname, LTGA *image, imsg_t *imsg, int *img_size)
     img_dsize = (double) (image->GetImageWidth()*image->GetImageHeight()*(image->GetPixelDepth()/8));
     net_assert((img_dsize > (double) NETIMG_MAXSEQ), "imgdb: image too big");
     *img_size = (int) img_dsize;
+    cout << "img_size1: " << *  img_size << endl;
 
     imsg->im_depth = (unsigned char)(image->GetPixelDepth()/8);
     imsg->im_width = htons(image->GetImageWidth());
@@ -248,6 +249,7 @@ imgdb_recvquery(int sd, struct sockaddr_in *client, unsigned short *mss,
     }
     *mss = ntohs(tmpqry.iq_mss);
     *rwnd = tmpqry.iq_rwnd;
+    *fwnd = tmpqry.iq_fwnd;
     strcpy(fname, tmpqry.iq_name);
     if ((tmpqry.iq_vers == NETIMG_VERS) || (tmpqry.iq_type == NETIMG_SYN)){
       cout << "received proper-form query" << endl;
@@ -429,20 +431,23 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
     /* YOUR CODE HERE */
 
 
-    while((window_sent < usable) && (snd_next <= img_size)){
+    while((usable > 0) && (snd_next <= img_size) && (segsize != 0)){
 
       //TODO: may not be correct??
       if (fec_count == 0) fec_init(fecdata, ip+snd_next, datasize, segsize);
       else fec_accum(fecdata, ip+snd_next, datasize, segsize);
       cout << "accum on: 0x" << hex << snd_next << endl;
 
+      //check again
+      left = img_size - snd_next;
+      segsize = datasize > left ? left : datasize;
            
 
       if (((float) random())/INT_MAX < pdrop) {
       fprintf(stderr, "imgdb_sendimage: DROPPED offset 0x%x, %d bytes, unacked: 0x%x\n",
               snd_next, segsize, snd_una);
-        snd_next += datasize;
-        window_sent += datasize;
+        snd_next += segsize;
+        window_sent += segsize;
         fec_count++;
       } 
 
@@ -462,13 +467,15 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
 
         fprintf(stderr, "imgdb_sendimage: sent offset 0x%x, %d bytes, unacked: 0x%x\n",
                 snd_next, segsize, snd_una);
-        snd_next += datasize;
-        window_sent += datasize;
+        snd_next += segsize;
+        window_sent += segsize;
 
         fec_count++;
       }
 
-      if (fec_count == fwnd || snd_next > img_size || window_sent >= usable){
+
+      cout << "fwnd: " << (int)fwnd << endl;
+      if (fec_count == fwnd || snd_next > img_size || window_sent >= usable || segsize == 0){
         //update header with next windows' seq number - incremented above
         ihdr.ih_seqn = htonl(snd_next);
         ihdr.ih_size = htons(datasize);
@@ -483,8 +490,8 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
         if (((float) random())/INT_MAX < pdrop) {
         fprintf(stderr, "imgdb_sendimage: DROPPED FEC offset 0x%x, segment count: %d\n",
                 snd_next, fec_count);
-          snd_next += datasize;
-          window_sent += datasize;
+          // snd_next += datasize;
+          // window_sent += datasize;
           fec_count=0; //TODO: these parameters correct???
           continue;
         } 
@@ -497,11 +504,14 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
           abort();
         }
 
-
         ihdr.ih_type = NETIMG_DAT; //reset type
         memset(fecdata, 0, datasize);
         fec_count = 0;
       }
+
+      usable = wnd_size*datasize - (snd_next - snd_una);
+      // fprintf(stderr, "snd_next: 0x%d  img_size: 0x%d\n", snd_next, img_size);
+      // fprintf(stderr, "window_sent: 0x%d  usable: 0x%d\n", window_sent, usable);
     }
 
     /* Task 2.2: Next wait for ACKs for up to NETIMG_SLEEP secs and NETIMG_USLEEp usec. */
@@ -550,9 +560,10 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
         }
         //set snd_una to this ack
         else {
-          printf("imgdb_sendimage: received ack: 0x%x, unacked was: 0x%x, send next 0x%x\n",
+          fprintf(stderr, "imgdb_sendimage: received ack: 0x%x, unacked was: 0x%x, send next 0x%x\n",
            ntohl(this_ack.ih_seqn), snd_una, snd_next);
           snd_una = ntohl(this_ack.ih_seqn);
+          if (snd_una == img_size) snd_una++;
         }
         // break;
       }
@@ -568,7 +579,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
     */
     /* YOUR CODE HERE */
     if (this_ack.ih_vers == 0){
-      printf("imgdb_sendimage: RTO unacked: 0x%x, next offset 0x%x, usable %d bytes\n",
+      fprintf(stderr, "imgdb_sendimage: RTO unacked: 0x%x, next offset 0x%x, usable %d bytes\n",
        snd_una, snd_next, (usable-window_sent)); 
 
       snd_next = snd_una; //TODO: this simple??
@@ -597,7 +608,7 @@ imgdb_sendimage(int sd, struct sockaddr_in *client, unsigned short mss,
     ihdr_t ack = {0,0,0,0};
     //TODO: convert and add size?????
     ihdr_t FIN = {NETIMG_VERS, NETIMG_FIN, 0, NETIMG_FINSEQ};
-    printf("imgdb_sendimage: sent FIN (0x%x), unacked: 0x%x", (int)NETIMG_FINSEQ, snd_una); 
+    fprintf(stderr, "imgdb_sendimage: sent FIN (0x%x), unacked: 0x%x", (int)NETIMG_FINSEQ, snd_una); 
     FIN.ih_seqn = htonl(FIN.ih_seqn); //convert to network order before sending
     err = imgdb_sendpkt(sd, client, (char *)&FIN, sizeof(ihdr_t), &ack);
     if(err == 0){

@@ -1,0 +1,587 @@
+./netimg: recommended drop probability between 0.011 and 0.51.
+netimg_sockinit: socket receive buffer set to 212992 bytes
+netimg_recvimage: received offset 0x0, 2036 bytes, waiting for 0x0
+netimg_recvimage: ack sent 0x7f4
+netimg_recvimage: received offset 0x7f4, 2036 bytes, waiting for 0x7f4
+netimg_recvimage: ack sent 0xfe8
+netimg_recvimage: received offset 0xfe8, 2036 bytes, waiting for 0xfe8
+netimg_recvimage: ack sent 0x17dc
+netimg_recvimage: received offset 0x17dc, 2036 bytes, waiting for 0x17dc
+netimg_recvimage: ack sent 0x1fd0
+netimg_recvimage: received offset 0x1fd0, 2036 bytes, waiting for 0x1fd0
+netimg_recvimage: DROPPED ACK 0x27c4
+netimg_recvimage: received offset 0x27c4, 2036 bytes, waiting for 0x27c4
+netimg_recvimage: ack sent 0x2fb8
+netimg_recvimage: received offset 0x2fb8, 2036 bytes, waiting for 0x2fb8
+netimg_recvimage: ack sent 0x37ac
+netimg_recvimage: received offset 0x37ac, 2036 bytes, waiting for 0x37ac
+netimg_recvimage: ack sent 0x3fa0
+netimg_recvimage: received offset 0x3fa0, 2036 bytes, waiting for 0x3fa0
+netimg_recvimage: ack sent 0x4794
+netimg_recvimage: received offset 0x4794, 2036 bytes, waiting for 0x4794
+netimg_recvimage: ack sent 0x4f88
+netimg_recvimage: received offset 0x4f88, 2036 bytes, waiting for 0x4f88
+netimg_recvimage: ack sent 0x577c
+miss_pkts: 0netimg_recvimage: received FEC offset: 0x577c, start: 0x0, lost: 0x0, count: 11
+netimg_recvimage: received offset 0x577c, 2036 bytes, waiting for 0x577c
+netimg_recvimage: ack sent 0x5f70
+netimg_recvimage: received offset 0x5f70, 2036 bytes, waiting for 0x5f70
+netimg_recvimage: ack sent 0x6764
+netimg_recvimage: received offset 0x6764, 2036 bytes, waiting for 0x6764
+netimg_recvimage: ack sent 0x6f58
+netimg_recvimage: received offset 0x6f58, 2036 bytes, waiting for 0x6f58
+netimg_recvimage: ack sent 0x774c
+netimg_recvimage: received offset 0x774c, 2036 bytes, waiting for 0x774c
+netimg_recvimage: ack sent 0x7f40
+netimg_recvimage: received offset 0x7f40, 2036 bytes, waiting for 0x7f40
+netimg_recvimage: ack sent 0x8734
+netimg_recvimage: received offset 0x8734, 2036 bytes, waiting for 0x8734
+netimg_recvimage: ack sent 0x8f28
+netimg_recvimage: received offset 0x8f28, 2036 bytes, waiting for 0x8f28
+netimg_recvimage: ack sent 0x971c
+netimg_recvimage: received offset 0x971c, 2036 bytes, waiting for 0x971c
+netimg_recvimage: ack sent 0x9f10
+netimg_recvimage: received offset 0x9f10, 2036 bytes, waiting for 0x9f10
+netimg_recvimage: ack sent 0xa704
+netimg_recvimage: received offset 0xa704, 2036 bytes, waiting for 0xa704
+netimg_recvimage: ack sent 0xaef8
+miss_pkts: 0netimg_recvimage: received FEC offset: 0xaef8, start: 0x577c, lost: 0x0, count: 11
+netimg_recvimage: received offset 0xaef8, 2036 bytes, waiting for 0xaef8
+netimg_recvimage: ack sent 0xb6ec
+netimg_recvimage: received offset 0xb6ec, 2036 bytes, waiting for 0xb6ec
+netimg_recvimage: ack sent 0xbee0
+netimg_recvimage: received offset 0xbee0, 2036 bytes, waiting for 0xbee0
+netimg_recvimage: ack sent 0xc6d4
+netimg_recvimage: received offset 0xc6d4, 2036 bytes, waiting for 0xc6d4
+netimg_recvimage: ack sent 0xcec8
+netimg_recvimage: received offset 0xcec8, 2036 bytes, waiting for 0xcec8
+netimg_recvimage: ack sent 0xd6bc
+netimg_recvimage: received offset 0xd6bc, 2036 bytes, waiting for 0xd6bc
+netimg_recvimage: ack sent 0xdeb0
+netimg_recvimage: received offset 0xdeb0, 2036 bytes, waiting for 0xdeb0
+netimg_recvimage: ack sent 0xe6a4
+netimg_recvimage: received offset 0xe6a4, 2036 bytes, waiting for 0xe6a4
+netimg_recvimage: ack sent 0xee98
+netimg_recvimage: received offset 0xee98, 2036 bytes, waiting for 0xee98
+netimg_recvimage: ack sent 0xf68c
+netimg_recvimage: received offset 0xf68c, 2036 bytes, waiting for 0xf68c
+netimg_recvimage: ack sent 0xfe80
+netimg_recvimage: received offset 0xfe80, 2036 bytes, waiting for 0xfe80
+netimg_recvimage: ack sent 0x10674
+miss_pkts: 0netimg_recvimage: received FEC offset: 0x10674, start: 0xaef8, lost: 0x0, count: 11
+netimg_recvimage: received offset 0x10674, 2036 bytes, waiting for 0x10674
+netimg_recvimage: ack sent 0x10e68
+netimg_recvimage: received offset 0x10e68, 2036 bytes, waiting for 0x10e68
+netimg_recvimage: ack sent 0x1165c
+netimg_recvimage: received offset 0x11e50, 2036 bytes, waiting for 0x1165c
+netimg_recvimage: received offset 0x12644, 2036 bytes, waiting for 0x12644
+netimg_recvimage: ack sent 0x12e38
+netimg_recvimage: received offset 0x12e38, 2036 bytes, waiting for 0x12e38
+netimg_recvimage: ack sent 0x1362c
+netimg_recvimage: received offset 0x1362c, 2036 bytes, waiting for 0x1362c
+netimg_recvimage: ack sent 0x13e20
+netimg_recvimage: received offset 0x13e20, 2036 bytes, waiting for 0x13e20
+netimg_recvimage: ack sent 0x14614
+netimg_recvimage: received offset 0x14614, 2036 bytes, waiting for 0x14614
+netimg_recvimage: ack sent 0x14e08
+netimg_recvimage: received offset 0x14e08, 2036 bytes, waiting for 0x14e08
+netimg_recvimage: ack sent 0x155fc
+netimg_recvimage: received offset 0x155fc, 2036 bytes, waiting for 0x155fc
+netimg_recvimage: ack sent 0x15df0
+miss_pkts: 3Go-Back-N mode!!!netimg_recvimage: received FEC offset: 0x15df0, start: 0x10674, lost: 0x1165c, count: 13
+netimg_recvimage: received offset 0x15df0, 2036 bytes, waiting for 0x15df0
+netimg_recvimage: ack sent 0x165e4
+netimg_recvimage: received offset 0x165e4, 2036 bytes, waiting for 0x165e4
+netimg_recvimage: ack sent 0x16dd8
+netimg_recvimage: received offset 0x16dd8, 2036 bytes, waiting for 0x16dd8
+netimg_recvimage: ack sent 0x175cc
+netimg_recvimage: received offset 0x175cc, 2036 bytes, waiting for 0x175cc
+netimg_recvimage: ack sent 0x17dc0
+netimg_recvimage: received offset 0x17dc0, 2036 bytes, waiting for 0x17dc0
+netimg_recvimage: ack sent 0x185b4
+netimg_recvimage: received offset 0x185b4, 2036 bytes, waiting for 0x185b4
+netimg_recvimage: ack sent 0x18da8
+netimg_recvimage: received offset 0x18da8, 2036 bytes, waiting for 0x18da8
+netimg_recvimage: ack sent 0x1959c
+netimg_recvimage: received offset 0x1959c, 2036 bytes, waiting for 0x1959c
+netimg_recvimage: ack sent 0x19d90
+netimg_recvimage: received offset 0x19d90, 2036 bytes, waiting for 0x19d90
+netimg_recvimage: ack sent 0x1a584
+netimg_recvimage: received offset 0x1a584, 2036 bytes, waiting for 0x1a584
+netimg_recvimage: ack sent 0x1ad78
+netimg_recvimage: received offset 0x1ad78, 2036 bytes, waiting for 0x1ad78
+netimg_recvimage: ack sent 0x1b56c
+miss_pkts: 0netimg_recvimage: received FEC offset: 0x1b56c, start: 0x15df0, lost: 0x0, count: 11
+netimg_recvimage: received offset 0x1b56c, 2036 bytes, waiting for 0x1b56c
+netimg_recvimage: ack sent 0x1bd60
+netimg_recvimage: received offset 0x1bd60, 2036 bytes, waiting for 0x1bd60
+netimg_recvimage: ack sent 0x1c554
+netimg_recvimage: received offset 0x1c554, 2036 bytes, waiting for 0x1c554
+netimg_recvimage: ack sent 0x1cd48
+netimg_recvimage: received offset 0x1cd48, 2036 bytes, waiting for 0x1cd48
+netimg_recvimage: ack sent 0x1d53c
+netimg_recvimage: received offset 0x1d53c, 2036 bytes, waiting for 0x1d53c
+netimg_recvimage: ack sent 0x1dd30
+netimg_recvimage: received offset 0x1dd30, 2036 bytes, waiting for 0x1dd30
+netimg_recvimage: ack sent 0x1e524
+netimg_recvimage: received offset 0x1e524, 2036 bytes, waiting for 0x1e524
+netimg_recvimage: ack sent 0x1ed18
+netimg_recvimage: received offset 0x1ed18, 2036 bytes, waiting for 0x1ed18
+netimg_recvimage: ack sent 0x1f50c
+netimg_recvimage: received offset 0x1f50c, 2036 bytes, waiting for 0x1f50c
+netimg_recvimage: ack sent 0x1fd00
+netimg_recvimage: received offset 0x1fd00, 2036 bytes, waiting for 0x1fd00
+netimg_recvimage: ack sent 0x204f4
+netimg_recvimage: received offset 0x204f4, 2036 bytes, waiting for 0x204f4
+netimg_recvimage: ack sent 0x20ce8
+miss_pkts: 0netimg_recvimage: received FEC offset: 0x20ce8, start: 0x1b56c, lost: 0x0, count: 11
+netimg_recvimage: received offset 0x20ce8, 2036 bytes, waiting for 0x20ce8
+netimg_recvimage: ack sent 0x214dc
+netimg_recvimage: received offset 0x214dc, 2036 bytes, waiting for 0x214dc
+netimg_recvimage: ack sent 0x21cd0
+netimg_recvimage: received offset 0x21cd0, 2036 bytes, waiting for 0x21cd0
+netimg_recvimage: ack sent 0x224c4
+netimg_recvimage: received offset 0x224c4, 2036 bytes, waiting for 0x224c4
+netimg_recvimage: ack sent 0x22cb8
+netimg_recvimage: received offset 0x22cb8, 2036 bytes, waiting for 0x22cb8
+netimg_recvimage: ack sent 0x234ac
+netimg_recvimage: received offset 0x234ac, 2036 bytes, waiting for 0x234ac
+netimg_recvimage: ack sent 0x23ca0
+netimg_recvimage: received offset 0x23ca0, 2036 bytes, waiting for 0x23ca0
+netimg_recvimage: ack sent 0x24494
+netimg_recvimage: received offset 0x24494, 2036 bytes, waiting for 0x24494
+netimg_recvimage: ack sent 0x24c88
+netimg_recvimage: received offset 0x24c88, 2036 bytes, waiting for 0x24c88
+netimg_recvimage: ack sent 0x2547c
+netimg_recvimage: received offset 0x2547c, 2036 bytes, waiting for 0x2547c
+netimg_recvimage: ack sent 0x25c70
+netimg_recvimage: received offset 0x25c70, 2036 bytes, waiting for 0x25c70
+netimg_recvimage: ack sent 0x26464
+miss_pkts: 0netimg_recvimage: received FEC offset: 0x26464, start: 0x20ce8, lost: 0x0, count: 11
+netimg_recvimage: received offset 0x26464, 2036 bytes, waiting for 0x26464
+netimg_recvimage: ack sent 0x26c58
+netimg_recvimage: received offset 0x26c58, 2036 bytes, waiting for 0x26c58
+netimg_recvimage: ack sent 0x2744c
+netimg_recvimage: received offset 0x2744c, 2036 bytes, waiting for 0x2744c
+netimg_recvimage: ack sent 0x27c40
+netimg_recvimage: received offset 0x27c40, 2036 bytes, waiting for 0x27c40
+netimg_recvimage: ack sent 0x28434
+netimg_recvimage: received offset 0x28434, 2036 bytes, waiting for 0x28434
+netimg_recvimage: ack sent 0x28c28
+netimg_recvimage: received offset 0x28c28, 2036 bytes, waiting for 0x28c28
+netimg_recvimage: DROPPED ACK 0x2941c
+netimg_recvimage: received offset 0x2941c, 2036 bytes, waiting for 0x2941c
+netimg_recvimage: ack sent 0x29c10
+netimg_recvimage: received offset 0x29c10, 2036 bytes, waiting for 0x29c10
+netimg_recvimage: ack sent 0x2a404
+netimg_recvimage: received offset 0x2a404, 2036 bytes, waiting for 0x2a404
+netimg_recvimage: ack sent 0x2abf8
+netimg_recvimage: received offset 0x2abf8, 2036 bytes, waiting for 0x2abf8
+netimg_recvimage: ack sent 0x2b3ec
+netimg_recvimage: received offset 0x2b3ec, 2036 bytes, waiting for 0x2b3ec
+netimg_recvimage: ack sent 0x2bbe0
+miss_pkts: 0netimg_recvimage: received FEC offset: 0x2bbe0, start: 0x26464, lost: 0x0, count: 11
+netimg_recvimage: received offset 0x2bbe0, 2036 bytes, waiting for 0x2bbe0
+netimg_recvimage: ack sent 0x2c3d4
+netimg_recvimage: received offset 0x2c3d4, 2036 bytes, waiting for 0x2c3d4
+netimg_recvimage: ack sent 0x2cbc8
+netimg_recvimage: received offset 0x2cbc8, 2036 bytes, waiting for 0x2cbc8
+netimg_recvimage: ack sent 0x2d3bc
+netimg_recvimage: received offset 0x5cf3c, 2036 bytes, waiting for 0x2d3bc
+netimg_recvimage: received offset 0x636a0, 2036 bytes, waiting for 0x5d730
+netimg_recvimage: received offset 0x63e94, 2036 bytes, waiting for 0x63e94
+netimg_recvimage: received offset 0x64688, 2036 bytes, waiting for 0x64688
+netimg_recvimage: received offset 0x64e7c, 2036 bytes, waiting for 0x64e7c
+netimg_recvimage: received offset 0x65670, 2036 bytes, waiting for 0x65670
+netimg_recvimage: received offset 0x66658, 2036 bytes, waiting for 0x65e64
+netimg_recvimage: received offset 0x66e4c, 2036 bytes, waiting for 0x66e4c
+netimg_recvimage: received offset 0x67640, 2036 bytes, waiting for 0x67640
+miss_pkts: 21Go-Back-N mode!!!netimg_recvimage: received FEC offset: 0x626b8, start: 0x5cf3c, lost: 0x5cf3c, count: 22
+netimg_recvimage: received offset 0x67e34, 2036 bytes, waiting for 0x626b8
+netimg_recvimage: ack sent 0x68628
+netimg_recvimage: received offset 0x68628, 2036 bytes, waiting for 0x68628
+netimg_recvimage: ack sent 0x68e1c
+netimg_recvimage: received offset 0x68e1c, 2036 bytes, waiting for 0x68e1c
+netimg_recvimage: ack sent 0x69610
+netimg_recvimage: received offset 0x69610, 2036 bytes, waiting for 0x69610
+netimg_recvimage: ack sent 0x69e04
+netimg_recvimage: received offset 0x69e04, 2036 bytes, waiting for 0x69e04
+netimg_recvimage: ack sent 0x6a5f8
+netimg_recvimage: received offset 0x6a5f8, 2036 bytes, waiting for 0x6a5f8
+netimg_recvimage: ack sent 0x6adec
+netimg_recvimage: received offset 0x6adec, 2036 bytes, waiting for 0x6adec
+netimg_recvimage: ack sent 0x6b5e0
+netimg_recvimage: received offset 0x6b5e0, 2036 bytes, waiting for 0x6b5e0
+netimg_recvimage: ack sent 0x6bdd4
+netimg_recvimage: received offset 0x6bdd4, 2036 bytes, waiting for 0x6bdd4
+netimg_recvimage: ack sent 0x6c5c8
+netimg_recvimage: received offset 0x6c5c8, 2036 bytes, waiting for 0x6c5c8
+netimg_recvimage: ack sent 0x6cdbc
+netimg_recvimage: received offset 0x6cdbc, 2036 bytes, waiting for 0x6cdbc
+netimg_recvimage: ack sent 0x6d5b0
+miss_pkts: 0netimg_recvimage: received FEC offset: 0x6d5b0, start: 0x67e34, lost: 0x0, count: 11
+netimg_recvimage: received offset 0x6d5b0, 2036 bytes, waiting for 0x6d5b0
+netimg_recvimage: ack sent 0x6dda4
+netimg_recvimage: received offset 0x6dda4, 2036 bytes, waiting for 0x6dda4
+netimg_recvimage: ack sent 0x6e598
+netimg_recvimage: received offset 0x6e598, 2036 bytes, waiting for 0x6e598
+netimg_recvimage: ack sent 0x6ed8c
+netimg_recvimage: received offset 0x6ed8c, 2036 bytes, waiting for 0x6ed8c
+netimg_recvimage: ack sent 0x6f580
+netimg_recvimage: received offset 0x6f580, 2036 bytes, waiting for 0x6f580
+netimg_recvimage: ack sent 0x6fd74
+netimg_recvimage: received offset 0x6fd74, 2036 bytes, waiting for 0x6fd74
+netimg_recvimage: ack sent 0x70568
+netimg_recvimage: received offset 0x70568, 2036 bytes, waiting for 0x70568
+netimg_recvimage: ack sent 0x70d5c
+netimg_recvimage: received offset 0x70d5c, 2036 bytes, waiting for 0x70d5c
+netimg_recvimage: ack sent 0x71550
+netimg_recvimage: received offset 0x71550, 2036 bytes, waiting for 0x71550
+netimg_recvimage: ack sent 0x71d44
+netimg_recvimage: received offset 0x71d44, 2036 bytes, waiting for 0x71d44
+netimg_recvimage: ack sent 0x72538
+netimg_recvimage: received offset 0x72538, 2036 bytes, waiting for 0x72538
+netimg_recvimage: ack sent 0x72d2c
+miss_pkts: 0netimg_recvimage: received FEC offset: 0x72d2c, start: 0x6d5b0, lost: 0x0, count: 11
+netimg_recvimage: received offset 0x72d2c, 2036 bytes, waiting for 0x72d2c
+netimg_recvimage: ack sent 0x73520
+netimg_recvimage: received offset 0x73520, 2036 bytes, waiting for 0x73520
+netimg_recvimage: ack sent 0x73d14
+netimg_recvimage: received offset 0x73d14, 2036 bytes, waiting for 0x73d14
+netimg_recvimage: ack sent 0x74508
+netimg_recvimage: received offset 0x74508, 2036 bytes, waiting for 0x74508
+netimg_recvimage: ack sent 0x74cfc
+netimg_recvimage: received offset 0x74cfc, 2036 bytes, waiting for 0x74cfc
+netimg_recvimage: ack sent 0x754f0
+netimg_recvimage: received offset 0x754f0, 2036 bytes, waiting for 0x754f0
+netimg_recvimage: ack sent 0x75ce4
+netimg_recvimage: received offset 0x75ce4, 2036 bytes, waiting for 0x75ce4
+netimg_recvimage: ack sent 0x764d8
+netimg_recvimage: received offset 0x764d8, 2036 bytes, waiting for 0x764d8
+netimg_recvimage: ack sent 0x76ccc
+netimg_recvimage: received offset 0x76ccc, 2036 bytes, waiting for 0x76ccc
+netimg_recvimage: ack sent 0x774c0
+netimg_recvimage: received offset 0x774c0, 2036 bytes, waiting for 0x774c0
+netimg_recvimage: ack sent 0x77cb4
+netimg_recvimage: received offset 0x77cb4, 2036 bytes, waiting for 0x77cb4
+netimg_recvimage: ack sent 0x784a8
+netimg_recvimage: received offset 0x784a8, 2036 bytes, waiting for 0x784a8
+netimg_recvimage: ack sent 0x78c9c
+netimg_recvimage: received offset 0x78c9c, 2036 bytes, waiting for 0x78c9c
+netimg_recvimage: ack sent 0x79490
+netimg_recvimage: received offset 0x79490, 2036 bytes, waiting for 0x79490
+netimg_recvimage: ack sent 0x79c84
+netimg_recvimage: received offset 0x79c84, 2036 bytes, waiting for 0x79c84
+netimg_recvimage: ack sent 0x7a478
+netimg_recvimage: received offset 0x7a478, 2036 bytes, waiting for 0x7a478
+netimg_recvimage: ack sent 0x7ac6c
+netimg_recvimage: received offset 0x7ac6c, 2036 bytes, waiting for 0x7ac6c
+netimg_recvimage: ack sent 0x7b460
+netimg_recvimage: received offset 0x7b460, 2036 bytes, waiting for 0x7b460
+netimg_recvimage: ack sent 0x7bc54
+netimg_recvimage: received offset 0x7bc54, 2036 bytes, waiting for 0x7bc54
+netimg_recvimage: ack sent 0x7c448
+netimg_recvimage: received offset 0x7c448, 2036 bytes, waiting for 0x7c448
+netimg_recvimage: ack sent 0x7cc3c
+netimg_recvimage: received offset 0x7cc3c, 2036 bytes, waiting for 0x7cc3c
+netimg_recvimage: ack sent 0x7d430
+netimg_recvimage: received offset 0x7d430, 2036 bytes, waiting for 0x7d430
+netimg_recvimage: ack sent 0x7dc24
+miss_pkts: 0netimg_recvimage: received FEC offset: 0x7dc24, start: 0x784a8, lost: 0x0, count: 11
+netimg_recvimage: received offset 0x7dc24, 2036 bytes, waiting for 0x7dc24
+netimg_recvimage: ack sent 0x7e418
+netimg_recvimage: received offset 0x7e418, 2036 bytes, waiting for 0x7e418
+netimg_recvimage: ack sent 0x7ec0c
+netimg_recvimage: received offset 0x7ec0c, 2036 bytes, waiting for 0x7ec0c
+netimg_recvimage: ack sent 0x7f400
+netimg_recvimage: received offset 0x7f400, 2036 bytes, waiting for 0x7f400
+netimg_recvimage: ack sent 0x7fbf4
+netimg_recvimage: received offset 0x7fbf4, 2036 bytes, waiting for 0x7fbf4
+netimg_recvimage: ack sent 0x803e8
+netimg_recvimage: received offset 0x803e8, 2036 bytes, waiting for 0x803e8
+netimg_recvimage: ack sent 0x80bdc
+netimg_recvimage: received offset 0x80bdc, 2036 bytes, waiting for 0x80bdc
+netimg_recvimage: ack sent 0x813d0
+netimg_recvimage: received offset 0x813d0, 2036 bytes, waiting for 0x813d0
+netimg_recvimage: ack sent 0x81bc4
+netimg_recvimage: received offset 0x81bc4, 2036 bytes, waiting for 0x81bc4
+netimg_recvimage: ack sent 0x823b8
+netimg_recvimage: received offset 0x823b8, 2036 bytes, waiting for 0x823b8
+netimg_recvimage: ack sent 0x82bac
+netimg_recvimage: received offset 0x82bac, 2036 bytes, waiting for 0x82bac
+netimg_recvimage: ack sent 0x833a0
+miss_pkts: 0netimg_recvimage: received FEC offset: 0x833a0, start: 0x7dc24, lost: 0x0, count: 11
+netimg_recvimage: received offset 0x833a0, 2036 bytes, waiting for 0x833a0
+netimg_recvimage: ack sent 0x83b94
+netimg_recvimage: received offset 0x83b94, 2036 bytes, waiting for 0x83b94
+netimg_recvimage: ack sent 0x84388
+netimg_recvimage: received offset 0x84388, 2036 bytes, waiting for 0x84388
+netimg_recvimage: ack sent 0x84b7c
+netimg_recvimage: received offset 0x84b7c, 2036 bytes, waiting for 0x84b7c
+netimg_recvimage: ack sent 0x85370
+netimg_recvimage: received offset 0x85370, 2036 bytes, waiting for 0x85370
+netimg_recvimage: ack sent 0x85b64
+netimg_recvimage: received offset 0x85b64, 2036 bytes, waiting for 0x85b64
+netimg_recvimage: ack sent 0x86358
+netimg_recvimage: received offset 0x86358, 2036 bytes, waiting for 0x86358
+netimg_recvimage: ack sent 0x86b4c
+netimg_recvimage: received offset 0x86b4c, 2036 bytes, waiting for 0x86b4c
+netimg_recvimage: ack sent 0x87340
+netimg_recvimage: received offset 0x87340, 2036 bytes, waiting for 0x87340
+netimg_recvimage: ack sent 0x87b34
+netimg_recvimage: received offset 0x87b34, 2036 bytes, waiting for 0x87b34
+netimg_recvimage: ack sent 0x88328
+netimg_recvimage: received offset 0x88328, 2036 bytes, waiting for 0x88328
+netimg_recvimage: ack sent 0x88b1c
+miss_pkts: 0netimg_recvimage: received FEC offset: 0x88b1c, start: 0x833a0, lost: 0x0, count: 11
+netimg_recvimage: received offset 0x88b1c, 2036 bytes, waiting for 0x88b1c
+netimg_recvimage: ack sent 0x89310
+netimg_recvimage: received offset 0x89310, 2036 bytes, waiting for 0x89310
+netimg_recvimage: ack sent 0x89b04
+netimg_recvimage: received offset 0x89b04, 2036 bytes, waiting for 0x89b04
+netimg_recvimage: ack sent 0x8a2f8
+netimg_recvimage: received offset 0x8a2f8, 2036 bytes, waiting for 0x8a2f8
+netimg_recvimage: ack sent 0x8aaec
+netimg_recvimage: received offset 0x8b2e0, 2036 bytes, waiting for 0x8aaec
+netimg_recvimage: received offset 0x8bad4, 2036 bytes, waiting for 0x8bad4
+netimg_recvimage: ack sent 0x8c2c8
+netimg_recvimage: received offset 0x8c2c8, 2036 bytes, waiting for 0x8c2c8
+netimg_recvimage: ack sent 0x8cabc
+netimg_recvimage: received offset 0x8cabc, 2036 bytes, waiting for 0x8cabc
+netimg_recvimage: ack sent 0x8d2b0
+netimg_recvimage: received offset 0x8d2b0, 2036 bytes, waiting for 0x8d2b0
+netimg_recvimage: ack sent 0x8daa4
+netimg_recvimage: received offset 0x8daa4, 2036 bytes, waiting for 0x8daa4
+netimg_recvimage: ack sent 0x8e298
+miss_pkts: 5Go-Back-N mode!!!netimg_recvimage: received FEC offset: 0x8e298, start: 0x88b1c, lost: 0x8aaec, count: 15
+netimg_recvimage: received offset 0x8ea8c, 2036 bytes, waiting for 0x8e298
+netimg_recvimage: received offset 0x8f280, 2036 bytes, waiting for 0x8f280
+netimg_recvimage: ack sent 0x8fa74
+netimg_recvimage: received offset 0x8fa74, 2036 bytes, waiting for 0x8fa74
+netimg_recvimage: ack sent 0x90268
+netimg_recvimage: received offset 0x90268, 2036 bytes, waiting for 0x90268
+netimg_recvimage: ack sent 0x90a5c
+netimg_recvimage: received offset 0x90a5c, 2036 bytes, waiting for 0x90a5c
+netimg_recvimage: ack sent 0x91250
+netimg_recvimage: received offset 0x91250, 2036 bytes, waiting for 0x91250
+netimg_recvimage: ack sent 0x91a44
+netimg_recvimage: received offset 0x91a44, 2036 bytes, waiting for 0x91a44
+netimg_recvimage: ack sent 0x92238
+netimg_recvimage: received offset 0x92238, 2036 bytes, waiting for 0x92238
+netimg_recvimage: ack sent 0x92a2c
+netimg_recvimage: received offset 0x92a2c, 2036 bytes, waiting for 0x92a2c
+netimg_recvimage: ack sent 0x93220
+netimg_recvimage: received offset 0x93220, 2036 bytes, waiting for 0x93220
+netimg_recvimage: ack sent 0x93a14
+miss_pkts: 1netimg_recvimage: received FEC offset: 0x93a14, start: 0x8e298, lost: 0x8e298, count: 11
+netimg_recvimage: ack sent 0x93a14
+netimg_recvimage: received offset 0x93a14, 2036 bytes, waiting for 0x93a14
+netimg_recvimage: ack sent 0x94208
+netimg_recvimage: received offset 0x94208, 2036 bytes, waiting for 0x94208
+netimg_recvimage: ack sent 0x949fc
+netimg_recvimage: received offset 0x949fc, 2036 bytes, waiting for 0x949fc
+netimg_recvimage: ack sent 0x951f0
+netimg_recvimage: received offset 0x951f0, 2036 bytes, waiting for 0x951f0
+netimg_recvimage: ack sent 0x959e4
+netimg_recvimage: received offset 0x959e4, 2036 bytes, waiting for 0x959e4
+netimg_recvimage: ack sent 0x961d8
+netimg_recvimage: received offset 0x961d8, 2036 bytes, waiting for 0x961d8
+netimg_recvimage: ack sent 0x969cc
+netimg_recvimage: received offset 0xc6d40, 2036 bytes, waiting for 0x969cc
+netimg_recvimage: received offset 0xcb4d4, 2036 bytes, waiting for 0xc7534
+netimg_recvimage: received offset 0xcc4bc, 2036 bytes, waiting for 0xcbcc8
+netimg_recvimage: received offset 0xcccb0, 2036 bytes, waiting for 0xcccb0
+netimg_recvimage: received offset 0xcd4a4, 2036 bytes, waiting for 0xcd4a4
+netimg_recvimage: received offset 0xcdc98, 2036 bytes, waiting for 0xcdc98
+netimg_recvimage: received offset 0xce48c, 2036 bytes, waiting for 0xce48c
+netimg_recvimage: received offset 0xcec80, 2036 bytes, waiting for 0xcec80
+netimg_recvimage: received offset 0xcf474, 2036 bytes, waiting for 0xcf474
+netimg_recvimage: received offset 0xcfc68, 2036 bytes, waiting for 0xcfc68
+netimg_recvimage: received offset 0xd045c, 2036 bytes, waiting for 0xd045c
+netimg_recvimage: received offset 0xd0c50, 2036 bytes, waiting for 0xd0c50
+netimg_recvimage: ack sent 0xd1444
+netimg_recvimage: received offset 0xd1444, 2036 bytes, waiting for 0xd1444
+netimg_recvimage: ack sent 0xd1c38
+netimg_recvimage: received offset 0xd1c38, 2036 bytes, waiting for 0xd1c38
+netimg_recvimage: ack sent 0xd242c
+netimg_recvimage: received offset 0xd242c, 2036 bytes, waiting for 0xd242c
+netimg_recvimage: ack sent 0xd2c20
+netimg_recvimage: received offset 0xd2c20, 2036 bytes, waiting for 0xd2c20
+netimg_recvimage: ack sent 0xd3414
+netimg_recvimage: received offset 0xd3414, 2036 bytes, waiting for 0xd3414
+netimg_recvimage: ack sent 0xd3c08
+netimg_recvimage: received offset 0xd3c08, 2036 bytes, waiting for 0xd3c08
+netimg_recvimage: ack sent 0xd43fc
+netimg_recvimage: received offset 0xd43fc, 2036 bytes, waiting for 0xd43fc
+netimg_recvimage: ack sent 0xd4bf0
+netimg_recvimage: received offset 0xd4bf0, 2036 bytes, waiting for 0xd4bf0
+netimg_recvimage: ack sent 0xd53e4
+miss_pkts: 1netimg_recvimage: received FEC offset: 0xd53e4, start: 0xcfc68, lost: 0xcfc68, count: 11
+netimg_recvimage: ack sent 0xd53e4
+netimg_recvimage: received offset 0xd53e4, 2036 bytes, waiting for 0xd53e4
+netimg_recvimage: ack sent 0xd5bd8
+netimg_recvimage: received offset 0xd5bd8, 2036 bytes, waiting for 0xd5bd8
+netimg_recvimage: ack sent 0xd63cc
+netimg_recvimage: received offset 0xd63cc, 2036 bytes, waiting for 0xd63cc
+netimg_recvimage: ack sent 0xd6bc0
+netimg_recvimage: received offset 0xd6bc0, 2036 bytes, waiting for 0xd6bc0
+netimg_recvimage: DROPPED ACK 0xd73b4
+netimg_recvimage: received offset 0xd73b4, 2036 bytes, waiting for 0xd73b4
+netimg_recvimage: ack sent 0xd7ba8
+netimg_recvimage: received offset 0xd839c, 2036 bytes, waiting for 0xd7ba8
+netimg_recvimage: received offset 0xd8b90, 2036 bytes, waiting for 0xd8b90
+netimg_recvimage: ack sent 0xd9384
+netimg_recvimage: received offset 0xd9384, 2036 bytes, waiting for 0xd9384
+netimg_recvimage: ack sent 0xd9b78
+netimg_recvimage: received offset 0xd9b78, 2036 bytes, waiting for 0xd9b78
+netimg_recvimage: ack sent 0xda36c
+netimg_recvimage: received offset 0xda36c, 2036 bytes, waiting for 0xda36c
+netimg_recvimage: ack sent 0xdab60
+miss_pkts: 6Go-Back-N mode!!!netimg_recvimage: received FEC offset: 0xdab60, start: 0xd53e4, lost: 0xd7ba8, count: 16
+netimg_recvimage: received offset 0xdab60, 2036 bytes, waiting for 0xdab60
+netimg_recvimage: ack sent 0xdb354
+netimg_recvimage: received offset 0xdb354, 2036 bytes, waiting for 0xdb354
+netimg_recvimage: ack sent 0xdbb48
+netimg_recvimage: received offset 0xdbb48, 2036 bytes, waiting for 0xdbb48
+netimg_recvimage: ack sent 0xdc33c
+netimg_recvimage: received offset 0xdc33c, 2036 bytes, waiting for 0xdc33c
+netimg_recvimage: ack sent 0xdcb30
+netimg_recvimage: received offset 0xdcb30, 2036 bytes, waiting for 0xdcb30
+netimg_recvimage: ack sent 0xdd324
+netimg_recvimage: received offset 0xdd324, 2036 bytes, waiting for 0xdd324
+netimg_recvimage: ack sent 0xddb18
+netimg_recvimage: received offset 0xddb18, 2036 bytes, waiting for 0xddb18
+netimg_recvimage: ack sent 0xde30c
+netimg_recvimage: received offset 0xde30c, 2036 bytes, waiting for 0xde30c
+netimg_recvimage: ack sent 0xdeb00
+netimg_recvimage: received offset 0xdeb00, 2036 bytes, waiting for 0xdeb00
+netimg_recvimage: ack sent 0xdf2f4
+netimg_recvimage: received offset 0xdf2f4, 2036 bytes, waiting for 0xdf2f4
+netimg_recvimage: DROPPED ACK 0xdfae8
+netimg_recvimage: received offset 0xdfae8, 2036 bytes, waiting for 0xdfae8
+netimg_recvimage: ack sent 0xe02dc
+miss_pkts: 0netimg_recvimage: received FEC offset: 0xe02dc, start: 0xdab60, lost: 0x0, count: 11
+netimg_recvimage: received offset 0xe0ad0, 2036 bytes, waiting for 0xe02dc
+netimg_recvimage: received offset 0xe12c4, 2036 bytes, waiting for 0xe12c4
+netimg_recvimage: ack sent 0xe1ab8
+netimg_recvimage: received offset 0xe1ab8, 2036 bytes, waiting for 0xe1ab8
+netimg_recvimage: ack sent 0xe22ac
+netimg_recvimage: received offset 0xe22ac, 2036 bytes, waiting for 0xe22ac
+netimg_recvimage: ack sent 0xe2aa0
+netimg_recvimage: received offset 0xe2aa0, 2036 bytes, waiting for 0xe2aa0
+netimg_recvimage: ack sent 0xe3294
+netimg_recvimage: received offset 0xe3294, 2036 bytes, waiting for 0xe3294
+netimg_recvimage: ack sent 0xe3a88
+netimg_recvimage: received offset 0xe3a88, 2036 bytes, waiting for 0xe3a88
+netimg_recvimage: ack sent 0xe427c
+netimg_recvimage: received offset 0xe4a70, 2036 bytes, waiting for 0xe427c
+netimg_recvimage: received offset 0xe5264, 2036 bytes, waiting for 0xe5264
+netimg_recvimage: ack sent 0xe5a58
+miss_pkts: 10Go-Back-N mode!!!netimg_recvimage: received FEC offset: 0xe5a58, start: 0xe02dc, lost: 0xe02dc, count: 19
+netimg_recvimage: received offset 0xe5a58, 2036 bytes, waiting for 0xe5a58
+netimg_recvimage: ack sent 0xe624c
+netimg_recvimage: received offset 0xe624c, 2036 bytes, waiting for 0xe624c
+netimg_recvimage: ack sent 0xe6a40
+netimg_recvimage: received offset 0xe6a40, 2036 bytes, waiting for 0xe6a40
+netimg_recvimage: ack sent 0xe7234
+netimg_recvimage: received offset 0xe7234, 2036 bytes, waiting for 0xe7234
+netimg_recvimage: ack sent 0xe7a28
+netimg_recvimage: received offset 0xe7a28, 2036 bytes, waiting for 0xe7a28
+netimg_recvimage: ack sent 0xe821c
+netimg_recvimage: received offset 0xe821c, 2036 bytes, waiting for 0xe821c
+netimg_recvimage: ack sent 0xe8a10
+netimg_recvimage: received offset 0xe8a10, 2036 bytes, waiting for 0xe8a10
+netimg_recvimage: ack sent 0xe9204
+netimg_recvimage: received offset 0xe9204, 2036 bytes, waiting for 0xe9204
+netimg_recvimage: ack sent 0xe99f8
+netimg_recvimage: received offset 0xe99f8, 2036 bytes, waiting for 0xe99f8
+netimg_recvimage: ack sent 0xea1ec
+netimg_recvimage: received offset 0xea1ec, 2036 bytes, waiting for 0xea1ec
+netimg_recvimage: ack sent 0xea9e0
+netimg_recvimage: received offset 0xea9e0, 2036 bytes, waiting for 0xea9e0
+netimg_recvimage: ack sent 0xeb1d4
+miss_pkts: 0netimg_recvimage: received FEC offset: 0xeb1d4, start: 0xe5a58, lost: 0x0, count: 11
+netimg_recvimage: received offset 0xeb1d4, 2036 bytes, waiting for 0xeb1d4
+netimg_recvimage: ack sent 0xeb9c8
+netimg_recvimage: received offset 0xeb9c8, 2036 bytes, waiting for 0xeb9c8
+netimg_recvimage: ack sent 0xec1bc
+netimg_recvimage: received offset 0xec1bc, 2036 bytes, waiting for 0xec1bc
+netimg_recvimage: ack sent 0xec9b0
+netimg_recvimage: received offset 0xec9b0, 2036 bytes, waiting for 0xec9b0
+netimg_recvimage: ack sent 0xed1a4
+netimg_recvimage: received offset 0xed1a4, 2036 bytes, waiting for 0xed1a4
+netimg_recvimage: ack sent 0xed998
+netimg_recvimage: received offset 0xed998, 2036 bytes, waiting for 0xed998
+netimg_recvimage: ack sent 0xee18c
+netimg_recvimage: received offset 0xee18c, 2036 bytes, waiting for 0xee18c
+netimg_recvimage: ack sent 0xee980
+netimg_recvimage: received offset 0xee980, 2036 bytes, waiting for 0xee980
+netimg_recvimage: ack sent 0xef174
+netimg_recvimage: received offset 0xef174, 2036 bytes, waiting for 0xef174
+netimg_recvimage: ack sent 0xef968
+netimg_recvimage: received offset 0xef968, 2036 bytes, waiting for 0xef968
+netimg_recvimage: ack sent 0xf015c
+netimg_recvimage: received offset 0xf015c, 2036 bytes, waiting for 0xf015c
+netimg_recvimage: ack sent 0xf0950
+miss_pkts: 0netimg_recvimage: received FEC offset: 0xf0950, start: 0xeb1d4, lost: 0x0, count: 11
+netimg_recvimage: received offset 0xf0950, 2036 bytes, waiting for 0xf0950
+netimg_recvimage: ack sent 0xf1144
+netimg_recvimage: received offset 0xf1144, 2036 bytes, waiting for 0xf1144
+netimg_recvimage: ack sent 0xf1938
+netimg_recvimage: received offset 0xf1938, 2036 bytes, waiting for 0xf1938
+netimg_recvimage: ack sent 0xf212c
+netimg_recvimage: received offset 0xf212c, 2036 bytes, waiting for 0xf212c
+netimg_recvimage: ack sent 0xf2920
+netimg_recvimage: received offset 0xf2920, 2036 bytes, waiting for 0xf2920
+netimg_recvimage: ack sent 0xf3114
+netimg_recvimage: received offset 0xf3114, 2036 bytes, waiting for 0xf3114
+netimg_recvimage: ack sent 0xf3908
+netimg_recvimage: received offset 0xf3908, 2036 bytes, waiting for 0xf3908
+netimg_recvimage: ack sent 0xf40fc
+netimg_recvimage: received offset 0xf40fc, 2036 bytes, waiting for 0xf40fc
+netimg_recvimage: ack sent 0xf48f0
+netimg_recvimage: received offset 0xf48f0, 2036 bytes, waiting for 0xf48f0
+netimg_recvimage: ack sent 0xf50e4
+netimg_recvimage: received offset 0xf50e4, 2036 bytes, waiting for 0xf50e4
+netimg_recvimage: ack sent 0xf58d8
+netimg_recvimage: received offset 0xf58d8, 2036 bytes, waiting for 0xf58d8
+netimg_recvimage: ack sent 0xf60cc
+miss_pkts: 0netimg_recvimage: received FEC offset: 0xf60cc, start: 0xf0950, lost: 0x0, count: 11
+netimg_recvimage: received offset 0xf60cc, 2036 bytes, waiting for 0xf60cc
+netimg_recvimage: ack sent 0xf68c0
+netimg_recvimage: received offset 0xf68c0, 2036 bytes, waiting for 0xf68c0
+netimg_recvimage: ack sent 0xf70b4
+netimg_recvimage: received offset 0xf70b4, 2036 bytes, waiting for 0xf70b4
+netimg_recvimage: ack sent 0xf78a8
+netimg_recvimage: received offset 0xf78a8, 2036 bytes, waiting for 0xf78a8
+netimg_recvimage: ack sent 0xf809c
+netimg_recvimage: received offset 0xf809c, 2036 bytes, waiting for 0xf809c
+netimg_recvimage: ack sent 0xf8890
+netimg_recvimage: received offset 0xf8890, 2036 bytes, waiting for 0xf8890
+netimg_recvimage: ack sent 0xf9084
+netimg_recvimage: received offset 0xf9084, 2036 bytes, waiting for 0xf9084
+netimg_recvimage: ack sent 0xf9878
+netimg_recvimage: received offset 0xf9878, 2036 bytes, waiting for 0xf9878
+netimg_recvimage: ack sent 0xfa06c
+netimg_recvimage: received offset 0xfa06c, 2036 bytes, waiting for 0xfa06c
+netimg_recvimage: ack sent 0xfa860
+netimg_recvimage: received offset 0xfa860, 2036 bytes, waiting for 0xfa860
+netimg_recvimage: ack sent 0xfb054
+netimg_recvimage: received offset 0xfb054, 2036 bytes, waiting for 0xfb054
+netimg_recvimage: ack sent 0xfb848
+miss_pkts: 0netimg_recvimage: received FEC offset: 0xfb848, start: 0xf60cc, lost: 0x0, count: 11
+netimg_recvimage: received offset 0xfb848, 2036 bytes, waiting for 0xfb848
+netimg_recvimage: ack sent 0xfc03c
+netimg_recvimage: received offset 0xfc03c, 2036 bytes, waiting for 0xfc03c
+netimg_recvimage: ack sent 0xfc830
+netimg_recvimage: received offset 0xfc830, 2036 bytes, waiting for 0xfc830
+netimg_recvimage: ack sent 0xfd024
+netimg_recvimage: received offset 0xfd024, 2036 bytes, waiting for 0xfd024
+netimg_recvimage: ack sent 0xfd818
+netimg_recvimage: received offset 0xfd818, 2036 bytes, waiting for 0xfd818
+netimg_recvimage: ack sent 0xfe00c
+netimg_recvimage: received offset 0xfe00c, 2036 bytes, waiting for 0xfe00c
+netimg_recvimage: ack sent 0xfe800
+netimg_recvimage: received offset 0xfe800, 2036 bytes, waiting for 0xfe800
+netimg_recvimage: ack sent 0xfeff4
+netimg_recvimage: received offset 0xfffdc, 2036 bytes, waiting for 0xfeff4

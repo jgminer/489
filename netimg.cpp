@@ -364,15 +364,15 @@ netimg_recvimage(void)
   ihdr_t hdr = {0,0,0,0};
   int err = recv(sd, &hdr, sizeof(ihdr_t), MSG_PEEK);
   if (err == -1){
-    cout << "no packet ready" << endl;
+    // cout << "no packet ready" << endl;
     return;
   }
 
   hdr.ih_size = ntohs(hdr.ih_size);
   hdr.ih_seqn = ntohl(hdr.ih_seqn);
 
-  fprintf(stderr, "netimg_recvimage: received offset 0x%x, %d bytes\n",
-            hdr.ih_seqn, hdr.ih_size);
+  // fprintf(stderr, "netimg_recvimage: received offset 0x%x, %d bytes\n",
+  //           hdr.ih_seqn, hdr.ih_size);
 
   /* Populate a struct msghdr with a pointer to a struct iovec
    * array.  The iovec array should be of size NETIMG_NUMIOVEC.  The
@@ -473,7 +473,7 @@ netimg_recvimage(void)
      * determine the next expected packet.
      */
     /* Lab 6: YOUR CODE HERE */
-    if (num_data_pkts == 0){
+    if (num_data_pkts == 0 && (!gobackn)){
       //if a miss, want to set it to expected next!!!
       if (hdr.ih_seqn != next_seqn){
         fec_base = next_seqn;
@@ -484,7 +484,9 @@ netimg_recvimage(void)
     }
 
         //sequence number in next window, no FEC 
-    if (hdr.ih_seqn >= next_wnd_base){
+    //fwnd number of packets without bytes
+    //if (hdr.ih_seqn >= next_wnd_base){
+    if (((miss_pkts+miss_base) > fwnd) && (!gobackn)){
 
       num_data_pkts = 0;
       cout << "fec_base: " << fec_base << endl;
@@ -496,6 +498,8 @@ netimg_recvimage(void)
       last_size = last_size; //doesn't matter?
       next_wnd_base = fec_base + (fwnd*datasize);
 
+      //TODO: should be in gobackn?????
+
       cout << "no FEC, changing fec_base to: 0x" << hex << fec_base << " and next expected is: 0x" << hex << next_seqn << endl;
       cout << "3data: " << num_data_pkts << "miss: " << miss_pkts << endl;
 
@@ -504,40 +508,54 @@ netimg_recvimage(void)
 
     cout << "current: 0x" << hex << hdr.ih_seqn << " next: 0x" << hex << next_seqn << endl;
 
-    //if the current seq no. does not match the next one
-    if (hdr.ih_seqn != next_seqn){
+    //missed a packet (or more somewhere)
+    if ((hdr.ih_seqn > next_seqn) && (!gobackn)){
       //if first packet to miss, mark it down. otherwise, don't bother.
       if (miss_pkts == 0){
         miss_base = next_seqn; //miss base is what we were expecting in the first place
-      }
-      assert(hdr.ih_seqn>next_seqn);
-      uint num_miss = ceil(hdr.ih_seqn-fec_base)/datasize;
-      miss_pkts+=num_miss;
 
-      if (hdr.ih_seqn < next_seqn){
-        ack.ih_seqn = htonl(next_seqn);
-        ack.ih_size = 0;
-      }
+        assert(hdr.ih_seqn>next_seqn);
+        uint num_miss = ceil(hdr.ih_seqn-fec_base)/datasize;
+        miss_pkts+=num_miss;
 
-      next_seqn = hdr.ih_seqn+datasize;
-      num_data_pkts++; //TODO: what about the misses?!
-      cout << num_miss << " miss(es) detected, next expected is: 0x" << hex << next_seqn << endl;
-      cout << "1data: " << num_data_pkts << "miss: " << miss_pkts << endl;
+        next_seqn = miss_base; //need to request the missing one until we get it!!!
+        num_data_pkts++; //TODO: what about the misses?!
+        cout << num_miss << " miss(es) detected, need to get 0x" << hex << next_seqn << endl;
+        // cout << "1data: " << num_data_pkts << "miss: " << miss_pkts << endl;
+      } 
+
+      if (miss_pkts > 1){
+        cout << "DATA pkt recvd and miss now more than 1: gobackn enabled" << endl;
+        gobackn = true;
+      }
 
     }
     //receive expected seqnum
-    else {
+    else if (hdr.ih_seqn == next_seqn){
       next_seqn+=datasize;
       num_data_pkts++;
       //4.2
-      if (gobackn) gobackn=false;
+      //reset a bunch of FEC junk - to prepare for using FEC again
+      if (gobackn) {
+        cout << "received what we were looking for - can exit go-back-n!! \n";
+
+        gobackn = false;
+
+        num_data_pkts = 0;
+        fec_base = hdr.ih_seqn+datasize; //TODO: segsize?
+        miss_base = 0;
+        miss_pkts = 0;
+        next_seqn = fec_base;
+        last_size = last_size; //doesn't matter?
+        next_wnd_base = fec_base + (fwnd*datasize);
+
+      }
 
       ack.ih_seqn = htonl(next_seqn);
       ack.ih_size = 0;
-      cout << "2data: " << num_data_pkts << "miss: " << miss_pkts << endl;
 
+      // cout << "2data: " << num_data_pkts << "miss: " << miss_pkts << endl;
     }
-
 
     //TODO: more logic here for 'normal case'
     last_size = hdr.ih_size;
@@ -574,6 +592,17 @@ netimg_recvimage(void)
     /* Task 4.2: If we're not in Go-Back-N mode, keep track of packet
        received within the current FEC window */
     /* YOUR CODE HERE */
+
+  } else if ((hdr.ih_type == NETIMG_FEC) && (gobackn)){
+
+    cout << "recieved FEC but gobackn is set" << endl;
+    recvhdr.msg_iov[1].iov_base = fecdata;//image+hdr.ih_seqn;
+    recvhdr.msg_iov[1].iov_len = hdr.ih_size;
+    recvmsg(sd, &recvhdr, 0);
+
+    //fix again 
+    hdr.ih_size = ntohs(hdr.ih_size);
+    hdr.ih_seqn = ntohl(hdr.ih_seqn);
 
   } else if ((hdr.ih_type == NETIMG_FEC) && (!gobackn)) { // FEC pkt
 
@@ -637,24 +666,30 @@ netimg_recvimage(void)
      */
     /* Lab 6: YOUR CODE HERE */
 
+    // corner case where not in go-back-n - misspkts should be zero anyway!!!
     if (hdr.ih_seqn != next_seqn){
       //if first packet to miss, mark it down. otherwise, don't bother.
+
+      //only care if one miss
       if (miss_pkts == 0){
         miss_base = next_seqn; //miss base is what we were expecting in the first place
+  
+        uint num_miss = (hdr.ih_seqn-next_seqn)/datasize;
+        miss_pkts+=num_miss;
+
+
+        next_seqn = hdr.ih_seqn; //should have the same seqn as the FEC since FEC and next are the same
+        num_data_pkts++; //TODO: what about the misses!
+        cout << num_miss << " miss detected right before FEC!, next expected is: 0x" << hex << next_seqn << endl;
+        cout << "4data: " << num_data_pkts << "miss: " << miss_pkts << endl;
       }
-      uint num_miss = (hdr.ih_seqn-next_seqn)/datasize;
-      miss_pkts+=num_miss;
-
-
-      next_seqn = hdr.ih_seqn; //should have the same seqn as the FEC
-      num_data_pkts++; //TODO: what about the misses!
-      cout << num_miss << " miss detected right before FEC!, next expected is: 0x" << hex << next_seqn << endl;
-      cout << "4data: " << num_data_pkts << "miss: " << miss_pkts << endl;
-
     }
 
-    if (miss_pkts>1) gobackn = true;
-
+    fprintf(stderr, "miss_pkts: %d", miss_pkts);
+    if (miss_pkts>1) {
+        fprintf(stderr, "Go-Back-N mode!!!\n");
+        gobackn = true;
+    }
     if (miss_pkts == 1){
       cout << "fix at: 0x" << hex << miss_base << endl;
       cout << "looping over " << num_data_pkts+miss_pkts-1 << " received packets (-1)" << endl;
@@ -682,7 +717,7 @@ netimg_recvimage(void)
     }
 
 
-    printf("netimg_recvimage: received FEC offset: 0x%x, start: 0x%x, lost: 0x%x, count: %d",
+    fprintf(stderr, "netimg_recvimage: received FEC offset: 0x%x, start: 0x%x, lost: 0x%x, count: %d\n",
      next_wnd_base, fec_base, miss_base, miss_pkts+num_data_pkts); 
 
     num_data_pkts = 0;
@@ -721,7 +756,7 @@ netimg_recvimage(void)
             ntohl(ack.ih_seqn));
     }
     else {
-      cout << "netimg_recvimage: ack sent 0x" << hex << ntohl(ack.ih_seqn) << endl;
+      fprintf(stderr, "netimg_recvimage: ack sent 0x%x\n", ntohl(ack.ih_seqn));
       err = send(sd, &ack, sizeof(ihdr_t), 0);
       if (err <= 0){
         cout << "error sending ack" << endl;
